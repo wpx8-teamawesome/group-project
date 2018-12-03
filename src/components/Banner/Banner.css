@@ -2,9 +2,34 @@
     background-color: #1A202B; 
     height: 100px; 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-evenly;  */
     font-size: calc(10px + 2vmin);
     color: white;
+  }
+
+  .left_nav {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+    justify-content: space-evenly; 
+    margin-left: 10px; 
+    width: 25%; 
+  }
+
+  .right_nav {
+    display: flex;
+    flex-direction: row;
+    width: 75%; 
+  }
+
+  .left_nav > img, .right_nav > img {
+    max-width: 60px;
+    max-height: 60px; 
+  }
+
+  .right_nav > img {
+    margin-left: 70%;
   }
