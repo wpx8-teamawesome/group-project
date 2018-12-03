@@ -1,9 +1,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
-const authController = require('./authController');
-const eventsController = require('./eventController');
-const peopleController = require('./peopleController');
+const authController = require('./controllers/authController');
+const eventsController = require('./controllers/eventController');
+const peopleController = require('./controllers/peopleController');
 // const session = require('express-session');
 require('dotenv').config();
 // require('dotenv').config();
