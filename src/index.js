@@ -9,12 +9,12 @@ import { Provider } from 'react-redux';
 import store from './ducks/store';
 
 //Routing
-import { HashRouter } from 'react-router-dom'; 
+import { BrowserRouter as Router } from 'react-router-dom'; 
 
 ReactDOM.render(<Provider store={store}>
-    <HashRouter>
+    <Router>
     <App />
-    </HashRouter>
+    </Router>
     </Provider>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
