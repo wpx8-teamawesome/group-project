@@ -1,0 +1,33 @@
+.Main_container {
+    padding-top: 0px; 
+    background: transparent; 
+    height: 100%; 
+    width: 100vw; 
+    display: flex; 
+    justify-content: space-evenly; 
+    flex-direction: column; 
+}
+
+.Main_one {
+    width: 100%; 
+    height: 100vh; 
+    background: #0E131B; 
+}
+
+.Main_two {
+    width: 100%; 
+    height: 100vh; 
+    background: #1A202B; 
+}
+
+.Main_three {
+    width: 100%; 
+    height: 100vh; 
+    background: #0E131B; 
+}
+
+.Main_four {
+    width: 100%; 
+    height: 100vh; 
+    background: #1A202B;
+}
