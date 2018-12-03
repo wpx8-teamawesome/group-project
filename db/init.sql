@@ -28,7 +28,7 @@ create table if not exists events (
     socket_room text
 );
 
-create table if not exists direct_message_chats (
+create table if not exists direct_message_lobby (
     id serial primary key,
     user_1 int references users (id) on delete cascade,
     user_2 int references users (id) on delete cascade,
@@ -45,11 +45,19 @@ create table if not exists event_message_history (
 
 create table if not exists dm_message_history (
     id serial primary key,
-    lobby_id int references direct_message_chats(id) on delete cascade,
+    lobby_id int references direct_message_lobby(id) on delete cascade,
     author_id int references users (id) on delete cascade,
     message text,
     created_time timestamp default current_timestamp
 );
+
+create table if not exists received_messages (
+    id serial primary key,
+    recipient_id int references users(id) on delete cascade,
+    socket_room text,
+    is_read bool
+    
+)
 
 -- /* EXAMPLES */
 -- insert into users (name, social_list)
