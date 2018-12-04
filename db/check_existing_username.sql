@@ -1,3 +1,3 @@
+select * from users
+where username = ${username}
 
-
--- Create query to check if username exists in database and return that username if it does
