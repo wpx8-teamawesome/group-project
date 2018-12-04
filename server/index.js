@@ -47,6 +47,7 @@ io.sockets.on("connection", socket => {
             io.in(event.socket_room).emit('chat-history', messageList);
         })
     });
+    
     socket.on('new message', message => {
         console.log('Message from client', message);
         app.get('db').create_message({ ...message })

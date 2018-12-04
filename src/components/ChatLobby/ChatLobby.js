@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import Message from './Message/Message';
 import './chatLobby.css';
-let socket = socketIOClient('http://localhost:3000');
+let socket = socketIOClient();
 
 
 export default class ChatLobby extends Component {
@@ -11,7 +11,8 @@ export default class ChatLobby extends Component {
 
         this.state = {
             message: "",
-            messages: []
+            messages: [],
+            joined: false
         }
         socket.emit('join', {
             id: 1,
@@ -49,7 +50,6 @@ export default class ChatLobby extends Component {
     updateScroll = () => {
         var element = document.getElementById("messages");
         element.scrollTop = element.scrollHeight;
-        console.log(element);
     }
 
     render() {
