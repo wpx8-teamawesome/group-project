@@ -24,6 +24,11 @@ class Banner extends Component {
                     <img src={globe}/>
                 </div>
                 <div className="right_nav">
+                    <ul className="nav_items">
+                        <li><button>Home</button></li>
+                        <li><button>About</button></li>
+                        <li><button>Meetups</button></li>
+                    </ul>
                     <img src={user}/>
                 </div>
             </header>

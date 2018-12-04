@@ -31,5 +31,35 @@
   }
 
   .right_nav > img {
-    margin-left: 70%;
+    margin-left: 5%;
+  }
+
+  .nav_items {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+    width: 25%; 
+    list-style-type: none;
+    margin-left: 40%;  
+  }
+
+  .nav_items > li > button {
+    background:  #1A202B; 
+    border-color: #1896DA; 
+    color: #1896DA; 
+    font-size: 24px; 
+    font-family: 'Courier New', Courier, monospace; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+  }
+
+  .nav_items > li > button:hover {
+    background: #1896DA; 
+    color: white; 
+  }
+
+  /* Media queries */
+
+  @media screen and (max-width: 700px) {
+
   }

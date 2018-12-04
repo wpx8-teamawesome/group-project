@@ -13,7 +13,9 @@ class LandingParent extends Component {
         return (
             <main className="Main_container">
                 <div className="Main_one">
-                
+                    <div className="animation_container">
+                        <script className="script_container" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+                    </div>
                 </div>
                 <div className="Main_two">
                 
