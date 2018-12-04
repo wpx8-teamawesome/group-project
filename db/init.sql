@@ -3,6 +3,7 @@ drop table if exists events cascade;
 drop table if exists direct_message_chats cascade;
 drop table if exists event_message_history;
 drop table if exists dm_message_history;
+drop table if exists message_history;
 
 create table if not exists users (
     id serial primary key,
@@ -35,21 +36,16 @@ create table if not exists direct_message_lobby (
     socket_room text
 );
 
-create table if not exists event_message_history (
+create table if not exists message_history (
     id serial primary key,
-    event_id int references events (id) on delete cascade,
+    socket_room text,
     author_id int references users (id) on delete cascade,
+    name text,
+    img text,
     message text,
     created_time timestamp default current_timestamp
 );
 
-create table if not exists dm_message_history (
-    id serial primary key,
-    lobby_id int references direct_message_lobby(id) on delete cascade,
-    author_id int references users (id) on delete cascade,
-    message text,
-    created_time timestamp default current_timestamp
-);
 
 create table if not exists received_messages (
     id serial primary key,
@@ -57,12 +53,14 @@ create table if not exists received_messages (
     socket_room text,
     is_read bool
     
-)
+);
 
 -- /* EXAMPLES */
 -- insert into users (name, social_list)
 -- values ('Travis', '{"following":[{"34": "Matt"}], "blocked":["MATT"]}');
 
+-- insert into events(owner_id, description, location, title, socket_room) 
+-- values( 1, 'THIS IS HARD', 'Nunya', 'PLSPLS', 'event-1');
 -- insert into dm_message_history (author_id, message)
 -- values(1, 'Hello Freakin World');
 
@@ -73,4 +71,9 @@ create table if not exists received_messages (
 -- delete from users where id = 1;
 -- select * from users
 -- select * from dm_message_history;
+-- select * from message_history;
+-- select * from events;
 
+-- select * from message_history
+-- where socket_room = 
+-- (select socket_room from events where id = 1);
