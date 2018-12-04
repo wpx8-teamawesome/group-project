@@ -6,7 +6,7 @@ module.exports = {
         // console.log('---authController.loginUser connection---')
         const db = req.app.get('db');
         const {username, password} = req.body;
-        de.find_user({username: username}).then(user => {
+        db.find_user({username: username}).then(user => {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                     if (passwordsMatch) {
@@ -28,7 +28,7 @@ module.exports = {
         db.check_existing_username({
             username: username
         }).then(users => {
-            if (user.length) {
+            if (users.length) {
                 res.json({message: "Username is unavailable"})
             }else {
                 bcrypt.hash(password, saltRounds).then(hash => {
@@ -37,7 +37,7 @@ module.exports = {
                         password: hash,
                         email: email
                     }).then(user => {
-                        res.status(200).json(user)
+                        res.status(200).json(user[0])
                     })
                 })
             }

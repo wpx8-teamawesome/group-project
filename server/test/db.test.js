@@ -1,18 +1,15 @@
 const authController = require('../controllers/authController');
 const testInit = require('../../test/init');
-
-
-
+const bcrypt = require('bcrypt');
 
 describe("integration tests", () => {
     let db;
-    // function clearDatabase() {
-    //     return db.query('DELETE from users')
-    // };
+    function clearDatabase() {
+        return db.query('DELETE from users')
+    };
 
     beforeAll(() => {
-        testInit.initDb().then(database => {
-            console.log("--------------------------------------------", database)
+        return testInit.initDb().then(database => {
             db = database;
         })
     });
@@ -37,12 +34,16 @@ describe("integration tests", () => {
 
             const res = {
                 json: function(user) {
-                    expect(data).toMatchObject({
+                    expect(user).toMatchObject({
                         username,
                         email,
-                        password
+                        password: bcrypt.hash(password, 12)
                     });
                     done();
+                },
+                status(num) {
+                    expect(num).toBe(200);
+                    return res;
                 }
             };
             authController.registerUser(req, res);
