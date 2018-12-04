@@ -1,0 +1,38 @@
+.lobby-container {
+    width: 100%;
+    height: calc(100vh - 100px); /* Calculate banner height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-box {
+    width: 90%;
+    background-color:rgb(14, 19, 27);
+    height: 90%;
+}
+
+.message-display {
+    height: calc(100% - 50px);
+    width: 95%;
+    overflow: scroll;
+    
+}
+
+.chat-box .input-box {
+    width: 98%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.chat-box .input-box input {
+    width: 100%;
+}
+
+
+@media screen and (min-width: 400px) {
+    .chat-box{
+        max-width: 1000px;
+    }
+}

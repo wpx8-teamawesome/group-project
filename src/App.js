@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import './App.css';
-import Banner from './components/Banner/Banner.js';
+// import Banner from './components/Banner/Banner.js';
 
-import routes from './routes'; 
+// import routes from './routes'; 
+import ChatLobby from './components/ChatLobby/ChatLobby';
 
 class App extends Component {
   render() {
     return (
       <div>
-      <Banner />   
-      { routes }
+      {/* <Banner />   
+      { routes } */}
+      <ChatLobby />
       </div>
     );
   }
