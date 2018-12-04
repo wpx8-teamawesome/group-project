@@ -25,9 +25,10 @@
     /* border-color: rgb(28, 224, 55);  */
 }
 
-.script_container {
-    width: 80%; 
-    height: 50%;
+.animation_box_one {
+    width: 50; 
+    height: 50; 
+    background: rgb(88, 88, 235); 
 }
 
 .Main_two {
