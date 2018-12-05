@@ -39,7 +39,7 @@ create table if not exists direct_message_lobby (
 create table if not exists message_history (
     id serial primary key,
     socket_room text,
-    author_id int references users (id) on delete cascade,
+    author_id int,
     name text,
     img text,
     message text,
