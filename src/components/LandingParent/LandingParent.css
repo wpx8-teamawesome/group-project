@@ -43,7 +43,7 @@
 }
 
 .type_header {
-    color: white;
+    color: rgb(132, 140, 250); 
     text-align: center; 
     font-size: 36px; 
     margin-top: 25px; 
@@ -88,6 +88,7 @@
     color: white; 
     font-family: 'Courier New', Courier, monospace; 
     box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    font-weight: bold; 
 }
 
 .top_scroll_container {
