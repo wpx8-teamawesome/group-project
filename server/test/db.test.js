@@ -5,12 +5,10 @@ const bcrypt = require('bcrypt');
 describe("integration tests", () => {
     let db;
      
-    // function hashPassword(password) {
-    //     return bcrypt.hash(password, 12).then(hash => hash)
-    // }
     function clearDatabase() {
         return db.query('DELETE from users')
     };
+
     function addTestUser() {
         const hashedPassword = '$2b$12$t5PtHHis7Wph4LzwxgiMvOCbBbD4I6TSjOB/ubA6NyH/kBBWLkFIS'
         return db.query(`Insert into users(username, password) values('testuser', '${hashedPassword}');`)
@@ -73,11 +71,9 @@ describe("integration tests", () => {
                         expect(msg).toMatchObject({message: "Username is unavailable"})
                         done();
                     }
-                    
-                }
+                };
                 authController.registerUser(req, res)
             } )
-           
         });
 
         it('Returns Username does not exist message', (done) => {
