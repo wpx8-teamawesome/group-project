@@ -30,6 +30,7 @@
   .left_nav > img, .right_nav > .nav_items > img {
     max-width: 50px;
     max-height: 50px; 
+    border-radius: 25px; 
   }
 
   .left_nav > img {
@@ -52,9 +53,10 @@
   .toggle_container {
     width: 20%; 
     margin-left: 80%; 
-    height: 200px;
+    height: 40%; 
     background: rgb(11, 40, 94); 
     position: absolute;
+    z-index: 2; 
   }
 
   .toggle_container > ul {
@@ -76,6 +78,24 @@
   }
 
   .toggle_container > ul > li > button:hover {
+    background: #1896DA; 
+    color: white; 
+  }
+
+  .lisu_button {
+    width: 200px; 
+    height: 50px;
+    background: #1A202B; 
+    color: #1896DA; 
+    border-color: #1896DA; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+    margin-left: 40%; 
+  }
+
+  .lisu_button:hover {
     background: #1896DA; 
     color: white; 
   }

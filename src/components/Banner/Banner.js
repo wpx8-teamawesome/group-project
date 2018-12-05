@@ -10,6 +10,8 @@ import globe from '..//..//images/globe.png';
 import downArrow from '..//..//images/downArrow.png'; 
 import downArrowTwo from '..//..//images/downArrowTwo.png'; 
 
+import testProfileImage from '..//LandingParent/TestImages/profile_pic.jpg'; 
+
 class Banner extends Component {
     constructor(props) {
         super(props) 
@@ -26,8 +28,30 @@ class Banner extends Component {
         })
     }
 
+    loginSignupHander = () => {
+
+    }
+
+    signOutHandler = () => {
+        this.setState({ user: null, toggled: false  })
+    }
+
+    componentDidMount() {
+        setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
+    }
+
+    //TEST
+    assignUserForTestAfterThreeSeconds = () => {
+        const newUser = {
+            username: "Ethan", 
+            profileURL: testProfileImage
+        }
+        this.setState({ user: newUser })
+    }
+
     render() {
-        const { user } = this.props; //get image accordingly
+        //const { user } = this.props; //get image accordingly
+        const { user } = this.state; //test, will do via props (redux)
         const { toggled, toggleImage } = this.state; 
         return (
             <div>
@@ -37,31 +61,27 @@ class Banner extends Component {
                     <img src={globe}/>
                 </div>
                 <div className="right_nav">
+                    { user != null ?
                     <ul className="nav_items">
-                        <img src={userImage}/>
+                        <img src={ testProfileImage }/>
                         <img className="toggle_image"
                         onClick={this.toggleNav} 
                         src={toggleImage} 
-                        onMouseEnter={() => {
-                            this.setState({
-                              toggleImage: downArrowTwo
-                            })
-                        }}
-                        onMouseOut={() => {
-                            this.setState({
-                              toggleImage: downArrow
-                            })
-                        }}
+                        onMouseEnter={() => { this.setState({ toggleImage: downArrowTwo }) }}
+                        onMouseOut={() => { this.setState({ toggleImage: downArrow }) }}
                         /> 
                     </ul>
+                    : <button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button> }
                 </div>
             </header> 
             {/* --- Can be own component --- */}
             { toggled === true ? <div className="toggle_container">
                 <ul>
-                <li><button>Home</button></li>
-                <li><button>About</button></li>
-                <li><button>Meetups</button></li> 
+                    {/* user.username */}
+                    <li><button>{ user != null ? user.username : "Sign In"}</button></li>
+                    <li><button>Dashboard</button></li>
+                    <li><button>Profile</button></li>
+                    <li><button onClick={this.signOutHandler}>Sign Out</button></li> 
                 </ul>
             </div> : <div></div> }
             </div>

@@ -10,7 +10,7 @@
 
 .Main_one {
     width: 100%; 
-    height: 100vh; 
+    height: calc(100vh - 100px); 
     background: #0E131B; 
 }
 
@@ -22,11 +22,16 @@
     background: #1A202B; 
     border-radius: 10px; 
     z-index: 10px;
+    position: absolute; 
     /* border-color: rgb(28, 224, 55);  */
 }
 
-.animation_container > div {
+/* .animation_container > div {
     position: absolute; 
+} */
+
+.Main_one > div {
+    position: absolute;
 }
 
 .Main_two {
