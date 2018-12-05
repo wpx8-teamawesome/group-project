@@ -19,13 +19,13 @@ create table if not exists users (
 
 create table if not exists events (
     id serial primary key,
-    title text,
     owner_id int references users(id),
-    location text,
+    title text,
     description text,
+    location text,
     start_time timestamp, 
     end_time timestamp,
-    private bool,
+    private bool default false,
     socket_room text
 );
 
@@ -39,7 +39,7 @@ create table if not exists direct_message_lobby (
 create table if not exists message_history (
     id serial primary key,
     socket_room text,
-    author_id int,
+    author_id int, /* Could make this reference user but if the user removes an account it will affect how this works */
     name text,
     img text,
     message text,
@@ -52,28 +52,19 @@ create table if not exists received_messages (
     recipient_id int references users(id) on delete cascade,
     socket_room text,
     is_read bool
-    
 );
 
 -- /* EXAMPLES */
 -- insert into users (name, social_list)
 -- values ('Travis', '{"following":[{"34": "Matt"}], "blocked":["MATT"]}');
 
--- insert into events(owner_id, description, location, title, socket_room) 
--- values( 1, 'THIS IS HARD', 'Nunya', 'PLSPLS', 'event-1');
--- insert into dm_message_history (author_id, message)
--- values(1, 'Hello Freakin World');
+-- insert into events(owner_id, title, description, location, socket_room) 
+-- values( 1, 'My First Event', 'Here is a desc', '101 N St.', 'event-1');
 
 -- /* Example of how to access jsonb */
 -- select social_list->'blocked' from users;
 
--- /* Cascading works */
--- delete from users where id = 1;
 -- select * from users
--- select * from dm_message_history;
 -- select * from message_history;
 -- select * from events;
 
--- select * from message_history
--- where socket_room = 
--- (select socket_room from events where id = 1);
