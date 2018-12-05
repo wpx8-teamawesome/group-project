@@ -1,12 +1,25 @@
 .message {
     background-color: white;
-    min-height: 100px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 50px; /* Set with sass and match to max icon size */
+    padding: 1%;
 }
 
+
+.message img {
+    height: 50px;
+}
+
+.message .message-body {
+    margin-left: 10px;
+}
 .message-info {
     display:flex;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 5px;
 }
 
 .message-info h2 {
