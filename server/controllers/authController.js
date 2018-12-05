@@ -7,10 +7,12 @@ module.exports = {
         const db = req.app.get('db');
         const {username, password} = req.body;
         db.find_user({username: username}).then(user => {
+            // console.log(user)
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                     if (passwordsMatch) {
-                        res.json(user)
+                        res.json(user[0])
+                        console.log(user)
                     }else {
                         res.json({ message: 'Username and Password do not match' })
                     }
