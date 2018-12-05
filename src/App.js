@@ -25,10 +25,10 @@ class App extends Component {
 
   handleScroll() {
     if (window.scrollY === 0 && this.state.scrolling === true) {
-      this.setState({scrolling: false});
+      this.setState({ scrolling: false });
     }
     else if (window.scrollY !== 0 && this.state.scrolling !== true) {
-      this.setState({scrolling: true});
+      this.setState( {scrolling: true });
     }
   }
 

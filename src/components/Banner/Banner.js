@@ -38,9 +38,6 @@ class Banner extends Component {
                 </div>
                 <div className="right_nav">
                     <ul className="nav_items">
-                        {/* <li><button>Home</button></li>
-                        <li><button>About</button></li>
-                        <li><button>Meetups</button></li> */}
                         <img src={userImage}/>
                         <img className="toggle_image"
                         onClick={this.toggleNav} 
@@ -59,7 +56,14 @@ class Banner extends Component {
                     </ul>
                 </div>
             </header> 
-                { toggled === true ? <div className="toggle_container"></div> : <div></div> }
+            {/* --- Can be own component --- */}
+            { toggled === true ? <div className="toggle_container">
+                <ul>
+                <li><button>Home</button></li>
+                <li><button>About</button></li>
+                <li><button>Meetups</button></li> 
+                </ul>
+            </div> : <div></div> }
             </div>
         )
     }
