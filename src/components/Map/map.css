@@ -9,11 +9,3 @@
 .hidden {
     display: none;
 }
-.red-box {
-    position: relative;
-    top: -300px;
-    width: 200px;
-    height: 200px;
-    background: red;
-    z-index: 999;
-}
