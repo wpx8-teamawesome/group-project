@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Banner from './components/Banner/Banner.js';
-
+import Map from './components/Map/Map'
 
 import routes from './routes'; 
 
 class App extends Component {
   render() {
     return (
-      
-      <div>
-        <Banner /> 
-        { routes }
-      </div>
+      <Map />
+      // <div>
+      //   <Banner /> 
+      //   { routes }
+      // </div>
     );
   }
 }

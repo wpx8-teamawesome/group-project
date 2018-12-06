@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
 import './map.css'
-import '../../assets/curcuit_board.jpg'
+
 
 
 class MapContainer extends Component {
@@ -24,7 +24,8 @@ class MapContainer extends Component {
         }
     }
     componentDidMount() {
-       Geocode.setApiKey("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c");
+       Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+    //    Geocode.setApiKey("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c");
     }
 
     tempButtonClick = () => {
@@ -119,5 +120,6 @@ class MapContainer extends Component {
   }
 }
 
-export default GoogleApiWrapper({apiKey: ("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c")})(MapContainer)
+export default GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
+// export default GoogleApiWrapper({apiKey: ("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c")})(MapContainer)
 // export default GoogleApiWrapper({apiKey: ("AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo")})(MapContainer)
