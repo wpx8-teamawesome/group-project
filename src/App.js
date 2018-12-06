@@ -8,13 +8,11 @@ import routes from './routes';
 class App extends Component {
   render() {
     return (
-      <div id="container">
-      <Map />
+      
+      <div>
+        <Banner /> 
+        { routes }
       </div>
-      // // <div>
-      // {/* <Banner />    */}
-      // {/* { routes } */}
-      // {/* </div> */}
     );
   }
 }
