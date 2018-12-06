@@ -11,6 +11,8 @@
 - bcrypt 
 - react-router-dom
 - body-parser
+- socket.io-client 
+- socket.io
 
 ## Server Endpoints
 

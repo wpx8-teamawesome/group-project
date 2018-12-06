@@ -1,0 +1,38 @@
+.message {
+    background-color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    min-height: 50px; /* Set with sass and match to max icon size */
+    padding: 1%;
+}
+
+
+.message img {
+    height: 50px;
+}
+
+.message .message-body {
+    margin-left: 10px;
+}
+.message-info {
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.message-info h2 {
+    font-weight: 700;
+    font-size: 16px;
+    margin-right: 5px;
+}
+.message-info h3 {
+    font-weight: 300;
+    font-size: 14px;
+}
+.message-body p {
+    font-family: monospace;
+    line-height: 16px;
+    font-size: 16px;
+}
