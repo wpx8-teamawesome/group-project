@@ -25,7 +25,6 @@ class MapContainer extends Component {
     }
     componentDidMount() {
        Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
-    //    Geocode.setApiKey("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c");
     }
 
     tempButtonClick = () => {
@@ -55,7 +54,6 @@ class MapContainer extends Component {
         this.props.google.maps.InfoWindow.prototype.open()
     }
     onMarkerClick = (props, marker, e) => {
-        // console.log(marker.title)
         this.setState({
             activeMarker: marker,
             showInfoWindow: !this.state.showInfoWindow,
@@ -121,5 +119,4 @@ class MapContainer extends Component {
 }
 
 export default GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
-// export default GoogleApiWrapper({apiKey: ("AIzaSyDEjGYVDiCONzrWviHF2Sx0Qokd10dc68c")})(MapContainer)
-// export default GoogleApiWrapper({apiKey: ("AIzaSyAyesbQMyKVVbBgKVi2g6VX7mop2z96jBo")})(MapContainer)
+
