@@ -8,8 +8,8 @@ class App extends Component {
   render() {
     return (
       <div>
-      <Banner />   
-      { routes }
+        <Banner /> 
+        { routes }
       </div>
     );
   }
