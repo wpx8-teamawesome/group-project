@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import Message from './Message/Message';
 import './chatLobby.css';
-let socket = socketIOClient('http://localhost:4000');  // update to match when on production
+let socket; 
 
 
 export default class ChatLobby extends Component {
     constructor(params) {
         super(params);
-
+        socket = socketIOClient('http://localhost:4000');  // update to match when on production 
         this.state = {
             message: "",
             messages: [],

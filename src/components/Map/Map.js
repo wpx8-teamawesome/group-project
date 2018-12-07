@@ -29,9 +29,10 @@ class MapContainer extends Component {
 
     tempButtonClick = () => {
         console.log('This got hit')
-        Geocode.fromAddress("Philadelphia").then(
+        Geocode.fromAddress("725 5th Ave, New York, NY 10022").then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
+              console.log(lat, lng)
               this.setState({
                 loadLat: lat,
                 loadLng: lng
