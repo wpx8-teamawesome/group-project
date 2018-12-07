@@ -1,3 +1,22 @@
-.white-text {
-    color: #fff;
+.event-card-container {
+    background: hotpink;
+    margin-bottom: 10px;
+    h1{
+        margin: 0 30px 10px 16px;
+        // margin-right: 30px;
+        // margin-left: 16px;
+        padding: 6px 16px 4px 16px;
+        border-bottom: 2px solid black;
+        display: inline-block;
+    }
+
+    .lower-box {
+        // display: flex;
+        margin-left: 26px;
+        
+    }
 }
+
+// .white-text {
+//     color: #fff;
+// }

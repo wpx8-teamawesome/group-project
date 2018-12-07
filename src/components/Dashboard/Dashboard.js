@@ -2,10 +2,14 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './dashboard.scss'
 import EventCard from '../EventCard/EventCard'
+import eventsArray from './fakeEvents'
 
 class Dashboard extends Component {
   render() {
-      const eventsArray = [1,2,3,4,5,6,7,8,9,10,11,12]
+    //   console.log(eventsArray)
+      const eventCard = eventsArray.map((event,i) => {
+          return <EventCard events={event} />
+      })
     return (
       <div className="dashboard-container">
         <div className="dashboard-top-box">
@@ -16,7 +20,7 @@ class Dashboard extends Component {
         </div>
 
         <div className="events">
-            <EventCard events={eventsArray}/>
+            {eventCard}
         
         </div>
       </div>
@@ -34,3 +38,7 @@ class Dashboard extends Component {
 
 export default Dashboard
 // export default connect(mapStateToProps)(Dashboard)
+
+
+
+
