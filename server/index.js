@@ -58,6 +58,7 @@ app.put('/api/people/:id', peopleController.updateUser);
 // Events Endpoints
 app.post('/api/events', eventsController.createEvent);
 app.get('/api/events/:id', eventsController.getEvent);
+app.post('/api/events/local', eventsController.getLocalEvents)
 app.put('/api/events/:id', eventsController.editEvent);
 app.delete('/api/events/:id', eventsController.deleteEvent);
 

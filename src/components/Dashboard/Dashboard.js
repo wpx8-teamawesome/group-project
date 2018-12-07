@@ -3,11 +3,29 @@ import { connect } from 'react-redux'
 import './dashboard.scss'
 import EventCard from '../EventCard/EventCard'
 import eventsArray from './fakeEvents'
+import axios from 'axios'
 
 class Dashboard extends Component {
+  constructor() {
+    super()
+    this.state = {
+      userLat: 33.4484,
+      userLng: -112.0740,
+      eventsArray: []
+    }
+  }
+  componentWillMount() {
+    const {userLat, userLng} = this.state
+    axios.post('/api/events/local', {lat: userLat, lng: userLng }).then(res => {
+      this.setState({
+        eventsArray: res.data
+      })
+    })
+  }
+
   render() {
     //   console.log(eventsArray)
-      const eventCard = eventsArray.map((event,i) => {
+      const eventCard = this.state.eventsArray.map((event,i) => {
           return <EventCard events={event} />
       })
     return (
@@ -40,5 +58,5 @@ export default Dashboard
 // export default connect(mapStateToProps)(Dashboard)
 
 
-
+// 33.4484 , -112.0740
 
