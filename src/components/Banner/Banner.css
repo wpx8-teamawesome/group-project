@@ -115,5 +115,40 @@
   /* Media queries */
 
   @media screen and (max-width: 700px) {
-
+    .lisu_button {
+      width: 100px; 
+      height: 25px;
+      font-size: 10px; 
+      margin: auto; 
+    }
+    .App-header {
+      height: 50px;
+    }
+    .left_nav > img, .right_nav > .nav_items > img {
+      max-width: 25px;
+      max-height: 25px; 
+      border-radius: 12.5px; 
+      margin-top: 10px; 
+    }
+    .toggle_container {
+      width: 40%; 
+      margin-left: 60%; 
+      height: 40%; 
+      background: rgb(11, 40, 94); 
+      position: absolute;
+      z-index: 2; 
+    }
+    .toggle_container > ul > li > button {
+      font-size: 14px;  
+      margin-top: 15px; 
+    }
+    .left_nav {
+      width: 50%; 
+    }
+    .left_nav > p {
+      font-size: 16px; 
+    }
+    .right_nav {
+      margin-left: 25%; 
+    }
   }

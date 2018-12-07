@@ -13,6 +13,8 @@ import testImageFour from './TestImages/travel.jpeg';
 import testProfile from './TestImages/profile_pic.jpg'; 
 import plainSearch from '..//..//images/plainSearch.png'; 
 
+import ScrollSnap from 'scroll-snap'
+
 class LandingParent extends Component {
     constructor() {
         super() 
@@ -26,7 +28,9 @@ class LandingParent extends Component {
                 eventCreatorImageURL: testProfile, 
                 eventTitle: "Javascript", 
                 eventFullDateString: "",
-                eventCreatorName: "Ethan"
+                eventCreatorName: "Ethan", 
+                attendeeCount: 12, 
+                descriptionText: "Javascript is the best! (JK everyone hates Javascript)"
             }, {
                 id: 2,
                 eventDate: "Dec 7", 
@@ -34,7 +38,9 @@ class LandingParent extends Component {
                 eventCreatorImageURL: testProfile, 
                 eventTitle: "Java", 
                 eventFullDateString: "",
-                eventCreatorName: "Ethan"
+                eventCreatorName: "Ethan",
+                attendeeCount: 34, 
+                descriptionText: "Java is NOT Javascript"
             }, {
                 id: 3,
                 eventDate: "Dec 8", 
@@ -42,7 +48,9 @@ class LandingParent extends Component {
                 eventCreatorImageURL: testProfile, 
                 eventTitle: "Objective-C", 
                 eventFullDateString: "",
-                eventCreatorName: "Ethan"
+                eventCreatorName: "Ethan",
+                attendeeCount: 17, 
+                descriptionText: "All about the infamous Objective-C"
             }, {
                 id: 4,
                 eventDate: "Dec 9", 
@@ -50,7 +58,9 @@ class LandingParent extends Component {
                 eventCreatorImageURL: testProfile, 
                 eventTitle: "React Native", 
                 eventFullDateString: "",
-                eventCreatorName: "Ethan"
+                eventCreatorName: "Ethan",
+                attendeeCount: 26, 
+                descriptionText: "React but for Phones yo!"
             }] //Test
         }
 
@@ -83,6 +93,17 @@ class LandingParent extends Component {
         this.animationBoxEighteen = null; 
         this.animationBoxNineteen = null; 
         this.animationBoxTwenty = null; 
+        this.animationBoxTwentyOne = null; 
+        this.animationBoxTwentyTwo = null; 
+        this.animationBoxTwentyThree = null; 
+        this.animationBoxTwentyFour = null; 
+        this.animationBoxTwentyFive = null; 
+        this.animationBoxTwentySix = null; 
+        this.animationBoxTwentySeven = null; 
+        this.animationBoxTwentyEight = null; 
+        this.animationBoxTwentyNine = null; 
+        this.animationBoxThirty = null; 
+
         this.tweenOne = null; 
         this.tweenTwo = null;
         this.tweenThree = null; 
@@ -103,114 +124,181 @@ class LandingParent extends Component {
         this.tweenEighteen = null; 
         this.tweenNineteen = null;
         this.tweenTwenty = null; 
+        this.tweenTwentyOne = null; 
+        this.tweenTwentyTwo = null;
+        this.tweenTwentyThree = null; 
+        this.tweenTwentyFour = null; 
+        this.tweenTwentyFive = null; 
+        this.tweenTwentySix = null;
+        this.tweenTwentySeven = null; 
+        this.tweenTwentyEight = null; 
+        this.tweenTwentyNine = null;
+        this.tweenThirty = null;
     }
 
     // boxShadow: '1px 1px 1px 1px rgb(127, 189, 214)' //can also add this
     // # id identifies one element, class . can identify however many
     initTweenAnimations = () => {
         //Should have multiple? 
-        const timeGroupOne = 10 
+        const timeGroupOne = 5
+        //Can't do percentages so we'll get center this way
+        const centerX = window.innerWidth / 2
+        const centerY = (window.innerHeight / 2) - 100 //100 is navbar height
+
+        console.log('center', centerX, centerY)
         this.tweenOne = TweenLite.fromTo(this.animationBoxOne, timeGroupOne, {
-            x: 900, y: 0, width: 60, height: 60, backgroundColor: 'rgba(36, 88, 173, .5)', borderRadius: 30
+            x: centerX, y: centerY, width: 60, height: 60, backgroundColor: 'rgba(36, 88, 173, .5)', borderRadius: 30
         }, {
             x: 500, y: 100, width: 100, height: 100, backgroundColor: 'rgba(36, 88, 173, .7)', borderRadius: 50
         })
         this.tweenTwo = TweenLite.fromTo(this.animationBoxTwo, timeGroupOne, {
-            x: 800, y: 50, width: 40, height: 40, backgroundColor: 'rgba(125, 214, 98, .5)', borderRadius: 20
+            x: centerX, y: centerY, width: 40, height: 40, backgroundColor: 'rgba(125, 214, 98, .5)', borderRadius: 20
         }, {
             x: 300, y: 150, width: 80, height: 80, backgroundColor: 'rgba(125, 214, 98, .6)', borderRadius: 40
         })
         this.tweenThree = TweenLite.fromTo(this.animationBoxThree, timeGroupOne, {
-            x: 1100, y: 0, width: 10, height: 10, backgroundColor: 'rgba(219, 94, 204, .45)', borderRadius: 5
+            x: centerX, y: centerY, width: 10, height: 10, backgroundColor: 'rgba(219, 94, 204, .45)', borderRadius: 5
         }, {
             x: 150, y: 150, width: 60, height: 60, backgroundColor: 'rgba(219, 94, 204, .85)', borderRadius: 30
         })
         this.tweenFour = TweenLite.fromTo(this.animationBoxFour, timeGroupOne, {
-            x: 1000, y: 40, width: 25, height: 25, backgroundColor: 'rgba(63, 219, 208, .4)', borderRadius: 12.5
+            x: centerX, y: centerY, width: 25, height: 25, backgroundColor: 'rgba(63, 219, 208, .4)', borderRadius: 12.5
         }, {
             x: 450, y: 80, width: 55, height: 55, backgroundColor: 'rgba(63, 219, 208, .7)', borderRadius: 27.5
         })
         this.tweenFive = TweenLite.fromTo(this.animationBoxFive, timeGroupOne, {
-            x: 1050, y: 10, width: 20, height: 20, backgroundColor: 'rgba(82, 67, 242, .65)', borderRadius: 10
+            x: centerX, y: centerY, width: 20, height: 20, backgroundColor: 'rgba(82, 67, 242, .65)', borderRadius: 10
         }, {
             x: 550, y: 180, width: 45, height: 45, backgroundColor: 'rgba(82, 67, 242, .75)', borderRadius: 22.5
         })
         this.tweenSix = TweenLite.fromTo(this.animationBoxSix, timeGroupOne, {
-            x: 1250, y: 100, width: 30, height: 30, backgroundColor: 'rgba(7, 62, 239, .6)', borderRadius: 15
+            x: centerX, y: centerY, width: 30, height: 30, backgroundColor: 'rgba(7, 62, 239, .6)', borderRadius: 15
         }, {
             x: 250, y: 130, width: 60, height: 60, backgroundColor: 'rgba(7, 62, 239, .9)', borderRadius: 30
         })
         this.tweenSeven = TweenLite.fromTo(this.animationBoxSeven, timeGroupOne, {
-            x: 950, y: 75, width: 5, height: 5, backgroundColor: 'rgba(219, 21, 51, .3)', borderRadius: 2.5
+            x: centerX, y: centerY, width: 5, height: 5, backgroundColor: 'rgba(219, 21, 51, .3)', borderRadius: 2.5
         }, {
             x: 550, y: 90, width: 35, height: 35, backgroundColor: 'rgba(219, 21, 51, .65)', borderRadius: 17.5
         })
         this.tweenEight = TweenLite.fromTo(this.animationBoxEight, timeGroupOne, {
-            x: 1100, y: 30, width: 40, height: 40, backgroundColor: 'rgba(77, 160, 14, .5)', borderRadius: 20
+            x: centerX, y: centerY, width: 40, height: 40, backgroundColor: 'rgba(77, 160, 14, .5)', borderRadius: 20
         }, {
             x: 700, y: 60, width: 80, height: 80, backgroundColor: 'rgba(77, 160, 14, .8)', borderRadius: 40
         })
         this.tweenNine = TweenLite.fromTo(this.animationBoxNine, timeGroupOne, {
-            x: 1080, y: 90, width: 20, height: 20, backgroundColor: 'rgba(237, 146, 9, .7)', borderRadius: 10
+            x: centerX, y: centerY, width: 20, height: 20, backgroundColor: 'rgba(237, 146, 9, .7)', borderRadius: 10
         }, {
             x: 50, y: 180, width: 100, height: 100, backgroundColor: 'rgba(237, 146, 9, .8)', borderRadius: 50
         })
         this.tweenTen = TweenLite.fromTo(this.animationBoxTen, timeGroupOne, {
-            x: 980, y: 150, width: 10, height: 10, backgroundColor: 'rgba(17, 55, 178, .6)', borderRadius: 5
+            x: centerX, y: centerY, width: 10, height: 10, backgroundColor: 'rgba(17, 55, 178, .6)', borderRadius: 5
         }, {
             x: 200, y: 200, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, 1)', borderRadius: 25
         })
 
         //Next ten
         this.tweenEleven = TweenLite.fromTo(this.animationBoxEleven, timeGroupOne, {
-            x: 50, y: 125, width: 20, height: 20, backgroundColor: 'rgba(36, 88, 173, .4)', borderRadius: 10
+            x: centerX, y: centerY, width: 20, height: 20, backgroundColor: 'rgba(36, 88, 173, .4)', borderRadius: 10
         }, {
             x: 700, y: 280, width: 60, height: 60, backgroundColor: 'rgba(36, 88, 173, .7)', borderRadius: 30
         })
         this.tweenTwelve = TweenLite.fromTo(this.animationBoxTwelve, timeGroupOne, {
-            x: 10, y: 50, width: 40, height: 40, backgroundColor: 'rgba(125, 214, 98, .5)', borderRadius: 20
+            x: centerX, y: centerY, width: 40, height: 40, backgroundColor: 'rgba(125, 214, 98, .5)', borderRadius: 20
         }, {
             x: 800, y: 100, width: 80, height: 80, backgroundColor: 'rgba(125, 214, 98, .8)', borderRadius: 40
         })
         this.tweenThirteen = TweenLite.fromTo(this.animationBoxThirteen, timeGroupOne, {
-            x: 0, y: 0, width: 0, height: 0, backgroundColor: 'rgba(219, 94, 204, .85)', borderRadius: 0
+            x: centerX, y: centerY, width: 0, height: 0, backgroundColor: 'rgba(219, 94, 204, .85)', borderRadius: 0
         }, {
             x: 770, y: 140, width: 50, height: 50, backgroundColor: 'rgba(219, 94, 204, .95)', borderRadius: 25
         })
         this.tweenFourteen = TweenLite.fromTo(this.animationBoxFourteen, timeGroupOne, {
-            x: 100, y: 0, width: 55, height: 55, backgroundColor: 'rgba(63, 219, 208, .7)', borderRadius: 27.5 
+            x: centerX, y: centerY, width: 55, height: 55, backgroundColor: 'rgba(63, 219, 208, .7)', borderRadius: 27.5 
         }, {
             x: 850, y: 350, width: 75, height: 75, backgroundColor: 'rgba(63, 219, 208, .9)', borderRadius: 37.5 
         })
         this.tweenFifteen = TweenLite.fromTo(this.animationBoxFifteen, timeGroupOne, {
-            x: 30, y: 470, width: 45, height: 45, backgroundColor: 'rgba(82, 67, 242, .65)', borderRadius: 22.5
+            x: centerX, y: centerY, width: 45, height: 45, backgroundColor: 'rgba(82, 67, 242, .65)', borderRadius: 22.5
         }, {
             x: 980, y: 10, width: 90, height: 90, backgroundColor: 'rgba(82, 67, 242, .8)', borderRadius: 45
         })
         this.tweenSixteen = TweenLite.fromTo(this.animationBoxSixteen, timeGroupOne, {
-            x: 0, y: 100, width: 10, height: 10, backgroundColor: 'rgba(82, 67, 142, .9)', borderRadius: 5
+            x: centerX, y: centerY, width: 10, height: 10, backgroundColor: 'rgba(82, 67, 142, .9)', borderRadius: 5
         }, {
             x: 1000, y: 50, width: 75, height: 75, backgroundColor: 'rgba(82, 67, 142, .9)', borderRadius: 37.5
         })
         this.tweenSeventeen = TweenLite.fromTo(this.animationBoxSeventeen, timeGroupOne, {
-            x: 10, y: 150, width: 35, height: 35, backgroundColor: 'rgba(219, 21, 51, .3)', borderRadius: 17.5
+            x: centerX, y: centerY, width: 35, height: 35, backgroundColor: 'rgba(219, 21, 51, .3)', borderRadius: 17.5
         }, {
             x: 900, y: 50, width: 70, height: 70, backgroundColor: 'rgba(219, 21, 51, .8)', borderRadius: 35
         })
         this.tweenEighteen = TweenLite.fromTo(this.animationBoxEighteen, timeGroupOne, {
-            x: 0, y: 400, width: 40, height: 40, backgroundColor: 'rgba(77, 160, 14, .5)', borderRadius: 20
+            x: centerX, y: centerY, width: 40, height: 40, backgroundColor: 'rgba(77, 160, 14, .5)', borderRadius: 20
         }, {
             x: 1100, y: 30, width: 80, height: 80, backgroundColor: 'rgba(77, 160, 14, .8)', borderRadius: 40
         })
         this.tweenNineteen = TweenLite.fromTo(this.animationBoxNineteen, timeGroupOne, {
-            x: 50, y: 300, width: 50, height: 50, backgroundColor: 'rgba(237, 146, 9, .7)', borderRadius: 25
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(237, 146, 9, .7)', borderRadius: 25
         }, {
             x: 1050, y: 450, width: 90, height: 90, backgroundColor: 'rgba(237, 146, 9, .9)', borderRadius: 45
         })
         this.tweenTwenty = TweenLite.fromTo(this.animationBoxTwenty, timeGroupOne, {
-            x: 200, y: 480, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, 1)', borderRadius: 25
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, 1)', borderRadius: 25
         }, {
             x: 800, y: 100, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, 1)', borderRadius: 25
+        })
+
+        //Next ten
+        this.tweenTwentyOne = TweenLite.fromTo(this.animationBoxTwentyOne, timeGroupOne, {
+            x: centerX, y: centerY, width: 20, height: 20, backgroundColor: 'rgba(17, 55, 178, .5)', borderRadius: 10
+        }, {
+            x: 600, y: 50, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, .8)', borderRadius: 25
+        })
+        this.tweenTwentyTwo = TweenLite.fromTo(this.animationBoxTwentyTwo, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, .4)', borderRadius: 25
+        }, {
+            x: 200, y: 10, width: 70, height: 70, backgroundColor: 'rgba(17, 55, 178, .8)', borderRadius: 35
+        })
+        this.tweenTwentyThree = TweenLite.fromTo(this.animationBoxTwentyThree, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, .5)', borderRadius: 25
+        }, {
+            x: 100, y: 5, width: 80, height: 80, backgroundColor: 'rgba(17, 55, 178, 1)', borderRadius: 40
+        })
+        this.tweenTwentyFour = TweenLite.fromTo(this.animationBoxTwentyFour, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(17, 55, 178, .7)', borderRadius: 25
+        }, {
+            x: 80, y: 150, width: 80, height: 80, backgroundColor: 'rgba(17, 55, 178, .8)', borderRadius: 40
+        })
+        this.tweenTwentyFive = TweenLite.fromTo(this.animationBoxTwentyFive, timeGroupOne, {
+            x: centerX, y: centerY, width: 30, height: 30, backgroundColor: 'rgba(17, 55, 178, .6)', borderRadius: 15
+        }, {
+            x: 230, y: 10, width: 40, height: 40, backgroundColor: 'rgba(17, 55, 178, .9)', borderRadius: 20
+        })
+        this.tweenTwentySix = TweenLite.fromTo(this.animationBoxTwentySix, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(32, 63, 173, .6)', borderRadius: 25
+        }, {
+            x: 340, y: 460, width: 80, height: 80, backgroundColor: 'rgba(32, 63, 173, .9)', borderRadius: 40
+        })
+        this.tweenTwentySeven = TweenLite.fromTo(this.animationBoxTwentySeven, timeGroupOne, {
+            x: centerX, y: centerY, width: 30, height: 30, backgroundColor: 'rgba(160, 11, 224, .4)', borderRadius: 15
+        }, {
+            x: 5, y: 420, width: 85, height: 85, backgroundColor: 'rgba(160, 11, 224, .9)', borderRadius: 42.5
+        })
+        this.tweenTwentyEight = TweenLite.fromTo(this.animationBoxTwentyEight, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(36, 77, 191, .7)', borderRadius: 25
+        }, {
+            x: 90, y: 405, width: 80, height: 80, backgroundColor: 'rgba(36, 77, 191, .8)', borderRadius: 40
+        })
+        this.tweenTwentyNine = TweenLite.fromTo(this.animationBoxTwentyNine, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(84, 206, 161, .5)', borderRadius: 25
+        }, {
+            x: 450, y: 410, width: 90, height: 90, backgroundColor: 'rgba(84, 206, 161, .8)', borderRadius: 45
+        })
+        this.tweenTwentyThirty = TweenLite.fromTo(this.animationBoxThirty, timeGroupOne, {
+            x: centerX, y: centerY, width: 50, height: 50, backgroundColor: 'rgba(226, 13, 74, .4)', borderRadius: 25
+        }, {
+            x: 630, y: 435, width: 100, height: 100, backgroundColor: 'rgba(226, 13, 74, 1)', borderRadius: 50
         })
     }
 
@@ -246,35 +334,62 @@ class LandingParent extends Component {
         this.setState({ searchText: val })
     }
 
+    checkOutEvent = (id) => {
+
+    }
+
+    //For snap test
+    callback () {
+        console.log('called when snap animation ends')
+    }
+
     render() {
-        //Child can be own component   
+
+        // --- Child can be own component ---
         const { scrollItems } = this.state;
         const children = scrollItems.map((item, index) => {
             return <div className="scroll_child" onTouchStart="this.classList.toggle('hover');">
                 <div className="flip_container">
                     <div className="front">
-                    
+                        <div className="top_scroll_container">
+                            <p>{item.eventDate}</p>
+                        <img className="main_image" 
+                        onClick={() => this.handleEventOnClick(item.id)} 
+                        src={item.eventMainImageURL} />
                     </div>
-                    <div className="back">
-                    
-                    </div>
-                </div>
-                <div className="top_scroll_container">
-                    <p>{item.eventDate}</p>
-                    <img className="main_image" onClick={() => this.handleEventOnClick(item.id)} 
-                    src={item.eventMainImageURL} />
-                </div>
-                <div className="bottom_scroll_container">
-                    <p>{item.eventTitle}</p>
+                    <div className="bottom_scroll_container">
+                        <p>{item.eventTitle}</p>
                     <div>
                         <img src={item.eventCreatorImageURL} /> 
                         <p>{`Hosted by ${item.eventCreatorName}`}</p>
                     </div>
+                    </div>
+                    </div>
+                    <div className="back">
+                        <p> {`Atendees ${item.attendeeCount}`} </p>
+                        <p> {item.descriptionText} </p>
+                        <button onClick={() => this.checkOutEvent(item.id)}> Go To Page </button>
+                    </div>
                 </div>
-                </div>
+            </div>
         })
+
         console.log('scroll items', scrollItems)
         const child = { width: `300em`, height: `100%`} //can also style like this
+
+        // Snap test 
+        const snapConfig = {
+            scrollSnapDestination: '90% 0%', // *REQUIRED* scroll-snap-destination css property, as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-destination
+            scrollTimeout: 100, // *OPTIONAL* (default = 100) time in ms after which scrolling is considered finished
+            scrollTime: 300 // *OPTIONAL* (default = 300) time in ms for the smooth snap
+        }
+
+        // const element = document.getElementById('scroll_view')
+        // const snapObject = new ScrollSnap(element, snapConfig)
+        // snapObject.bind(this.callback)
+
+        // snapObject.unbind();
+
         return (
             <main className="Main_container">
                 <div className="Main_one">
@@ -298,6 +413,16 @@ class LandingParent extends Component {
                         <div ref={div => this.animationBoxEighteen = div} />
                         <div ref={div => this.animationBoxNineteen = div} />
                         <div ref={div => this.animationBoxTwenty = div} />
+                        <div ref={div => this.animationBoxTwentyOne = div} />
+                        <div ref={div => this.animationBoxTwentyTwo = div} />
+                        <div ref={div => this.animationBoxTwentyThree = div} />
+                        <div ref={div => this.animationBoxTwentyFour = div} />
+                        <div ref={div => this.animationBoxTwentyFive = div} />
+                        <div ref={div => this.animationBoxTwentySix = div} />
+                        <div ref={div => this.animationBoxTwentySeven = div} />
+                        <div ref={div => this.animationBoxTwentyEight = div} />
+                        <div ref={div => this.animationBoxTwentyNine = div} />
+                        <div ref={div => this.animationBoxThirty = div} />
                     <div className="animation_container">
                         <Typing className="type_header_top"> Find Fellow Nerds! </Typing>
                         <div>
@@ -309,7 +434,7 @@ class LandingParent extends Component {
                 <div className="Main_two">
                     <Typing className="type_header"> Nearby Events </Typing>
                     <div className="animation_container_two">
-                        <HorizontalScroll >
+                        <HorizontalScroll className="scroll_view" >
                             { children }
                         </HorizontalScroll>
                     </div>
