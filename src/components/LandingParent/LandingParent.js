@@ -13,7 +13,8 @@ import testImageFour from './TestImages/travel.jpeg';
 import testProfile from './TestImages/profile_pic.jpg'; 
 import plainSearch from '..//..//images/plainSearch.png'; 
 
-import ScrollSnap from 'scroll-snap'
+import ScrollSnap from 'scroll-snap'; 
+import Slider from 'react-slick'; 
 
 class LandingParent extends Component {
     constructor() {
@@ -345,6 +346,15 @@ class LandingParent extends Component {
 
     render() {
 
+        //Scroll settings for new snap scroll (Replacing horizontal scroll)
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        }
+
         // --- Child can be own component ---
         const { scrollItems } = this.state;
         const children = scrollItems.map((item, index) => {
@@ -373,22 +383,6 @@ class LandingParent extends Component {
                 </div>
             </div>
         })
-
-        console.log('scroll items', scrollItems)
-        const child = { width: `300em`, height: `100%`} //can also style like this
-
-        // Snap test 
-        const snapConfig = {
-            scrollSnapDestination: '90% 0%', // *REQUIRED* scroll-snap-destination css property, as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-destination
-            scrollTimeout: 100, // *OPTIONAL* (default = 100) time in ms after which scrolling is considered finished
-            scrollTime: 300 // *OPTIONAL* (default = 300) time in ms for the smooth snap
-        }
-
-        // const element = document.getElementById('scroll_view')
-        // const snapObject = new ScrollSnap(element, snapConfig)
-        // snapObject.bind(this.callback)
-
-        // snapObject.unbind();
 
         return (
             <main className="Main_container">
@@ -434,13 +428,17 @@ class LandingParent extends Component {
                 <div className="Main_two">
                     <Typing className="type_header"> Nearby Events </Typing>
                     <div className="animation_container_two">
-                        <HorizontalScroll className="scroll_view" >
+                        <Slider className="slick_slider" {...settings}>
                             { children }
-                        </HorizontalScroll>
+                        </Slider>
                     </div>
                 </div>
                 <div className="Main_three">
-                
+                    <div className="animation_container_three">
+                        {/* <HorizontalScroll className="scroll_view" >
+                            { children }
+                        </HorizontalScroll> */}
+                    </div>
                 </div>
                 <div className="Main_four">
                 
