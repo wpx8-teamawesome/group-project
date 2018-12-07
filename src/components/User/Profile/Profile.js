@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import EventPreview from './EventPreview/EventPreview';
 import './profile.css';
+import moment from 'moment';
 
 class Profile extends Component {
     constructor(params) {
@@ -24,7 +25,11 @@ class Profile extends Component {
     fetchProfileData = async (id) => {
         const user = await axios.get(`/api/people/${id}`).then(user => user.data);
         const events = await axios.get(`/api/events/user/${id}`).then(events => events.data);
-        console.log('user', user);
+        for (let event of events) {
+            event.start_time = moment(event.start_time).zone(new Date().getTimezoneOffset()).format('lll');
+            event.end_time = moment(event.end_time).zone(new Date().getTimezoneOffset()).format('lll');
+        }
+
         this.setState({
             profile: user,
             events
