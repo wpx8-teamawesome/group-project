@@ -202,6 +202,7 @@
 
 .flip_container:hover {
     transform: rotateY(180deg); 
+    background: transparent; 
 }
 
 /* hide back of pane during swap */
@@ -210,6 +211,7 @@
 	position: absolute;
 	top: 0;
     left: 0;
+    border-radius: 10px; 
 }
 
 /* front pane, placed above back */
