@@ -52,7 +52,8 @@ app.post('/api/auth/register', authController.registerUser);
 app.post('/api/auth/logout', authController.logoutUser);
 
 
-// Update user profile endpoint
+// User profile endpoint
+app.get('/api/people/:id', peopleController.getUserProfile);
 app.put('/api/people/:id', peopleController.updateUser);
 
 // Events Endpoints
@@ -61,6 +62,7 @@ app.get('/api/events/:id', eventsController.getEvent);
 app.post('/api/events/local', eventsController.getLocalEvents)
 app.put('/api/events/:id', eventsController.editEvent);
 app.delete('/api/events/:id', eventsController.deleteEvent);
+app.get('/api/events/user/:id', eventsController.getEventsOfUser);
 
 // --------------------  Server Connection  --------------------
 const PORT = 4000
