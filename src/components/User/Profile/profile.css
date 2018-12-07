@@ -78,3 +78,12 @@
 }
 
 #bio {display:block;}
+
+.profile-container #events {
+    padding: 15px;
+    width: 100%;
+}
+
+.profile-container #events > * + * {
+    margin-top: 10px;
+}

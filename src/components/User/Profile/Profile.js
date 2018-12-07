@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import EventPreview from './EventPreview/EventPreview';
 import './profile.css';
 
 class Profile extends Component {
@@ -23,7 +24,7 @@ class Profile extends Component {
     fetchProfileData = async (id) => {
         const user = await axios.get(`/api/people/${id}`).then(user => user.data);
         const events = await axios.get(`/api/events/user/${id}`).then(events => events.data);
-        console.log(events);
+        console.log('user', user);
         this.setState({
             profile: user,
             events
@@ -48,12 +49,14 @@ class Profile extends Component {
         return true
     }
     render() {
-        const { profile } = this.state; // 
+        const { profile, events } = this.state; // 
         if (!profile) {
             return <div>No user :(</div>
         }
-        const myEvents = ''; // map over events
-        const following = '';
+
+        const myEvents = events.map(event => <EventPreview key={event.id} event={event} />); // map over events
+        console.log(profile);
+        const following = profile.socialList.following.map(user => <div>{user}</div>);
         const isFollowing = this.checkFollow();
         return (
             <div className='profile-container'>
