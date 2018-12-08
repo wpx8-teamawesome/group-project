@@ -1,0 +1,154 @@
+.App-header {
+    background-color: #1A202B; 
+    height: 100px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: space-evenly;  */
+    font-size: calc(10px + 2vmin);
+    color: white;
+    position: relative;
+  }
+
+  .left_nav {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+    justify-content: space-evenly; 
+    /* margin-left: 10px;  */
+    width: 25%; 
+  }
+
+  .right_nav {
+    display: flex;
+    flex-direction: row;
+    width: 50%; 
+    margin-left: 50%; 
+  }
+
+  .left_nav > img, .right_nav > .nav_items > img {
+    max-width: 50px;
+    max-height: 50px; 
+    border-radius: 25px; 
+  }
+
+  .left_nav > img {
+    margin-top: 10px; 
+  }
+
+  .right_nav > nav_items > img {
+    margin-left: 5%;
+  }
+
+  .nav_items {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+    width: 25%; 
+    list-style-type: none;
+    margin-left: 40%;  
+  }
+
+  .toggle_container {
+    width: 20%; 
+    margin-left: 80%; 
+    height: 40%; 
+    background: rgb(11, 40, 94); 
+    position: absolute;
+    z-index: 2; 
+  }
+
+  .toggle_container > ul {
+    display: flex; 
+    list-style-type: none; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+  }
+
+  .toggle_container > ul > li > button {
+    background:  #1A202B; 
+    border-color: #1896DA; 
+    color: #1896DA; 
+    font-size: 24px; 
+    font-family: 'Courier New', Courier, monospace; 
+    border-radius: 5px; 
+    width: 80%; 
+    margin-top: 15px; 
+  }
+
+  .toggle_container > ul > li > button:hover {
+    background: #1896DA; 
+    color: white; 
+  }
+
+  .lisu_button {
+    width: 200px; 
+    height: 50px;
+    background: #1A202B; 
+    color: #1896DA; 
+    border-color: #1896DA; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+    margin-left: 40%; 
+  }
+
+  .lisu_button:hover {
+    background: #1896DA; 
+    color: white; 
+  }
+
+  /* .nav_items > li > button {
+    background:  #1A202B; 
+    border-color: #1896DA; 
+    color: #1896DA; 
+    font-size: 24px; 
+    font-family: 'Courier New', Courier, monospace; 
+    border-radius: 5px; 
+    margin-left: 5px; 
+  } */
+
+
+
+  /* Media queries */
+
+  @media screen and (max-width: 700px) {
+    .lisu_button {
+      width: 100px; 
+      height: 25px;
+      font-size: 10px; 
+      margin: auto; 
+    }
+    .App-header {
+      height: 50px;
+    }
+    .left_nav > img, .right_nav > .nav_items > img {
+      max-width: 25px;
+      max-height: 25px; 
+      border-radius: 12.5px; 
+      margin-top: 10px; 
+    }
+    .toggle_container {
+      width: 40%; 
+      margin-left: 60%; 
+      height: 40%; 
+      background: rgb(11, 40, 94); 
+      position: absolute;
+      z-index: 2; 
+    }
+    .toggle_container > ul > li > button {
+      font-size: 14px;  
+      margin-top: 15px; 
+    }
+    .left_nav {
+      width: 50%; 
+    }
+    .left_nav > p {
+      font-size: 16px; 
+    }
+    .right_nav {
+      margin-left: 25%; 
+    }
+  }
