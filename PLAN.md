@@ -11,6 +11,8 @@
 - bcrypt 
 - react-router-dom
 - body-parser
+- socket.io-client 
+- socket.io
 
 ## Server Endpoints
 
@@ -38,13 +40,13 @@
 * start_time TIMESTAMP
 * end_time TIMESTAMP
 * private BOOL
-* Socket thing?
+* Socket text
 
 ### Direct_Message_Lobby 
 * id SERIAL
 * user_1 ref user_id
 * user_2 ref user_id
-* Socket thing?
+* Socket text
 
 ### EventMessageHistory
 * id SERIAL
@@ -55,7 +57,7 @@
 
 ### DM_MessageHistory
 * id SERIAL
-* lobby_id ref direct_message_lobby_id
+* lobby_id
 * author_id ref user_id
 * message TEXT
 * created_time TIMESTAMP

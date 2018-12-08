@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './LandingParent.css'; 
+import './LandingParent.scss'; 
 
 import HorizontalScroll from 'react-scroll-horizontal'; 
 import { TweenLite, TimelineLite } from "gsap/all";

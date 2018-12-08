@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Banner.css'; 
+import './Banner.scss'; 
 import { connect } from 'react-redux';
 import { loginUser } from '..//../ducks/reducer'; 
 import { logoutUser } from '..//../ducks/reducer'; 
