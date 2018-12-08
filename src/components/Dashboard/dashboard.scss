@@ -1,0 +1,45 @@
+@import '../../scss/_variables';
+
+
+body {
+    background: $dark;
+}
+.dashboard-container {
+    font-family: $mono;
+    width: 94%;
+
+    margin: 20px auto 0 auto;
+
+    .dashboard-top-box {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        button {
+            width: 20%;
+            background-color: lightblue;
+        }
+        
+        h1 {
+            font-size: 24px;
+            width: 55%;
+            text-align: center;
+            font-weight: bold;
+            color: $teal;
+            border-bottom: 3px solid #27E5E9;
+        }
+        .dashboard-top-box-filler {
+            width: 20%;
+            height: 40px;
+            // background: hotpink; 
+        }
+    }
+
+    // .events h1.white-text{
+    //     color: #fff;
+    // }
+        
+    
+}
+

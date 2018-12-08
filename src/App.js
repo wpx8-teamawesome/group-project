@@ -1,25 +1,53 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Banner from './components/Banner/Banner.js';
+
+
+import routes from './routes'; 
 
 class App extends Component {
+  constructor() {
+    super() 
+    this.state = {
+      scrolling : false, 
+      user: null,
+    }
+    this.handleScroll = this.handleScroll.bind(this)
+  }
+
+  //Listen for scrolling
+  addListener() {
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  removeListener() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll() {
+    if (window.scrollY === 0 && this.state.scrolling === true) {
+      this.setState({ scrolling: false });
+    }
+    else if (window.scrollY !== 0 && this.state.scrolling !== true) {
+      this.setState( {scrolling: true });
+    }
+  }
+
+  //Lifecycle
+  componentDidMount() {
+    this.addListener() 
+  }
+
+  componentWillUnmount() {
+    this.removeListener()
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      
+      <div>
+        <Banner /> 
+        { routes }
       </div>
     );
   }

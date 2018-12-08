@@ -1,0 +1,316 @@
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+
+.Main_container {
+    padding-top: 0px; 
+    background: transparent; 
+    height: 100%; 
+    width: 100vw; 
+    display: flex; 
+    justify-content: space-evenly; 
+    flex-direction: column; 
+}
+
+.Main_one {
+    width: 100%; 
+    height: calc(100vh - 100px); 
+    background: #0E131B; 
+}
+
+.animation_container {
+    width: 80%; 
+    height: 40%;
+    margin-top: 12.5%; 
+    margin-left: 10%; 
+    /* background: #1A202B;  */
+    background: rgba(23, 23, 53, 0.5); 
+    /* opacity: .5; */
+    border-radius: 10px; 
+    z-index: 10px;
+    position: absolute; 
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    display: flex; 
+    flex-direction: column; 
+    /* border-color: rgb(28, 224, 55);  */
+}
+
+.animation_container > div {
+    width: 100%; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+    height: 30%;
+}
+
+.animation_container > div > img {
+    max-width: 80px; 
+    max-height: 80px; 
+    /* border-radius: 40px; 
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214); */
+}
+
+.animation_container > div > input {
+    width: 50%; 
+    height: 50px;
+    border-radius: 10px; 
+    background: rgb(6, 61, 150); 
+    text-align: center; 
+    font-family: 'Courier New', Courier, monospace; 
+    color: rgb(248, 248, 250); 
+    font-size: 36px; 
+}
+
+.type_header_top {
+    color: rgb(22, 193, 223); 
+    text-align: center; 
+    font-size: 48px; 
+    margin-top: 25px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+}
+
+/* .animation_container > div {
+    position: absolute; 
+} */
+
+.Main_one > div {
+    position: absolute;
+}
+
+.Main_two {
+    width: 100%; 
+    height: 100vh; 
+    background: #1A202B; 
+    /* display: flex; 
+    flex-direction: column;  */
+}
+
+.type_header {
+    color: rgb(132, 140, 250); 
+    text-align: center; 
+    font-size: 36px; 
+    margin-top: 25px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+}
+
+.animation_container_two {
+    width: 80%; 
+    height: 70%;
+    margin-top: 50px;
+    margin-left: 10%; 
+    background: #0E131B;
+    border-radius: 10px; 
+    z-index: 10px;
+    /* border-color: rgb(28, 224, 55);  */
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+}
+
+.animation_container_three {
+    width: 80%; 
+    height: 70%;
+    margin-top: 50px;
+    margin-left: 10%; 
+    background: rgba(23, 23, 53, 0.5); 
+    border-radius: 10px; 
+    z-index: 10px;
+    /* border-color: rgb(28, 224, 55);  */
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+}
+
+.slick_slider {
+    margin-top: 10px; 
+    height: 100%;
+    background: #1A202B; 
+}
+
+.Main_three {
+    width: 100%; 
+    height: 100vh; 
+    background: #0E131B; 
+}
+
+.Main_four {
+    width: 100%; 
+    height: 100vh; 
+    background: #1A202B;
+}
+
+/* Scroll view --- MOVE TO OWN COMPONENT --- */ 
+
+.scroll_child {
+    height: 350px;
+    margin-top: 15px; 
+    background: transparent; 
+}
+
+.slick-list {
+    height: 80%;
+    padding-top: 5%; 
+}
+
+.slick-arrow.slick-prev, .slick-arrow.slick-next {
+    background: #1896DA; 
+    width: 40px; 
+    height: 40px;
+    margin: auto; 
+    border-radius: 20px; 
+}
+
+.slick-arrow.slick-prev > img, .slick-arrow.slick-next > img {
+    max-width: 40px; 
+    max-height: 40px; 
+}
+
+.slick-dots > li  {
+    background: rgb(85, 82, 240); 
+    border-radius: 10px; 
+}
+
+.flip_container {
+    width: 80%; 
+    height: 80%; 
+    margin-top: 10%; 
+    margin-left: 10%; 
+    background: rgb(55, 90, 145); 
+    border-radius: 10px; 
+    color: white; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+    perspective: 1000px; 
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+}
+
+.top_scroll_container {
+    /* display: flex; 
+    flex-direction: column;  */
+    height: 70%; 
+    width: 100%; 
+    text-align: center; 
+}
+
+.top_scroll_container > p {
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+}
+
+.main_image {
+    max-width: 100%;
+    max-height: 120px; 
+    margin: auto; 
+    display: block; 
+    border-radius: 5px; 
+}
+
+.bottom_scroll_container {
+    /* display: flex; 
+    flex-direction: column;  */
+    text-align: center; 
+    width: 100%; 
+    height: 30%; 
+}
+
+.bottom_scroll_container > div > img {
+    max-width: 50px; 
+    max-height: 50px; 
+    margin-bottom: 0px; 
+    margin-left: 10px; 
+    border-radius: 25px; 
+}
+
+.bottom_scroll_container > div > p {
+    text-align: center; 
+    width: 200px; 
+}
+
+.bottom_scroll_container > div {
+    display: flex; 
+    flex-direction: row; 
+    width: 100%; 
+}
+
+.flip_container:hover {
+    transform: rotateY(180deg); 
+    background: transparent; 
+}
+
+/* hide back of pane during swap */
+.front, .back {
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+    left: 0;
+    border-radius: 10px; 
+}
+
+/* front pane, placed above back */
+.front {
+    z-index: 2;
+	/* for firefox 31 */
+	transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+.back {
+	transform: rotateY(180deg);
+}
+
+.back {
+    /* display: flex;  */
+    /* flex-direction: column;  */
+    margin: auto; 
+    width: 100%; 
+    height: 100%;
+    /* position: absolute; */
+    background: rgb(6, 79, 119); 
+}
+
+.back > button {
+    width: 50%; 
+    margin-left: 25%; 
+    background: #1A202B; 
+    height: 50px;
+    color: #1896DA; 
+    border-color: #1896DA; 
+    border-radius: 5px; 
+    font-size: 16px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold;
+}
+
+.back > p {
+    text-align: center; 
+}
+
+.back > button:hover {
+    background: #1896DA; 
+    color: white; 
+} 
+
+@media screen and (max-width: 700px) {
+    .animation_container > div > img {
+        max-width: 40px; 
+        max-height: 40px; 
+    }
+    .type_header_top {
+        font-size: 24px;      
+    }
+    .scroll_child {
+        width: 150px; 
+        height: 80%;
+    }
+    .flip_container {
+        width: 100%; 
+        height: 100%; 
+    }
+    .front, back {
+        width: 150px; 
+    }
+    /* .main_image {
+        max-width: 50%;
+        max-height: 60%; 
+    } */
+}
