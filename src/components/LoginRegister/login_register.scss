@@ -1,0 +1,38 @@
+@import '../../scss/_variables';
+
+.login-container {
+    width: 94%;
+    margin: 16px auto 0px auto;
+
+    h1 {
+        margin: 0 auto;
+        text-align: center;
+        color: white;
+    }
+    input {
+        width: 60%;
+        margin: 0 auto 0 auto;
+    }    
+        
+    .login-btns-box {
+        width: 80%;
+        margin: 24px auto 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        p {
+            margin-bottom: 8px;
+            font-size: 60px;
+            line-height: 50px;
+            color: white;
+        }
+        button {
+            height: 40px;
+            width: 40%;
+        }
+    }
+    h2 {
+        color: white;
+    }
+}
