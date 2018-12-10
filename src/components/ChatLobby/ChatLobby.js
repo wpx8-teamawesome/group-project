@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import socketIOClient from "socket.io-client";
 import { connect } from 'react-redux';
 import Message from './Message/Message';
-import './chatLobby.css';
+import './chatLobby.scss';
 let socket; 
 
 
