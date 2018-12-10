@@ -59,7 +59,7 @@ class Banner extends Component {
             <div>
             <header className="App-header">
                 <div className="left_nav">
-                    <p>Code Planet</p>
+                    <Link to='/'><p>Code Planet</p></Link>
                     <img src={globe}/>
                 </div>
                 <div className="right_nav">
