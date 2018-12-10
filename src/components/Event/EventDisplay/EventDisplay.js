@@ -3,26 +3,48 @@ import './EventDisplay.scss';
 import { connect } from 'react-redux';
 import { loginUser } from '..//..//..//ducks/reducer'; 
 import { logoutUser } from '..//..//..//ducks/reducer'; 
-
 import { Link } from 'react-router-dom'; 
-
 import EventHeader from '..//EventHeader.js'; 
+import Slider from 'react-slick'; 
+//images
 import axios from 'axios'; 
-
 import matrix from '..//..//..//images/matrix.jpg'; 
+import user from '..//..//..//images/user.png'; 
 
 class EventDisplay extends Component {
     constructor(props) {
         super(props) 
         this.state = {
             user: null, 
-            event: null
+            event: null, 
+            attendees: []
         }
     }
 
     //Lifecycle
     componentDidMount() {
         this.fetchEvent()
+        this.fetchAttendees() //TEST
+    }
+
+    fetchAttendees = () => {
+        this.setState({
+            attendees: [{ name: "John", imageURL: user },
+                { name: "Ethan", imageURL: user },
+                { name: "Joe", imageURL: user },
+                { name: "Mary", imageURL: user },
+                { name: "Denise", imageURL: user },
+                { name: "Bob", imageURL: user },
+                { name: "Matt", imageURL: user },
+                { name: "Travis", imageURL: user },
+                { name: "Daniel", imageURL: user },
+                { name: "Julia", imageURL: user },
+                { name: "Mark", imageURL: user },
+                { name: "Dan", imageURL: user },
+                { name: "Jake", imageURL: user },
+                { name: "Chad", imageURL: user },
+                { name: "Maria", imageURL: user }]
+        })
     }
 
     fetchEvent = () => {
@@ -44,10 +66,27 @@ class EventDisplay extends Component {
 
     render() {
         const { user } = this.props; 
-        const { event } = this.state; 
+        const { event, attendees } = this.state; 
         const urlToGoTo = event != null ? `/api/chat/${event.socket_room}` : ``
-        console.log('event socket room', event)
+
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 3,
+            slidesToScroll: 1
+        }
+
         //Map attendees here
+        const attendeesMapped = attendees.map((item, index) => {
+            return <div className="attendee_card_container">
+                <div className="attendee_card">
+                    <img src={item.imageURL}></img>
+                    <p>{item.name}</p>
+                </div>
+            </div>
+        })
+
         return (
             <div className="main_container">
                 <EventHeader event={this.state.event} attendFn={this.attendHandler}></EventHeader>
@@ -59,7 +98,10 @@ class EventDisplay extends Component {
                             This event will be just awesome! :)
                         </p>
                         <div className="attendee_container">
-
+                            <p>Attending</p>
+                            <Slider className="slick_slider" {...settings}>
+                                { attendeesMapped }
+                            </Slider>
                         </div>
                         <div className="button_options_container">
                             <button>Photos</button>

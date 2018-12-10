@@ -32,6 +32,7 @@
     margin-left: 10%; 
     border-radius: 10px; 
     max-height: 500px;
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
 }
 
 .left_container > p {
@@ -46,7 +47,7 @@
 }
 
 .button_options_container {
-    margin-top: 10px; 
+    margin-top: 100px; 
     width: 80%; 
     margin-left: 10%; 
     display: flex; 
@@ -74,4 +75,48 @@
     height: 100%;
     background: rgb(25, 18, 121); 
     color: white;
+}
+
+.attendee_container {
+    width: 80%; 
+    margin-left: 10%; 
+    border-radius: 5px; 
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+}
+
+.attendee_container > p {
+    color: white; 
+    text-align: center; 
+    font-family: 'Courier New', Courier, monospace; 
+    margin-top: 30px; 
+    margin-bottom: 20px; 
+    font-size: 30px; 
+}
+
+.attendee_card {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+    background: rgb(92, 92, 221); 
+    color: white; 
+    font-family: 'Courier New', Courier, monospace; 
+    text-align: center; 
+    height: 200px;
+    margin-bottom: 50px; 
+    margin-top: 50px;
+    width: 80%; 
+    margin-left: 10%; 
+    border-radius: 5px; 
+    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+}
+
+.attendee_card > img {
+    max-width: 50px;
+    max-height: 50px; 
+    margin: auto; 
+    margin-top: 25px; 
+}
+
+.attendee_card > p {
+    margin-top: 25px; 
 }

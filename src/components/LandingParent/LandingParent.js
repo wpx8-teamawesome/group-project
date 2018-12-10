@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './LandingParent.scss'; 
 
+//not using, can delete? 
 import HorizontalScroll from 'react-scroll-horizontal'; 
-import { TweenLite, TimelineLite } from "gsap/all";
 import ReactCardFlip from 'react-card-flip';
-import Typing from 'react-typing-animation';
+import ScrollSnap from 'scroll-snap'; 
 
+import { TweenLite, TimelineLite } from "gsap/all";
+import Typing from 'react-typing-animation';
 import testImageOne from './TestImages/codeBlue.jpg';
 import testImageTwo from './TestImages/codeTwo.jpg'; 
 import testImageThree from './TestImages/quasarOrSomething.jpg'; 
@@ -14,7 +16,7 @@ import testImageFour from './TestImages/travel.jpeg';
 import testProfile from './TestImages/profile_pic.jpg'; 
 import plainSearch from '..//..//images/plainSearch.png'; 
 
-import ScrollSnap from 'scroll-snap'; 
+
 import Slider from 'react-slick'; 
 
 class LandingParent extends Component {
@@ -346,8 +348,7 @@ class LandingParent extends Component {
     }
 
     render() {
-
-        //Scroll settings for new snap scroll (Replacing horizontal scroll)
+        
         const settings = {
             dots: true,
             infinite: true,
