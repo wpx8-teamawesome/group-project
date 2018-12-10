@@ -1,0 +1,19 @@
+@import '../../scss/_variables.scss';
+
+.event-search-container {
+    .search-title {
+        margin: 16px auto 24px auto;
+        width: 50%;
+        border-bottom: 3px solid $teal;
+        color: $teal;
+        font-size: 50px;
+        font-family: $mono;
+        text-align: center;
+    }
+
+    .event-card-container {
+        width: 60%; 
+        margin: 16px auto 0 auto;
+        padding-bottom: 12px;
+    }
+}

@@ -1,26 +1,27 @@
 import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
-import './map.css'
+import './map.scss'
 import { connect} from 'react-redux'
+import axios from 'axios'
 
 
 
 class MapContainer extends Component {
     constructor(props) {
         super(props)
-        console.log(props.user.location)
         this.state ={
-            loadLat: props.location.lat,
-            loadLng: props.location.lng,
+            loadLat: 33.4483771,
+            loadLng: -112.0740373,
             // loadLat: "33.4484",
             // loadLng: "-112.0740",
             markerClicked: false,
-            markerArray: [
-                {title: "JavaScript Event", lat:33.44, lng: -112.095, address: "123 Bananna St" },
-                {title: "React Hackathon", lat:33.445, lng: -112.06, address: "715 Street Road" },
-                {title: "Gaming thing", lat:33.454, lng: -112.045, address: "999 Phoenix Blvd" },
-            ],
+            markerArray: [],
+            // markerArray: [
+            //     {title: "JavaScript Event", lat:33.44, lng: -112.095, address: "123 Bananna St" },
+            //     {title: "React Hackathon", lat:33.445, lng: -112.06, address: "715 Street Road" },
+            //     {title: "Gaming thing", lat:33.454, lng: -112.045, address: "999 Phoenix Blvd" },
+            // ],
             markerEventTitle: '',
             markerEventAddress: '',
             showInfoWindow: false,
@@ -29,6 +30,9 @@ class MapContainer extends Component {
     }
     componentDidMount() {
        Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+       this.setState({
+           markerArray: this.props.events
+       })
     }
 
     tempButtonClick = () => {
@@ -71,15 +75,16 @@ class MapContainer extends Component {
   render() {
 
       const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress} = this.state
-      const {lat, lng} = this.props.user.location
-      console.log(this.props)
-      const markerList = markerArray.map(marker => {
+      const { events } = this.props
+    //   const {lat, lng} = this.props.user.location
+    //   console.log(this.props)
+      const markerList = events.map(marker => {
           return <Marker
             address={marker.address}
             title={marker.title}
             position ={{
-                lat: marker.lat,
-                lng: marker.lng
+                lat: marker.location.lat,
+                lng: marker.location.lng
             }}  
             onClick={this.onMarkerClick} />
       })
@@ -88,14 +93,14 @@ class MapContainer extends Component {
         <div className="map-box-main">
             <div className="map-box">
                 <Map google={this.props.google} 
-                    zoom={14}
+                    zoom={13.5}
                     center={{
                         lat: loadLat,
                         lng: loadLng
                     }}
                     initialCenter={{
-                        lat: lat,
-                        lng: lng
+                        lat: loadLat,
+                        lng: loadLng
                     }}>
                 
                 {/* <Marker onClick={this.onMarkerClick}
@@ -119,7 +124,7 @@ class MapContainer extends Component {
                 </Map>
                 
             </div>
-            <button onClick={this.tempButtonClick}>Click me!</button>
+            {/* <button onClick={this.tempButtonClick}>Click me!</button> */}
         </div>
     )
   }

@@ -16,8 +16,11 @@ body {
         justify-content: space-between;
         align-items: center;
 
-        button {
+        a {
             width: 20%;
+        }
+        button {
+            width: 100%;
             background-color: lightblue;
         }
         
