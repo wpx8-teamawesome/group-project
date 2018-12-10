@@ -8,10 +8,24 @@
         margin: 0 auto;
         text-align: center;
         color: white;
+        font-size: 40px;
+        font-family: $mono;
     }
     input {
-        width: 60%;
-        margin: 0 auto 0 auto;
+        width: 70%;
+        margin: 20px 15% 0 15%;
+        height: 36px;
+        font-size: 22px;
+        padding-left: 8px;
+        border: 2px solid #000;
+        background: #000;
+        font-family: $mono;
+        border-radius: 2px;
+        color:  rgb(42, 177, 1);
+    } 
+    input:focus {
+        border: 2px solid rgb(42, 177, 1);
+        color:  rgb(42, 177, 1)
     }    
         
     .login-btns-box {
@@ -34,5 +48,21 @@
     }
     h2 {
         color: white;
+    }
+
+    .register-btns-box {
+        width: 90%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        margin-top: 16px;
+
+        a, .back-to-login {
+            width: 40%;
+        }
+
+        .register-btn {
+            width: 100%;
+        }
     }
 }

@@ -3,7 +3,7 @@ import './Banner.scss';
 import { connect } from 'react-redux';
 import { loginUser } from '..//../ducks/reducer'; 
 import { logoutUser } from '..//../ducks/reducer'; 
-//import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import userImage from '..//..//images/user.png'; 
 import globe from '..//..//images/globe.png'; 
@@ -29,29 +29,31 @@ class Banner extends Component {
     }
 
     loginSignupHander = () => {
-
+        // this.props.history.push('/login')
     }
 
     signOutHandler = () => {
         this.setState({ user: null, toggled: false  })
+        this.props.logoutUser()
     }
 
     componentDidMount() {
-        setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
+        // setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
     }
 
     //TEST
-    assignUserForTestAfterThreeSeconds = () => {
-        const newUser = {
-            username: "Ethan", 
-            profileURL: testProfileImage
-        }
-        this.setState({ user: newUser })
-    }
+    // assignUserForTestAfterThreeSeconds = () => {
+    //     const newUser = {
+    //         username: "Ethan", 
+    //         profileURL: testProfileImage
+    //     }
+    //     this.setState({ user: newUser })
+    // }
 
     render() {
+        console.log(this.props)
         //const { user } = this.props; //get image accordingly
-        const { user } = this.state; //test, will do via props (redux)
+        const { user } = this.props; 
         const { toggled, toggleImage } = this.state; 
         return (
             <div>
@@ -71,17 +73,17 @@ class Banner extends Component {
                         onMouseOut={() => { this.setState({ toggleImage: downArrow }) }}
                         /> 
                     </ul>
-                    : <button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button> }
+                    : <Link to="/login"><button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button></Link> } 
                 </div>
             </header> 
             {/* --- Can be own component --- */}
             { toggled === true ? <div className="toggle_container">
                 <ul>
-                    {/* user.username */}
+                    {/* <h1>{user.username}</h1> */}
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
                     <li><button>Dashboard</button></li>
                     <li><button>Profile</button></li>
-                    <li><button onClick={this.signOutHandler}>Sign Out</button></li> 
+                    <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>
             </div> : <div></div> }
             </div>
