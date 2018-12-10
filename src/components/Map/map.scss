@@ -1,0 +1,14 @@
+@import '../../scss/_variables.scss';
+
+
+.map-box {
+    position: relative;
+    margin: 0 auto;
+    width: 90vw;
+    height:80vh;
+    max-height: 600px;
+}
+
+.hidden {
+    display: none;
+}

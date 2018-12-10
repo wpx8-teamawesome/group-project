@@ -7,6 +7,7 @@ import Profile from './components/User/Profile/Profile';
 import Dashboard from './components/Dashboard/Dashboard'
 import Map from './components/Map/Map'
 import LoginRegister from './components/LoginRegister/LoginRegister'
+import EventSearch from './components/EventSearch/EventSearch'
 
 export default (
     <Switch>
@@ -15,6 +16,7 @@ export default (
         <Route component={ Profile } path="/user/:id" />
         <Route component={ Dashboard } path="/dashboard" />
         <Route component={ Map } path="/map" />       
-        <Route component={ LoginRegister } path="/login" />       
+        <Route component={ LoginRegister } path="/login" /> 
+        <Route component={ EventSearch } path='/event-search' />      
     </Switch>
 )

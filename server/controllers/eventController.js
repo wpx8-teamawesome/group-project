@@ -3,6 +3,16 @@ module.exports = {
         console.log('---eventController.createEvent connection---')
     },
 
+    getAllEvents: (req, res) => {
+        req.app.get('db').get_all_events().then(events => {
+            console.log(events)
+            res.status(200).json(events)
+        }).catch( err => {
+            console.log('Error in getAllEvents, ', err)
+            res.status(500).json({ message: 'An Error has occurred on the server'})
+        })
+    },
+
     getEvent: (req, res) => {
         console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
     },
