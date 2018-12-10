@@ -2,15 +2,19 @@ import React, { Component } from 'react'
 import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
 import './map.css'
+import { connect} from 'react-redux'
 
 
 
 class MapContainer extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        console.log(props.user.location)
         this.state ={
-            loadLat: "33.4484",
-            loadLng: "-112.0740",
+            loadLat: props.location.lat,
+            loadLng: props.location.lng,
+            // loadLat: "33.4484",
+            // loadLng: "-112.0740",
             markerClicked: false,
             markerArray: [
                 {title: "JavaScript Event", lat:33.44, lng: -112.095, address: "123 Bananna St" },
@@ -65,8 +69,10 @@ class MapContainer extends Component {
     } 
     
   render() {
+
       const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress} = this.state
-      console.log(loadLat, loadLng)
+      const {lat, lng} = this.props.user.location
+      console.log(this.props)
       const markerList = markerArray.map(marker => {
           return <Marker
             address={marker.address}
@@ -88,8 +94,8 @@ class MapContainer extends Component {
                         lng: loadLng
                     }}
                     initialCenter={{
-                        lat: loadLat,
-                        lng: loadLng
+                        lat: lat,
+                        lng: lng
                     }}>
                 
                 {/* <Marker onClick={this.onMarkerClick}
@@ -119,5 +125,14 @@ class MapContainer extends Component {
   }
 }
 
-export default GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
+const mapStateToProps = (state) => {
+    const { user } = state;
+    return {
+        user
+    }
+}
+
+const childHOC = GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
+export default connect(mapStateToProps)(childHOC)
+// export default GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
 
