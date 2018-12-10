@@ -3,6 +3,7 @@ const saltRounds = 12;
 
 module.exports = {
     loginUser: (req, res) => {
+        console.log(req.body)
         const db = req.app.get('db');
         const {username, password} = req.body;
         db.find_user({username: username}).then(user => {
@@ -22,7 +23,8 @@ module.exports = {
 
     registerUser: (req, res) => {
         const db = req.app.get('db');
-        const {username, password, email} =  req.body
+        console.log(req.body)
+        const {username, password, email, latLng} =  req.body
         db.check_existing_username({
             username: username
         }).then(users => {
@@ -33,7 +35,8 @@ module.exports = {
                     db.create_new_user({
                         username: username,
                         password: hash,
-                        email: email
+                        email: email,
+                        latLng: latLng
                     }).then(user => {
                         res.status(200).json(user[0])
                     })
