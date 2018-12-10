@@ -51,7 +51,7 @@ class Banner extends Component {
     // }
 
     render() {
-        console.log(this.props)
+        // console.log(this.props)
         //const { user } = this.props; //get image accordingly
         const { user } = this.props; 
         const { toggled, toggleImage } = this.state; 
