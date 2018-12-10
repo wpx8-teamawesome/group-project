@@ -4,11 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import ChatLobby from './components/ChatLobby/ChatLobby.js';
 import LandingParent from './components/LandingParent/LandingParent.js';
 import Profile from './components/User/Profile/Profile';
-<<<<<<< HEAD
 import AddEvent from './components/Dashboard/AddEvent/AddEvent';
-
-=======
->>>>>>> 3d7adabbc4307a3d332ebdcbe2ef0d897800c331
 import Dashboard from './components/Dashboard/Dashboard'
 import Map from './components/Map/Map'
 import LoginRegister from './components/LoginRegister/LoginRegister'

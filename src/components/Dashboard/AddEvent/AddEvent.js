@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import DateTime from 'react-datetime';
 import axios from 'axios';
 import Geocode from "react-geocode";
 import moment from 'moment';
 import './datetime.css';
 
-export default class AddEvent extends Component {
+class AddEvent extends Component {
     constructor(params){
         super(params);
 
@@ -62,7 +63,7 @@ export default class AddEvent extends Component {
                 }
 
                 const payload = {
-                    ownerId : 1, // props.id from redux
+                    ownerId : this.props.user.id, // props.id from redux
                     title, 
                     description,
                     address,
@@ -107,10 +108,22 @@ export default class AddEvent extends Component {
                 />
                 <DateTime value={startTime} onChange={this.updateStartTime} />
                 <DateTime value={endTime} onChange={this.updateEndTime} />
-                <textarea placeholder='Description'/>
+                <textarea 
+                    value={description} 
+                    onChange={e => this.updateChanges(e, 'description')} 
+                    placeholder='Description'
+                />
                 <Link to='/dashboard'><button onClick={this.clearState}>Cancel</button></Link>
                 <button onClick={this.addEvent}>Add Event</button>
             </div>
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AddEvent);
