@@ -85,7 +85,7 @@ class ChatLobby extends Component {
 
     render() {
         const { message, messages, joined } = this.state;
-
+        console.log('hello?', this.props.match.params);
         const messageDisplay = messages.map(m => 
             <Message 
                 key={m.id}
