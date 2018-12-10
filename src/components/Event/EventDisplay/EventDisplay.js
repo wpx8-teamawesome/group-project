@@ -45,7 +45,7 @@ class EventDisplay extends Component {
     render() {
         const { user } = this.props; 
         const { event } = this.state; 
-        const urlToGoTo = event != null ? `/api/chat/${event.socket_room}` : ``
+        const urlToGoTo = event != null ? `/chat/${event.socket_room}` : ``
         console.log('event socket room', event)
         //Map attendees here
         return (
