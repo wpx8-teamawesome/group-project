@@ -1,0 +1,46 @@
+/*
+    To-Do:  Move all % and numbers into variables in SCSS files.  That way we can tweak all from one place.
+*/
+
+.lobby-container {
+    width: 100%;
+    height: calc(100vh - 100px); /* Calculate banner height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-box {
+    width: 90%;
+    max-width: 1000px;
+    background-color:rgb(14, 19, 27);
+    height: 90%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.message-display {
+    height: calc(100% - 50px);
+    width: 95%;
+    overflow: scroll;
+    
+}
+
+.chat-box .input-box {
+    width: 98%;
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 30px;
+}
+.chat-box .input-box button {
+    height: 100%;
+    width: 10%;
+}
+
+.chat-box .input-box input {
+    width: 100%;
+    height: 100%;
+}
