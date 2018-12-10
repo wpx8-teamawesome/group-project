@@ -26,8 +26,8 @@ class Profile extends Component {
         const user = await axios.get(`/api/people/${id}`).then(user => user.data);
         const events = await axios.get(`/api/events/user/${id}`).then(events => events.data);
         for (let event of events) {
-            event.start_time = moment(event.start_time).zone(new Date().getTimezoneOffset()).format('lll');
-            event.end_time = moment(event.end_time).zone(new Date().getTimezoneOffset()).format('lll');
+            event.start_time = moment(event.start_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
+            event.end_time = moment(event.end_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
         }
 
         this.setState({

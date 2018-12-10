@@ -4,6 +4,7 @@ import './dashboard.scss'
 import EventCard from '../EventCard/EventCard'
 import eventsArray from './fakeEvents'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
 class Dashboard extends Component {
   constructor() {
@@ -24,15 +25,15 @@ class Dashboard extends Component {
   }
 
   render() {
-    //   console.log(eventsArray)
-      const eventCard = this.state.eventsArray.map((event,i) => {
-          return <EventCard events={event} />
-      })
+    const eventCard = this.state.eventsArray.map((event,i) => {
+        return <EventCard events={event} />
+    })
     return (
       <div className="dashboard-container">
         <div className="dashboard-top-box">
-            <button>Add/Edit <br/> Event</button>
-            <h1>Nerd-Board</h1>
+            <Link to='/dashboard/add-event'><button>Add/Edit <br/> Event</button></Link>
+            <h1>Hey {this.props.user.username}</h1>
+            
             <div className="dashboard-top-box-filler"></div>
         
         </div>
@@ -47,16 +48,13 @@ class Dashboard extends Component {
 }
 
 
-// const mapStateToProps = (state) => {
-//     const { user } = state
-//     return {
-//         user
-//     }
-// }
-
-export default Dashboard
-// export default connect(mapStateToProps)(Dashboard)
+const mapStateToProps = (state) => {
+    const { user } = state
+    return {
+        user
+    }
+}
 
 
-// 33.4484 , -112.0740
 
+export default connect(mapStateToProps)(Dashboard)

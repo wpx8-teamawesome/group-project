@@ -4,10 +4,9 @@ import './eventcard.scss'
 import { Link } from 'react-router-dom'
 
 export default function EventCard(props) {
-   console.log(props.events)
       const {title, address, start_time, end_time, owner_id, id} = props.events
-      const formattedStart = moment(start_time).zone(new Date().getTimezoneOffset()).format('lll');
-      const formattedEnd = moment(end_time).zone(new Date().getTimezoneOffset()).format('lll');
+      const formattedStart = moment(start_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
+      const formattedEnd = moment(end_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
     //   console.log(formatedStart)
     
         return  (

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom'
 import './LandingParent.scss'; 
 
 import HorizontalScroll from 'react-scroll-horizontal'; 
@@ -420,8 +421,8 @@ class LandingParent extends Component {
                     <div className="animation_container">
                         <Typing className="type_header_top"> Find Fellow Nerds! </Typing>
                         <div>
-                            <input onChange={(e) => this.monitorTextChange(e.target.value)}></input>
-                            <img src={plainSearch} onClick={this.handleSearchTapped} />
+                            <input onChange={(e) => this.monitorTextChange(e.target.value)} placeholder="Search Events"></input>
+                            <Link to="/event-search"><img src={plainSearch} onClick={this.handleSearchTapped} /></Link>
                         </div>
                     </div>
                 </div>
