@@ -1,6 +1,23 @@
 module.exports = {
     createEvent: (req, res) => {
-        console.log('---eventController.createEvent connection---')
+        const db = req.app.get('db');
+        db.create_event({...req.body})
+        .then(addedEvents => {
+            let event = addedEvents[0];
+            // add socket_room
+            db.update_socket_room({room: `event-${event.id}`, id: event.id})
+            .then( events => {
+                event = events[0];
+                res.status(200).json(event);
+            })
+            .catch( err => {
+                console.error('Error in create Event update socket room', err);
+            })
+            
+        })
+        .catch( err => {
+            console.error('Error in createEvent()', err);
+        })
     },
 
     getAllEvents: (req, res) => {
