@@ -5,6 +5,12 @@ module.exports = {
 
     getEvent: (req, res) => {
         console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
+        req.app.get('db').get_event({id: parseInt(req.params.id)}).then(response => {
+            res.status(200).json(response)
+        }).catch(error => {
+            console.log('Error in getEventsOfUser(), ', error)
+            res.status(500).json({ message: 'An Error has occurred on the server'})
+        })
     },
 
     editEvent: (req, res) => {

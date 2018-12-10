@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { loginUser } from '..//..//..//ducks/reducer'; 
 import { logoutUser } from '..//..//..//ducks/reducer'; 
 
+import { Link } from 'react-router-dom'; 
+
 import EventHeader from '..//EventHeader.js'; 
 import axios from 'axios'; 
 
@@ -25,7 +27,8 @@ class EventDisplay extends Component {
 
     fetchEvent = () => {
         axios.get(`/api/event/${this.props.match.params.id}`).then(response => {
-            this.setState({ event: response.data })
+            console.log('response data', response.data)
+            this.setState({ event: response.data[0] })
         }).catch(error => {
             console.log('error fetching event', error)
         })
@@ -42,6 +45,8 @@ class EventDisplay extends Component {
     render() {
         const { user } = this.props; 
         const { event } = this.state; 
+        const urlToGoTo = event != null ? `/api/chat/${event.socket_room}` : ``
+        console.log('event socket room', event)
         //Map attendees here
         return (
             <div className="main_container">
@@ -58,7 +63,7 @@ class EventDisplay extends Component {
                         </div>
                         <div className="button_options_container">
                             <button>Photos</button>
-                            <button>Chat</button>
+                            <Link to={urlToGoTo}><button>Chat</button></Link>
                         </div>
                     </div>
                     <div className="right_container">
