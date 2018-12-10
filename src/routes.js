@@ -11,7 +11,7 @@ import LoginRegister from './components/LoginRegister/LoginRegister'
 export default (
     <Switch>
         <Route component={ LandingParent } exact path="/"/>
-        <Route component={ ChatLobby } path="/chat"/>
+        <Route component={ ChatLobby } path="/chat/:room"/>
         <Route component={ Profile } path="/user/:id" />
         <Route component={ Dashboard } path="/dashboard" />
         <Route component={ Map } path="/map" />       
