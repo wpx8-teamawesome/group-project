@@ -1,0 +1,93 @@
+.main_header_container {
+    width: 100%; 
+    height: 250px; 
+    background: rgb(5, 1, 36); 
+    color: rgb(197, 247, 247); 
+    text-align: center; 
+    display: flex; 
+    flex-direction: row; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+//Left side (title)
+
+.title_container {
+    display: flex; 
+    flex-direction: row; 
+    width: 60%; 
+    height: 100%;
+    justify-content: space-evenly; 
+}
+
+.title_left {
+    display: flex; 
+    flex-direction: column; 
+}
+
+.title_right {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+}
+
+.title_top {
+    display: flex; 
+    flex-direction: column; 
+    font-size: 36px; 
+}
+
+.title_bottom {
+    display: flex; 
+    flex-direction: row; 
+}
+
+.title_bottom > div {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+}
+
+//Attendance
+
+.attend_container {
+    display: flex; 
+    flex-direction: column; 
+    width: 40%; 
+    height: 100%;
+    justify-content: space-evenly; 
+}
+
+.attend_one {
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+.attend_two {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+}
+
+.attend_two > button, .attend_three > button {
+    width: 100px;
+    height: 40px;
+    background: rgb(73, 73, 206); 
+    border-radius: 5px; 
+    color: white; 
+}
+
+.attend_two > button:hover, .attend_three > button:hover {
+    background: rgb(1, 1, 54); 
+    color: white; 
+}
+
+.attend_three {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+}
+
+.attend_three > img {
+    max-width: 40px; 
+    max-height: 40px; 
+}
