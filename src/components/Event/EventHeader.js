@@ -13,13 +13,15 @@ class EventHeader extends Component {
         super(props) 
         this.state = {
             user: null, 
-            event: null
         }
     }
 
     render() {
-        const { event } = this.state; 
-        const { user, attendFn } = this.props; 
+
+        const { user, event, attendFn, going } = this.props; 
+        console.log('going prop', going)
+        const buttonStylesOne = going === "true" ? { background: 'rgb(197, 247, 247)', color: 'black' } : { background: 'black', color: 'white' }
+        const buttonStylesTwo = going === "true" ? { background: 'black', color: 'white' } : { background: 'rgb(197, 247, 247)', color: 'black' }
 
         return (
             <div className="main_header_container">
@@ -50,8 +52,8 @@ class EventHeader extends Component {
                         <p> Are you going? 76 attendees</p> 
                     </div>
                     <div className="attend_two">
-                        <button onClick={() => attendFn(true)}>Going</button>
-                        <button onClick={() => attendFn(false)}>Not going</button>
+                        <button style={ buttonStylesOne } onClick={() => attendFn(true)}>Going</button>
+                        <button style={ buttonStylesTwo } onClick={() => attendFn(false)}>Not going</button>
                     </div>
                     <div className="attend_three">
                         <button>Share</button>

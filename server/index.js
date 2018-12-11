@@ -5,6 +5,7 @@ const authController = require('./controllers/authController');
 const eventsController = require('./controllers/eventController');
 const peopleController = require('./controllers/peopleController');
 const socketController = require('./controllers/socketController');
+const attendanceController = require('./controllers/attendanceController'); 
 // const session = require('express-session');
 require('dotenv').config();
 // require('dotenv').config();
@@ -64,6 +65,11 @@ app.post('/api/events/local', eventsController.getLocalEvents)
 app.put('/api/events/:id', eventsController.editEvent);
 app.delete('/api/events/:id', eventsController.deleteEvent);
 app.get('/api/events/user/:id', eventsController.getEventsOfUser);
+
+// Attendance
+app.get('/api/events/attendees/:eventid', attendanceController.fetchAllAttending); 
+app.post('/api/events/attending/:eventid/:uid', attendanceController.attendEvent); 
+app.delete('/api/events/attending/:eventid/:uid/', attendanceController.removeAttendance); 
 
 // --------------------  Server Connection  --------------------
 const PORT = 4000

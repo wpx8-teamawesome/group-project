@@ -9,7 +9,7 @@ import Slider from 'react-slick';
 //images
 import axios from 'axios'; 
 import matrix from '..//..//..//images/matrix.jpg'; 
-import user from '..//..//..//images/user.png'; 
+import userImage from '..//..//..//images/user.png'; 
 import clock from '..//..//..//images/clock.png';
 import marker from '..//..//..//images/marker.png'; 
 
@@ -42,7 +42,7 @@ class EventDisplay extends Component {
     //Lifecycle
     componentDidMount() {
         this.fetchEvent()
-        this.fetchAttendees() //TEST
+        //this.fetchAttendees() //TEST
     }
 
     geocodeConfig = () => {
@@ -51,68 +51,97 @@ class EventDisplay extends Component {
 
     fetchAttendees = () => {
         this.setState({
-            attendees: [{ name: "John", imageURL: user },
-                { name: "Ethan", imageURL: user },
-                { name: "Joe", imageURL: user },
-                { name: "Mary", imageURL: user },
-                { name: "Denise", imageURL: user },
-                { name: "Bob", imageURL: user },
-                { name: "Matt", imageURL: user },
-                { name: "Travis", imageURL: user },
-                { name: "Daniel", imageURL: user },
-                { name: "Julia", imageURL: user },
-                { name: "Mark", imageURL: user },
-                { name: "Dan", imageURL: user },
-                { name: "Jake", imageURL: user },
-                { name: "Chad", imageURL: user },
-                { name: "Maria", imageURL: user }]
+            attendees: [{ name: "John", imageURL: userImage },
+                { name: "Ethan", imageURL: userImage },
+                { name: "Joe", imageURL: userImage },
+                { name: "Mary", imageURL: userImage },
+                { name: "Denise", imageURL: userImage },
+                { name: "Bob", imageURL: userImage },
+                { name: "Matt", imageURL: userImage },
+                { name: "Travis", imageURL: userImage },
+                { name: "Daniel", imageURL: userImage },
+                { name: "Julia", imageURL: userImage },
+                { name: "Mark", imageURL: userImage },
+                { name: "Dan", imageURL: userImage },
+                { name: "Jake", imageURL: userImage },
+                { name: "Chad", imageURL: userImage },
+                { name: "Maria", imageURL: userImage }]
         })
     }
 
     fetchEvent = () => {
         axios.get(`/api/event/${this.props.match.params.id}`).then(response => {
             console.log('response data', response.data)
-            this.setState({ event: response.data[0] })
+            this.setState({ event: response.data[0] }, () => {
+                this.fetchAttendees()
+            })
         }).catch(error => {
             console.log('error fetching event', error)
         })
     }
 
-    attendHandler = (going) => {
-        if (going === true) {
-            //TODO add to attendee table
-        } else {
+    fetchAttendees = () => {
+        if (this.state.event === null) { return }
+        axios.get(`/api/events/attendees/${this.state.event.id}`).then(response => {
+            console.log('attendees', response.data)
+            this.setState({ attendees: response.data })
+        }).catch(error => {
+            console.log('error fetching attendees front end', error)
+        })
+    }
 
+    attendHandler = (going) => {
+        if (this.state.event === null || this.props.user === null) { return }
+        if (going === true) {
+            axios.post(`/api/events/attending/${this.state.event.id}/${this.props.user.id}`).then(response => {
+                console.log('response going', response)
+            }).catch(error => {
+                console.log('error attending front end', error)
+            })
+        } else {
+            axios.delete(`/api/events/attending/${this.state.event.id}/${this.props.user.id}`).then(response => {
+                console.log('response removing attendance', response)
+            }).catch(error => {
+                console.log('error removing attendance front end', error)
+            })
         }
     }
 
     render() {
+
         const { user } = this.props; 
         const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state; 
         const settings = {
             dots: true,
             infinite: true,
             speed: 500,
-            slidesToShow: 3,
+            slidesToShow: 1,
             slidesToScroll: 1
         }
     
         const urlToGoTo = event != null ? `/chat/${event.socket_room}` : ``
-        console.log('event socket room', event)
 
-        //Map attendees here
+        // Map attendees here
         const attendeesMapped = attendees.map((item, index) => {
-            return <div className="attendee_card_container">
+            return <div key={item} className="attendee_card_container">
                 <div className="attendee_card">
-                    <img src={item.imageURL}></img>
-                    <p>{item.name}</p>
+                    <img src={ userImage }></img>
+                    <p>{ item.email }</p>
                 </div>
             </div>
         })
+        console.log('attendees mapped', attendeesMapped)
+        console.log('attendees from render()', attendees)
 
+        //Does .some() work on all browsers? 
+        const userId = user ? user.id : "" 
+        const isGoing = attendees.some(function(o) { return o["id"] === userId })
+        console.log('is going', isGoing)
+
+        //Pass bool prop as string
         return (
             <div className="main_container">
-                <EventHeader event={this.state.event} attendFn={this.attendHandler}></EventHeader>
+                <EventHeader going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
                 <div className="event_body_parent">
                     <div className="left_container">
                         <img src={matrix}></img>
