@@ -11,7 +11,6 @@ class Cloudinary extends Component {
     }
 
     uploadWidget = () => {
-        
         window.cloudinary.openUploadWidget(
             { cloud_name: 'dzyljunq0',
             upload_preset: 'pzerapqx',
@@ -24,6 +23,7 @@ class Cloudinary extends Component {
             if (result.info.secure_url) {
                 console.log(result.info.secure_url)
                 this.setState({
+                    //result.info.secure_url is the image adress you need to display the image
                     cloudImg: result.info.secure_url
                 })
             }
