@@ -38,23 +38,13 @@ class Banner extends Component {
     }
 
     componentDidMount() {
-        // setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
+
     }
 
-    //TEST
-    // assignUserForTestAfterThreeSeconds = () => {
-    //     const newUser = {
-    //         username: "Ethan", 
-    //         profileURL: testProfileImage
-    //     }
-    //     this.setState({ user: newUser })
-    // }
-
     render() {
-        // console.log(this.props)
-        //const { user } = this.props; //get image accordingly
-        const { user } = this.props; 
-        const { toggled, toggleImage } = this.state; 
+        const { user } = this.props
+        const { toggled, toggleImage } = this.state 
+        const userPath = user ? `user/${user.id}` : `/`
         return (
             <div>
             <header className="App-header">
@@ -79,10 +69,9 @@ class Banner extends Component {
             {/* --- Can be own component --- */}
             { toggled === true ? <div className="toggle_container">
                 <ul>
-                    {/* <h1>{user.username}</h1> */}
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
-                    <li><button>Dashboard</button></li>
-                    <li><button>Profile</button></li>
+                    <li><Link to="/dashboard"><button>Dashboard</button></Link></li>
+                    <li><Link to={ userPath }><button>Profile</button></Link></li>
                     <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>
             </div> : <div></div> }

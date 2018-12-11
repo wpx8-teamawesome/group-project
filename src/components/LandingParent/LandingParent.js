@@ -140,20 +140,58 @@ class LandingParent extends Component {
         this.tweenThirty = null;
     }
 
+    //https://stackoverflow.com/questions/5836833/create-a-array-with-random-values-in-javascript
+
+    //Can make higher order component to clean up this file? 
+
+    shuffle = (array) => {
+        var tmp, current, top = array.length;
+        if(top) while(--top) {
+          current = Math.floor(Math.random() * (top + 1));
+          tmp = array[current];
+          array[current] = array[top];
+          array[top] = tmp;
+        }
+        return array;
+      }
+
     // boxShadow: '1px 1px 1px 1px rgb(127, 189, 214)' //can also add this
     // # id identifies one element, class . can identify however many
     initTweenAnimations = () => {
         //Should have multiple? 
         const timeGroupOne = 5
+
+        const width = window.innerWidth
+        const height = window.innerHeight
+
+        //Will have width/height classes
+        const widthStartOne = 10
+        const widthStartTwo = 20
+        const widthStartThree = 30
+        const widthStartFour = 60
+
+        const widthEndOne = 40
+        const widthEndTwo = 60
+        const widthEndThree = 80
+        const widthEndFour = 100
+
+        //Will also generate random points
+        const startForAX = width / 4 //lower boungs for random gen.
+        const endForAX = startForAX + 30 //upper bounds for random gen. 
+
+        for (var a = [], i = startForAX ; i < endForAX ; ++ i) a[i] = i;
+        a = this.shuffle(a);
+        console.log('--- random numbers ---', a)
+
         //Can't do percentages so we'll get center this way
-        const centerX = window.innerWidth / 2
-        const centerY = (window.innerHeight / 2) - 100 //100 is navbar height
+        const centerX = width / 2
+        const centerY = (height / 2) - 100 //100 is navbar height
 
         console.log('center', centerX, centerY)
         this.tweenOne = TweenLite.fromTo(this.animationBoxOne, timeGroupOne, {
-            x: centerX, y: centerY, width: 60, height: 60, backgroundColor: 'rgba(36, 88, 173, .5)', borderRadius: 30
+            x: centerX, y: centerY, width: widthStartFour, height: widthStartFour, backgroundColor: 'rgba(36, 88, 173, .5)', borderRadius: 30
         }, {
-            x: 500, y: 100, width: 100, height: 100, backgroundColor: 'rgba(36, 88, 173, .7)', borderRadius: 50
+            x: 500, y: 100, width: widthEndFour, height: widthEndFour, backgroundColor: 'rgba(36, 88, 173, .7)', borderRadius: 50
         })
         this.tweenTwo = TweenLite.fromTo(this.animationBoxTwo, timeGroupOne, {
             x: centerX, y: centerY, width: 40, height: 40, backgroundColor: 'rgba(125, 214, 98, .5)', borderRadius: 20
@@ -348,7 +386,7 @@ class LandingParent extends Component {
     }
 
     render() {
-        
+
         const settings = {
             dots: true,
             infinite: true,
