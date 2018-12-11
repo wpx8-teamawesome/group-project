@@ -10,6 +10,13 @@ import Slider from 'react-slick';
 import axios from 'axios'; 
 import matrix from '..//..//..//images/matrix.jpg'; 
 import user from '..//..//..//images/user.png'; 
+import clock from '..//..//..//images/clock.png';
+import marker from '..//..//..//images/marker.png'; 
+
+//Map
+import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
+import Geocode from "react-geocode"
+
 
 class EventDisplay extends Component {
     constructor(props) {
@@ -17,14 +24,29 @@ class EventDisplay extends Component {
         this.state = {
             user: null, 
             event: null, 
-            attendees: []
+            attendees: [],
+
+            //Map stuff
+            loadLat: 33.4483771,
+            loadLng: -112.0740373,
+            markerClicked: false,
+            markerEventTitle: '',
+            markerEventAddress: '',
+            showInfoWindow: false,
+            activeMarker: {}
         }
+
+        //this.geocodeConfig()
     }
 
     //Lifecycle
     componentDidMount() {
         this.fetchEvent()
         this.fetchAttendees() //TEST
+    }
+
+    geocodeConfig = () => {
+       Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY)
     }
 
     fetchAttendees = () => {
@@ -66,7 +88,7 @@ class EventDisplay extends Component {
 
     render() {
         const { user } = this.props; 
-        const { event, attendees } = this.state; 
+        const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state; 
         const urlToGoTo = event != null ? `/api/chat/${event.socket_room}` : ``
 
         const settings = {
@@ -109,7 +131,49 @@ class EventDisplay extends Component {
                         </div>
                     </div>
                     <div className="right_container">
-                    
+                        <div className="map_address_container">
+                            <div className="top_image_and_text">
+                                <img src={clock}></img>
+                                <div>
+                                    <p>Monday, December 10, 2018</p>
+                                    <p>6:00 PM to 9:00 PM</p>
+                                    <button>Add to calendar</button>
+                                </div>
+                            </div>
+                            <div className="top_image_and_text">
+                                <img src={marker}></img>
+                                <div>
+                                    <button>Galvanize San Francisco - Soma</button>
+                                    <p>44 Tehama St, San Francisco, CA </p>
+                                    <p>94105 · San Francisco, CA</p>
+                                    <p>How to find us</p>
+                                    <p>We are hosting the event in the </p>
+                                    <p>Speakeasy room in the lower level.</p>
+                                </div>
+                            </div>
+                            <div className="map_container">
+                                <Map className="mini_map-box" 
+                                    google={this.props.google} 
+                                    zoom={13.5}
+                                    center={{
+                                        lat: loadLat,
+                                        lng: loadLng
+                                    }}
+                                    initialCenter={{
+                                        lat: loadLat,
+                                        lng: loadLng
+                                    }}>
+                                    <InfoWindow 
+                                        marker={this.state.activeMarker}
+                                        visible={this.state.showInfoWindow}
+                                        onClose={this.onInfoWindowClose}>
+                                        <h1>{markerEventTitle}</h1>
+                                        <p>{markerEventAddress}</p>
+                                        <a href="x">This is a link</a>
+                                    </InfoWindow>
+                                </Map>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,6 +181,7 @@ class EventDisplay extends Component {
     }
 }
 
+// Event props
 //(owner_id, title, description, address, location, start_time, end_time, socket_room)
 
 const mapStateToProps = (state) => {
@@ -125,4 +190,5 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { loginUser, logoutUser })(EventDisplay); 
+const childHOC = GoogleApiWrapper({ apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(EventDisplay)
+export default connect(mapStateToProps, { loginUser, logoutUser })(childHOC); 
