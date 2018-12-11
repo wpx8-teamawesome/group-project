@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { loginUser } from '..//../ducks/reducer'; 
 import { logoutUser } from '..//../ducks/reducer'; 
 import { Link } from 'react-router-dom';
+import axios from 'axios'
 
 import userImage from '..//..//images/user.png'; 
 import globe from '..//..//images/globe.png'; 
@@ -12,11 +13,12 @@ import downArrowTwo from '..//..//images/downArrowTwo.png';
 
 import testProfileImage from '..//LandingParent/TestImages/profile_pic.jpg'; 
 
+import { withRouter } from 'react-router-dom';
+
 class Banner extends Component {
     constructor(props) {
         super(props) 
-        this.state = {
-            user: null, 
+        this.state = { 
             toggled: false, 
             toggleImage: downArrow
         }
@@ -29,16 +31,21 @@ class Banner extends Component {
     }
 
     loginSignupHander = () => {
-        // this.props.history.push('/login')
     }
 
     signOutHandler = () => {
         this.setState({ user: null, toggled: false  })
+        axios.post('/api/auth/logout').then(() => {
+        })
         this.props.logoutUser()
     }
 
     componentDidMount() {
         // setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
+        axios.get('/api/auth/session').then(res => {
+              console.log(res.data)
+              this.props.loginUser(res.data)
+            })
     }
 
     //TEST
@@ -63,7 +70,7 @@ class Banner extends Component {
                     <img src={globe}/>
                 </div>
                 <div className="right_nav">
-                    { user != null ?
+                    { user.id ?
                     <ul className="nav_items">
                         <img src={ testProfileImage }/>
                         <img className="toggle_image"
@@ -97,4 +104,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { loginUser, logoutUser })(Banner); 
+export default connect(mapStateToProps, { loginUser, logoutUser })(withRouter(Banner)); 

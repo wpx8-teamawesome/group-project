@@ -4,6 +4,7 @@ import Geocode from "react-geocode"
 import './map.scss'
 import { connect} from 'react-redux'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 
 
@@ -24,6 +25,7 @@ class MapContainer extends Component {
             // ],
             markerEventTitle: '',
             markerEventAddress: '',
+            markerEventId: '',
             showInfoWindow: false,
             activeMarker: {}
         }
@@ -68,18 +70,21 @@ class MapContainer extends Component {
             showInfoWindow: !this.state.showInfoWindow,
             markerClicked: !this.state.markerClicked,
             markerEventTitle: marker.title,
-            markerEventAddress: marker.address
+            markerEventAddress: marker.address,
+            markerEventId: marker.id
         })
     } 
     
   render() {
-
-      const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress} = this.state
+    console.log(this.state.activeMarker)
+      const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress, markerEventId} = this.state
       const { events } = this.props
     //   const {lat, lng} = this.props.user.location
     //   console.log(this.props)
       const markerList = events.map(marker => {
           return <Marker
+            id={marker.id}
+            key={marker.id}
             address={marker.address}
             title={marker.title}
             position ={{
@@ -119,7 +124,7 @@ class MapContainer extends Component {
                     onClose={this.onInfoWindowClose}>
                     <h1>{markerEventTitle}</h1>
                     <p>{markerEventAddress}</p>
-                    <a href="x">This is a link</a>
+                    <a href={`/event/${markerEventId}`}>See Event Page</a>
                 </InfoWindow>
                 </Map>
                 

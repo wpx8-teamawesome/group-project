@@ -1,15 +1,16 @@
 const bcrypt = require('bcrypt');
+// const session = require('express-session')
 const saltRounds = 12;
 
 module.exports = {
     loginUser: (req, res) => {
-        console.log(req.body)
         const db = req.app.get('db');
         const {username, password} = req.body;
         db.find_user({username: username}).then(user => {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                     if (passwordsMatch) {
+                        req.session.user = user[0]
                         res.json(user[0])
                     }else {
                         res.json({ message: 'Username and Password do not match' })
@@ -38,6 +39,7 @@ module.exports = {
                         email: email,
                         latLng: latLng
                     }).then(user => {
+                        req.session.user = user[0]
                         res.status(200).json(user[0])
                     })
                 })
@@ -45,8 +47,14 @@ module.exports = {
         })
     },
 
+    getSession: (req, res) => {
+        const { session } = req;
+        res.status(200).send( session.user || {} );
+    },
+
     logoutUser: (req, res) => {
-        console.log('---authController.logoutUser connection---')
+        req.session.destroy()
+        res.sendStatus(200)
     },
 }
 

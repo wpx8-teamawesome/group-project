@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const massive = require('massive');
+const session = require('express-session')
 const authController = require('./controllers/authController');
 const eventsController = require('./controllers/eventController');
 const peopleController = require('./controllers/peopleController');
@@ -14,6 +15,15 @@ const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 
 app.use(bodyParser.json());
+
+app.use(session({
+    secret: "dfgnadf98a8623noer978h324tu9nqe081234r9uqer97bnwtn0983479q3rgb0083r",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 14
+    }
+}))
 
 massive(process.env.CONNECTION_STRING).then(database  => {
     app.set('db', database);
@@ -50,6 +60,7 @@ io.sockets.on("connection", socket => {
 app.post('/api/auth/login', authController.loginUser);
 app.post('/api/auth/register', authController.registerUser);
 app.post('/api/auth/logout', authController.logoutUser);
+app.get('/api/auth/session', authController.getSession)
 
 
 // User profile endpoint
