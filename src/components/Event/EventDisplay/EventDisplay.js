@@ -42,36 +42,15 @@ class EventDisplay extends Component {
     //Lifecycle
     componentDidMount() {
         this.fetchEvent()
-        //this.fetchAttendees() //TEST
     }
 
     geocodeConfig = () => {
        Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY)
     }
 
-    fetchAttendees = () => {
-        this.setState({
-            attendees: [{ name: "John", imageURL: userImage },
-                { name: "Ethan", imageURL: userImage },
-                { name: "Joe", imageURL: userImage },
-                { name: "Mary", imageURL: userImage },
-                { name: "Denise", imageURL: userImage },
-                { name: "Bob", imageURL: userImage },
-                { name: "Matt", imageURL: userImage },
-                { name: "Travis", imageURL: userImage },
-                { name: "Daniel", imageURL: userImage },
-                { name: "Julia", imageURL: userImage },
-                { name: "Mark", imageURL: userImage },
-                { name: "Dan", imageURL: userImage },
-                { name: "Jake", imageURL: userImage },
-                { name: "Chad", imageURL: userImage },
-                { name: "Maria", imageURL: userImage }]
-        })
-    }
-
     fetchEvent = () => {
         axios.get(`/api/event/${this.props.match.params.id}`).then(response => {
-            console.log('response data', response.data)
+            console.log('response data ---event---', response.data)
             this.setState({ event: response.data[0] }, () => {
                 this.fetchAttendees()
             })

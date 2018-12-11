@@ -27,6 +27,7 @@ module.exports = {
     fetchAllAttending: (req, res, next) => {
         const dbInstance = req.app.get('db'); 
         const { params } = req; 
+        console.log('backend fetch all attending', params.eventid)
         dbInstance.get_all_attendees([params.eventid]).then(response => {
             res.status(200).send(response)
         }).catch(error => {
