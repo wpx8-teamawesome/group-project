@@ -89,8 +89,6 @@ class EventDisplay extends Component {
     render() {
         const { user } = this.props; 
         const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state; 
-        const urlToGoTo = event != null ? `/api/chat/${event.socket_room}` : ``
-
         const settings = {
             dots: true,
             infinite: true,
@@ -98,6 +96,9 @@ class EventDisplay extends Component {
             slidesToShow: 3,
             slidesToScroll: 1
         }
+    
+        const urlToGoTo = event != null ? `/chat/${event.socket_room}` : ``
+        console.log('event socket room', event)
 
         //Map attendees here
         const attendeesMapped = attendees.map((item, index) => {

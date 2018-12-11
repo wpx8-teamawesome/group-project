@@ -13,7 +13,7 @@ import EventSearch from './components/EventSearch/EventSearch';
 export default (
     <Switch>
         <Route component={ LandingParent } exact path="/"/>
-        <Route component={ ChatLobby } path="/chat"/>
+        <Route component={ ChatLobby } path="/chat/:room"/>
         <Route component={ Profile } path="/user/:id" />
         <Route component={ AddEvent } path='/dashboard/add-event'/>
         <Route component={ Dashboard } path="/dashboard" />
