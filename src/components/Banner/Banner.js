@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { loginUser } from '..//../ducks/reducer'; 
 import { logoutUser } from '..//../ducks/reducer'; 
 import { Link } from 'react-router-dom';
-
-import userImage from '..//..//images/user.png'; 
 import globe from '..//..//images/globe.png'; 
 import downArrow from '..//..//images/downArrow.png'; 
 import downArrowTwo from '..//..//images/downArrowTwo.png'; 
@@ -60,17 +58,18 @@ class Banner extends Component {
             <header className="App-header">
                 <div className="left_nav">
                     <Link to='/'><p>Code Planet</p></Link>
-                    <img src={globe}/>
+                    <img src={globe} alt='code planet'/>
                 </div>
                 <div className="right_nav">
                     { user != null ?
                     <ul className="nav_items">
-                        <img src={ testProfileImage }/>
+                        <img src={ testProfileImage } alt='user'/>
                         <img className="toggle_image"
                         onClick={this.toggleNav} 
                         src={toggleImage} 
                         onMouseEnter={() => { this.setState({ toggleImage: downArrowTwo }) }}
                         onMouseOut={() => { this.setState({ toggleImage: downArrow }) }}
+                        alt='arrow'
                         /> 
                     </ul>
                     : <Link to="/login"><button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button></Link> } 

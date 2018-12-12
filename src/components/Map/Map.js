@@ -3,9 +3,6 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
 import './map.scss'
 import { connect} from 'react-redux'
-import axios from 'axios'
-
-
 
 class MapContainer extends Component {
     constructor(props) {
@@ -36,11 +33,10 @@ class MapContainer extends Component {
     }
 
     tempButtonClick = () => {
-        console.log('This got hit')
         Geocode.fromAddress("725 5th Ave, New York, NY 10022").then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
-              console.log(lat, lng)
+            //   console.log(lat, lng)
               this.setState({
                 loadLat: lat,
                 loadLng: lng
@@ -74,10 +70,9 @@ class MapContainer extends Component {
     
   render() {
 
-      const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress} = this.state
+      const {loadLat, loadLng, markerEventTitle, markerEventAddress} = this.state
       const { events } = this.props
-    //   const {lat, lng} = this.props.user.location
-    //   console.log(this.props)
+
       const markerList = events.map(marker => {
           return <Marker
             address={marker.address}
@@ -102,15 +97,6 @@ class MapContainer extends Component {
                         lat: loadLat,
                         lng: loadLng
                     }}>
-                
-                {/* <Marker onClick={this.onMarkerClick}
-                        name={'Current location'} /> */}
-                {/* <Marker position={{
-                        lat:33.454, lng:-112.045}}
-                        name={'Current location'} 
-                        title={'Tooltip'}
-                        onClick={this.handleMarkerClick}/>
-                         */}
                 {markerList}         
                
                 <InfoWindow 

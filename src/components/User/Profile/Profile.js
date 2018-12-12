@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 import axios from 'axios';
 import EventPreview from './EventPreview/EventPreview';
 import './profile.css';
@@ -95,11 +95,11 @@ class Profile extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        user: state.user
-    }
-}
+// function mapStateToProps(state) {
+//     return {
+//         user: state.user
+//     }
+// }
 
 // export default connect(mapStateToProps)(Profile)
 export default Profile;
