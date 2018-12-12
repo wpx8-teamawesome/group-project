@@ -8,8 +8,8 @@ class MapContainer extends Component {
     constructor(props) {
         super(props)
         this.state ={
-            loadLat: 33.4483771,
-            loadLng: -112.0740373,
+            loadLat: this.props.loadLat || 33.4483771,
+            loadLng: this.props.loadLng || -112.0740373,
             // loadLat: "33.4484",
             // loadLng: "-112.0740",
             markerClicked: false,
@@ -74,7 +74,7 @@ class MapContainer extends Component {
       const { events } = this.props
 
       const markerList = events.map(marker => {
-          return <Marker
+          return <Marker key={marker.id}
             address={marker.address}
             title={marker.title}
             position ={{
@@ -102,10 +102,12 @@ class MapContainer extends Component {
                 <InfoWindow 
                     marker={this.state.activeMarker}
                     visible={this.state.showInfoWindow}
-                    onClose={this.onInfoWindowClose}>
-                    <h1>{markerEventTitle}</h1>
-                    <p>{markerEventAddress}</p>
-                    <a href="x">This is a link</a>
+                    onClose={this.onInfoWindowClose} >
+                    <>
+                        <h1>{markerEventTitle}</h1>
+                        <p>{markerEventAddress}</p>
+                        <a href="x">This is a link</a>
+                    </>
                 </InfoWindow>
                 </Map>
                 
