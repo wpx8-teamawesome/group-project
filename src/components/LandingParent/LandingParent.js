@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './LandingParent.scss'; 
+import axios from 'axios'; 
+import moment from 'moment';
 
 //not using, can delete? 
 import HorizontalScroll from 'react-scroll-horizontal'; 
@@ -16,13 +18,14 @@ import testImageFour from './TestImages/travel.jpeg';
 import testProfile from './TestImages/profile_pic.jpg'; 
 import plainSearch from '..//..//images/plainSearch.png'; 
 
-
 import Slider from 'react-slick'; 
 
 class LandingParent extends Component {
     constructor() {
         super() 
         this.state = {
+            upcomingEvents: [],
+            nearbyEvents: [], 
             searchText: '',
             user: null, 
             scrollItems: [{
@@ -74,6 +77,7 @@ class LandingParent extends Component {
     componentDidMount() {
         this.initTweenAnimations()
         this.addListener()
+        this.fetchClosestEvents()
     }
 
     refreshTweens = () => {
@@ -380,9 +384,21 @@ class LandingParent extends Component {
 
     }
 
-    //For snap test
-    callback () {
-        console.log('called when snap animation ends')
+    //For now we'll just fetch upcoming events, but eventually will filter by location
+    fetchClosestEvents = () => {
+        const now = new Date()
+        const filterDate = moment(now).utc().format()
+        console.log('now', filterDate)
+        const body = {
+            startTime: filterDate
+        }
+        console.log('body to pass', body)
+        axios.post('api/events/upcoming', body).then(response => {
+            console.log('response data', response.data)
+            this.setState({ upcomingEvents: response.data })
+        }).catch(error => {
+            console.log('error fetching events in landing parent', error)
+        })
     }
 
     render() {
@@ -396,13 +412,14 @@ class LandingParent extends Component {
         }
 
         // --- Child can be own component ---
-        const { scrollItems } = this.state;
-        const children = scrollItems.map((item, index) => {
+        const { scrollItems, upcomingEvents } = this.state;
+        console.log('upcoming events from render()', upcomingEvents)
+        const children = upcomingEvents.map((item, index) => {
             return <div className="scroll_child" onTouchStart="this.classList.toggle('hover');">
                 <div className="flip_container">
                     <div className="front">
                         <div className="top_scroll_container">
-                            <p>{item.eventDate}</p>
+                            <p>{item.start_time}</p>
                         <img className="main_image" 
                         onClick={() => this.handleEventOnClick(item.id)} 
                         src={item.eventMainImageURL} />
