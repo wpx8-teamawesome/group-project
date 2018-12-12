@@ -18,7 +18,7 @@ class EventHeader extends Component {
 
     render() {
 
-        const { user, event, attendFn, going } = this.props; 
+        const { user, event, attendFn, going, attendeeCount } = this.props; 
         console.log('going prop', going)
         const buttonStylesOne = going === "true" ? { background: 'rgb(197, 247, 247)', color: 'black' } : { background: 'black', color: 'white' }
         const buttonStylesTwo = going === "true" ? { background: 'black', color: 'white' } : { background: 'rgb(197, 247, 247)', color: 'black' }
@@ -49,7 +49,7 @@ class EventHeader extends Component {
                 <div className="attend_container">
                     <div className="attend_one">
                         {/* Get count from attendee table */}
-                        <p> Are you going? 76 attendees</p> 
+                        <p> Are you going? {attendeeCount} are attending </p> 
                     </div>
                     <div className="attend_two">
                         <button style={ buttonStylesOne } onClick={() => attendFn(true)}>Going</button>

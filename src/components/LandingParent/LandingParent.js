@@ -504,3 +504,7 @@ export default LandingParent
 		</div>
 	</div>
 </div> */}
+
+
+// Event props
+//(owner_id, title, description, address, location, start_time, end_time, socket_room)

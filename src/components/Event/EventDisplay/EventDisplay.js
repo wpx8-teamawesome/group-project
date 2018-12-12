@@ -62,7 +62,6 @@ class EventDisplay extends Component {
     fetchAttendees = () => {
         if (this.state.event === null) { return }
         axios.get(`/api/events/attendees/${this.state.event.id}`).then(response => {
-            console.log('attendees', response.data)
             this.setState({ attendees: response.data })
         }).catch(error => {
             console.log('error fetching attendees front end', error)
@@ -73,13 +72,13 @@ class EventDisplay extends Component {
         if (this.state.event === null || this.props.user === null) { return }
         if (going === true) {
             axios.post(`/api/events/attending/${this.state.event.id}/${this.props.user.id}`).then(response => {
-                console.log('response going', response)
+                response.status === 200 ? this.fetchAttendees() : console.log('response going', response)
             }).catch(error => {
                 console.log('error attending front end', error)
             })
         } else {
             axios.delete(`/api/events/attending/${this.state.event.id}/${this.props.user.id}`).then(response => {
-                console.log('response removing attendance', response)
+                response.status === 200 ? this.fetchAttendees() : console.log('response removing attendance', response)
             }).catch(error => {
                 console.log('error removing attendance front end', error)
             })
@@ -109,18 +108,15 @@ class EventDisplay extends Component {
                 </div>
             </div>
         })
-        console.log('attendees mapped', attendeesMapped)
-        console.log('attendees from render()', attendees)
 
         //Does .some() work on all browsers? 
         const userId = user ? user.id : "" 
         const isGoing = attendees.some(function(o) { return o["id"] === userId })
-        console.log('is going', isGoing)
 
         //Pass bool prop as string
         return (
             <div className="main_container">
-                <EventHeader going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
+                <EventHeader attendeeCount={this.state.attendees.length} going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
                 <div className="event_body_parent">
                     <div className="left_container">
                         <img src={matrix}></img>
