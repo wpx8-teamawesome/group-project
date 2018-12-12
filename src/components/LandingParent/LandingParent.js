@@ -401,6 +401,9 @@ class LandingParent extends Component {
         })
     }
 
+    // Event props
+    //(owner_id, title, description, address, location, start_time, end_time, socket_room)
+
     render() {
 
         const settings = {
@@ -425,16 +428,16 @@ class LandingParent extends Component {
                         src={item.eventMainImageURL} />
                     </div>
                     <div className="bottom_scroll_container">
-                        <p>{item.eventTitle}</p>
+                        <p>{item.title}</p>
                     <div>
-                        <img src={item.eventCreatorImageURL} /> 
-                        <p>{`Hosted by ${item.eventCreatorName}`}</p>
+                        <img src={item.img} /> 
+                        <p>{`Hosted by ${item.name}`}</p>
                     </div>
                     </div>
                     </div>
                     <div className="back">
                         <p> {`Atendees ${item.attendeeCount}`} </p>
-                        <p> {item.descriptionText} </p>
+                        <p> {item.description} </p>
                         <button onClick={() => this.checkOutEvent(item.id)}> Go To Page </button>
                     </div>
                 </div>
