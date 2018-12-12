@@ -54,6 +54,10 @@ class Profile extends Component {
         return true
     }
     render() {
+        console.clear()
+        console.log(this.props.match.params)
+        console.log(this.props)
+        
         const { profile, events } = this.state; // 
         if (!profile) {
             return <div>No user :(</div>
@@ -66,6 +70,7 @@ class Profile extends Component {
         return (
             <div className='profile-container'>
                 <header>
+                        
                         <img className='profile-img' src={profile.img} alt='Current user' />
                         <div className='profile-header-info'>
                             <h2>{profile.name}</h2>
@@ -101,5 +106,5 @@ function mapStateToProps(state) {
     }
 }
 
-// export default connect(mapStateToProps)(Profile)
-export default Profile;
+export default connect(mapStateToProps)(Profile)
+// export default Profile;

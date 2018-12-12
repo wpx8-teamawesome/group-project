@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
+
 
 
 class Cloudinary extends Component {
@@ -36,7 +36,6 @@ class Cloudinary extends Component {
             <div>
                 <button onClick={this.uploadWidget}>Upload Image</button>
             </div>
-
         )
     }
   }

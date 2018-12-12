@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import './App.scss';
 import Banner from './components/Banner/Banner.js';
-import axios from 'axios'
-import { connect } from 'react-redux'
-import { loginUser } from './ducks/reducer'
+
 
 
 import routes from './routes'; 
