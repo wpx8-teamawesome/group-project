@@ -43,17 +43,16 @@ class EventDisplay extends Component {
     }
 
     render() {
-        const { user } = this.props; 
+        // const { user } = this.props; 
         const { event } = this.state; 
         const urlToGoTo = event != null ? `/chat/${event.socket_room}` : ``
-        console.log('event socket room', event)
         //Map attendees here
         return (
             <div className="main_container">
                 <EventHeader event={this.state.event} attendFn={this.attendHandler}></EventHeader>
                 <div className="event_body_parent">
                     <div className="left_container">
-                        <img src={matrix}></img>
+                        <img src={matrix} alt='event'></img>
                         <p>Description: 
                             Here is a description about the event
                             This event will be just awesome! :)

@@ -63,7 +63,6 @@ class Profile extends Component {
         return true
     }
     render() {
-        // console.clear()
         const paramsId = this.props.match.params.id;
         const userId = this.props.user.id
         
@@ -106,4 +105,3 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps)(Profile)
-// export default Profile;
