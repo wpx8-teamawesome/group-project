@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './dashboard.scss'
 import EventCard from '../EventCard/EventCard'
-import eventsArray from './fakeEvents'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 

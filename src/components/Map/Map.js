@@ -3,16 +3,13 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
 import './map.scss'
 import { connect} from 'react-redux'
-import axios from 'axios'
-
-
 
 class MapContainer extends Component {
     constructor(props) {
         super(props)
         this.state ={
-            loadLat: 33.4483771,
-            loadLng: -112.0740373,
+            loadLat: this.props.loadLat || 33.4483771,
+            loadLng: this.props.loadLng || -112.0740373,
             // loadLat: "33.4484",
             // loadLng: "-112.0740",
             markerClicked: false,
@@ -36,11 +33,10 @@ class MapContainer extends Component {
     }
 
     tempButtonClick = () => {
-        console.log('This got hit')
         Geocode.fromAddress("725 5th Ave, New York, NY 10022").then(
             response => {
               const { lat, lng } = response.results[0].geometry.location;
-              console.log(lat, lng)
+            //   console.log(lat, lng)
               this.setState({
                 loadLat: lat,
                 loadLng: lng
@@ -74,12 +70,11 @@ class MapContainer extends Component {
     
   render() {
 
-      const {loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress} = this.state
+      const {loadLat, loadLng, markerEventTitle, markerEventAddress} = this.state
       const { events } = this.props
-    //   const {lat, lng} = this.props.user.location
-    //   console.log(this.props)
+
       const markerList = events.map(marker => {
-          return <Marker
+          return <Marker key={marker.id}
             address={marker.address}
             title={marker.title}
             position ={{
@@ -102,24 +97,17 @@ class MapContainer extends Component {
                         lat: loadLat,
                         lng: loadLng
                     }}>
-                
-                {/* <Marker onClick={this.onMarkerClick}
-                        name={'Current location'} /> */}
-                {/* <Marker position={{
-                        lat:33.454, lng:-112.045}}
-                        name={'Current location'} 
-                        title={'Tooltip'}
-                        onClick={this.handleMarkerClick}/>
-                         */}
                 {markerList}         
                
                 <InfoWindow 
                     marker={this.state.activeMarker}
                     visible={this.state.showInfoWindow}
-                    onClose={this.onInfoWindowClose}>
-                    <h1>{markerEventTitle}</h1>
-                    <p>{markerEventAddress}</p>
-                    <a href="x">This is a link</a>
+                    onClose={this.onInfoWindowClose} >
+                    <>
+                        <h1>{markerEventTitle}</h1>
+                        <p>{markerEventAddress}</p>
+                        <a href="x">This is a link</a>
+                    </>
                 </InfoWindow>
                 </Map>
                 
