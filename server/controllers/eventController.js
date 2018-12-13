@@ -71,6 +71,17 @@ module.exports = {
         }).catch(error => {
             console.log("Error in getLocalEvents", error)
         })
+    }, 
+    getUpcomingEvents: (req, res) => {
+        const db = req.app.get('db')
+        const { startTime } = req.body
+        console.log('start date to fetch events backend', startTime, req.body)
+        db.get_upcoming_events([startTime]).then(response => {
+            console.log('events from backend', response)
+            res.status(200).send(response)
+        }).catch(error => {
+            console.log('error in backend upcoming events fetch', error)
+        })
     }
 }
 
