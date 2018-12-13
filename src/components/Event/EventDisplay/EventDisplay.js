@@ -119,7 +119,7 @@ class EventDisplay extends Component {
                 <EventHeader attendeeCount={this.state.attendees.length} going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
                 <div className="event_body_parent">
                     <div className="left_container">
-                        <img src={matrix}></img>
+                        <img src={matrix} alt='event'></img>
                         <p>Description: 
                             Here is a description about the event
                             This event will be just awesome! :)

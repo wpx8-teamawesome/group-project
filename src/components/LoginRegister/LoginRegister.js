@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import './login_register.scss'
 import axios from 'axios';
 import Geocode from "react-geocode"

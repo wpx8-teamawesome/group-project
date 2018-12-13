@@ -31,7 +31,7 @@ module.exports = {
     },
 
     getEvent: (req, res) => {
-        console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
+        // console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
         req.app.get('db').get_event({id: parseInt(req.params.id)}).then(response => {
             res.status(200).json(response)
         }).catch(error => {

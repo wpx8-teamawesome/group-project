@@ -4,11 +4,6 @@ import './LandingParent.scss';
 import axios from 'axios'; 
 import moment from 'moment';
 
-//not using, can delete? 
-import HorizontalScroll from 'react-scroll-horizontal'; 
-import ReactCardFlip from 'react-card-flip';
-import ScrollSnap from 'scroll-snap'; 
-
 import { TweenLite } from "gsap/all";
 import Typing from 'react-typing-animation';
 import plainSearch from '..//..//images/plainSearch.png'; 
@@ -22,7 +17,7 @@ class LandingParent extends Component {
             upcomingEvents: [],
             nearbyEvents: [], 
             searchText: '',
-            user: null
+            cityText: 'Phoenix'
         }
 
         this.refreshTweens()
@@ -162,7 +157,7 @@ class LandingParent extends Component {
         const centerX = width / 2
         const centerY = (height / 2) - 100 //100 is navbar height
 
-        console.log('center', centerX, centerY)
+        // console.log('center', centerX, centerY)
         this.tweenOne = TweenLite.fromTo(this.animationBoxOne, timeGroupOne, {
             x: centerX, y: centerY, width: widthStartFour, height: widthStartFour, backgroundColor: 'rgba(36, 88, 173, .5)', borderRadius: radiusStartFour
         }, {
@@ -320,7 +315,7 @@ class LandingParent extends Component {
     }
 
     handleEventOnClick = (id) => {
-        console.log('event id', id)
+        // console.log('event id', id)
     }
 
     //Scroll listeners
@@ -342,20 +337,12 @@ class LandingParent extends Component {
     }
 
     handleScroll = () => {
-        console.log('window y', window.scrollY, window.innerHeight)
+        // console.log('window y', window.scrollY, window.innerHeight)
     }
 
     //End lifecycle
     componentWillUnmount() {
         this.removeListener()
-    }
-
-    handleSearchTapped = () => {
-
-    }
-
-    monitorTextChange = (val) => {
-        this.setState({ searchText: val })
     }
 
     checkOutEvent = (id) => {
@@ -379,8 +366,11 @@ class LandingParent extends Component {
         })
     }
 
-    // Event props
-    //(owner_id, title, description, address, location, start_time, end_time, socket_room)
+    getKeywords = () => {
+        const { searchText } = this.state;
+        let keywords = searchText.replace(/[,\s]+/g, '%20');
+        return keywords;
+    }
 
     render() {
 
@@ -393,22 +383,22 @@ class LandingParent extends Component {
         }
 
         // --- Child can be own component ---
-        const { upcomingEvents } = this.state;
-        console.log('upcoming events from render()', upcomingEvents)
+        const { searchText, cityText, upcomingEvents } = this.state;
         const children = upcomingEvents.map((item, index) => {
-            return <div className="scroll_child" onTouchStart="this.classList.toggle('hover');">
+            return <div className="scroll_child" key={index} onTouchStart="this.classList.toggle('hover');">
                 <div className="flip_container">
                     <div className="front">
                         <div className="top_scroll_container">
                             <p>{item.start_time}</p>
                         <img className="main_image" 
                         onClick={() => this.handleEventOnClick(item.id)} 
-                        src={item.eventMainImageURL} />
+                        src={item.eventMainImageURL}
+                        alt='event-card'/>
                     </div>
                     <div className="bottom_scroll_container">
                         <p>{item.title}</p>
                     <div>
-                        <img src={item.img} /> 
+                        <img alt='event owner' src={item.img} /> 
                         <p>{`Hosted by ${item.name}`}</p>
                     </div>
                     </div>
@@ -421,7 +411,6 @@ class LandingParent extends Component {
                 </div>
             </div>
         })
-
         return (
             <main className="Main_container">
                 <div className="Main_one">
@@ -458,8 +447,9 @@ class LandingParent extends Component {
                     <div className="animation_container">
                         <Typing className="type_header_top"> Find Fellow Nerds! </Typing>
                         <div>
-                            <input onChange={(e) => this.monitorTextChange(e.target.value)} placeholder="Search Events"></input>
-                            <Link to="/event-search"><img src={plainSearch} onClick={this.handleSearchTapped} /></Link>
+                            <input value={searchText} onChange={(e) => this.setState({ searchText: e.target.value})} placeholder="Search Events" />
+                            <input value={cityText} onChange={e => this.setState({ cityText: e.target.value })} placeholder="City" />
+                            <Link to={`/event-search?key=${this.getKeywords()}&city=${cityText}`}><img src={plainSearch} alt='eye glass' /></Link>
                         </div>
                     </div>
                 </div>
@@ -471,38 +461,9 @@ class LandingParent extends Component {
                         </Slider>
                     </div>
                 </div>
-                <div className="Main_three">
-                    <div className="animation_container_three">
-                        {/* <HorizontalScroll className="scroll_view" >
-                            { children }
-                        </HorizontalScroll> */}
-                    </div>
-                </div>
-                <div className="Main_four">
-                
-                </div>
             </main>
         )
     }
 }
 
 export default LandingParent
-
-
-
-
-
-{/* <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
-	<div class="flipper">
-		<div class="front">
-			<!-- front content -->
-		</div>
-		<div class="back">
-			<!-- back content -->
-		</div>
-	</div>
-</div> */}
-
-
-// Event props
-//(owner_id, title, description, address, location, start_time, end_time, socket_room)

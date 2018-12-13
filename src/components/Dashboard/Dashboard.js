@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import './dashboard.scss'
 import EventCard from '../EventCard/EventCard'
-import eventsArray from './fakeEvents'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 
@@ -23,8 +22,17 @@ class Dashboard extends Component {
       })
     })
   }
+  componentDidMount() {
+    // axios.get('/api/auth/session').then(res => {
+    //   console.log(res.data)
+    //   // this.props.loginUser(res.data)
+    // })
+  }
 
   render() {
+    if (!this.props.user.id) {
+      return <div>LOADING</div>
+    }
     const eventCard = this.state.eventsArray.map((event,i) => {
         return <EventCard events={event} />
     })

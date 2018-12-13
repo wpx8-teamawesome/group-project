@@ -13,7 +13,8 @@ module.exports = {
                     email: user.email,
                     img: user.img,
                     name: user.name || user.username, // in case they did not set a name
-                    socialList: user.social_list
+                    socialList: user.social_list,
+                    id: user.id
                 }
                 res.status(200).json(payload);
             }
@@ -26,6 +27,20 @@ module.exports = {
         })
     },
     updateUser: (req, res) => {
-        console.log(`---peopleController.updateUser connection with params.id: ${req.params.id}`)
+        const { id } = req.params;
+        const { user } = req.body
+        req.app.get('db').update_user({
+            id: id,
+            username: user.username,
+            name: user.name,
+            img: user.img,
+            email: user.email,
+            bio: user.bio,
+            social_list: user.socialList
+        }).then(response => {
+            res.status(200).send({message: "Successfull Update"})
+        }).catch(err => {
+            console.log("Error in peopleController.updateUser", err)
+        })
     }
 }

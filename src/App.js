@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import Banner from './components/Banner/Banner.js';
+
 
 
 import routes from './routes'; 
@@ -36,6 +37,12 @@ class App extends Component {
   //Lifecycle
   componentDidMount() {
     this.addListener() 
+    // axios.get('/api/auth/session').then(res => {
+    //   console.log(res.data)
+    //   if (res.data) {
+    //     this.props.loginUser(res.data)
+    //   }
+    // })
   }
 
   componentWillUnmount() {
@@ -52,5 +59,5 @@ class App extends Component {
     );
   }
 }
-
 export default App;
+// export default connect(null, {loginUser})(App);

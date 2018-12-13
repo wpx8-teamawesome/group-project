@@ -9,6 +9,7 @@ import AddEvent from './components/Dashboard/AddEvent/AddEvent';
 import Dashboard from './components/Dashboard/Dashboard'; 
 import LoginRegister from './components/LoginRegister/LoginRegister'; 
 import EventSearch from './components/EventSearch/EventSearch'; 
+import Cloudinary from './components/Cloudinary/Cloudinary'; 
 
 export default (
     <Switch>
@@ -17,8 +18,9 @@ export default (
         <Route component={ Profile } path="/user/:id" />
         <Route component={ AddEvent } path='/dashboard/add-event'/>
         <Route component={ Dashboard } path="/dashboard" />
-        <Route component= { EventDisplay } path="/event/:id" />
+        <Route component={ EventDisplay } path="/event/:id" />
         <Route component={ LoginRegister } path="/login" /> 
-        <Route component={ EventSearch } path='/event-search' />      
+        <Route component={ EventSearch } path='/event-search' /> 
+        <Route component={ Cloudinary } path='/img' />     
     </Switch>
 )
