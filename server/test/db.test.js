@@ -36,7 +36,15 @@ describe("integration tests", () => {
                 app: {
                     get: () => db
                 },
-                body: {username, password, email, latLng}
+                body: {
+                    username,
+                    password,
+                    email,
+                    latLng
+                },
+                session: { user : {
+                    // dummy
+                }}
             };
 
             const res = {
@@ -65,7 +73,10 @@ describe("integration tests", () => {
                     },
                     body: {
                         username
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
                 const res = {
                     json: function(msg) {
@@ -85,7 +96,10 @@ describe("integration tests", () => {
                 },
                 body: {
                     username
-                }
+                },
+                session: { user : {
+                    // dummy
+                }}
             };
 
             const res = {
@@ -108,7 +122,10 @@ describe("integration tests", () => {
                     body: {
                         username,
                         password
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
 
                 const res = {
@@ -140,7 +157,10 @@ describe("integration tests", () => {
                     body: {
                         username,
                         password
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
 
                 const res = {
