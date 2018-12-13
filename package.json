@@ -36,7 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "integration-test": "jest --watch server/"
+    "integration-test": "jest --watch server/ --coverage"
   },
   "eslintConfig": {
     "extends": "react-app"
