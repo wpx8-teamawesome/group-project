@@ -31,11 +31,12 @@ describe("integration tests", () => {
             const username = "testUser";
             const password = "testpassword"
             const email = "test@email.com"
+            const latLng= { lat: 1, lng: 2}
             const req = {
                 app: {
                     get: () => db
                 },
-                body: {username, password, email}
+                body: {username, password, email, latLng}
             };
 
             const res = {

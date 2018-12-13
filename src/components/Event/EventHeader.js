@@ -11,21 +11,20 @@ import share from '..//..//images/share.png';
 class EventHeader extends Component {
     constructor(props) {
         super(props) 
-        this.state = {
-            user: null, 
-            event: null
-        }
+
     }
 
     render() {
-        const { event } = this.state; 
-        const { user, attendFn } = this.props; 
+        const { event, attendFn, going, attendeeCount } = this.props; 
+        console.log('going prop', going)
+        const buttonStylesOne = going === "true" ? { background: 'rgb(197, 247, 247)', color: 'black' } : { background: 'black', color: 'white' }
+        const buttonStylesTwo = going === "true" ? { background: 'black', color: 'white' } : { background: 'rgb(197, 247, 247)', color: 'black' }
 
         return (
             <div className="main_header_container">
                 <div className="title_container">
                     <div className="title_left">
-                        <img src={calendar}></img>
+                        <img src={calendar} alt='calendar'></img>
                         {/* TODO get from start time / end time? */}
                         <p>Dec 10</p> 
                     </div> 
@@ -35,7 +34,7 @@ class EventHeader extends Component {
                             <p>{event != null ? event.title : "Event Title"}</p>
                         </div>
                         <div className="title_bottom">
-                            <img src={userImg}></img>
+                            <img src={userImg} alt='user'></img>
                             <div>
                                 <p>Hosted by Ethan Hess</p>
                                 <p>From Nerds United</p>
@@ -47,18 +46,18 @@ class EventHeader extends Component {
                 <div className="attend_container">
                     <div className="attend_one">
                         {/* Get count from attendee table */}
-                        <p> Are you going? 76 attendees</p> 
+                        <p> Are you going? {attendeeCount} are attending </p> 
                     </div>
                     <div className="attend_two">
-                        <button onClick={() => attendFn(true)}>Going</button>
-                        <button onClick={() => attendFn(false)}>Not going</button>
+                        <button style={ buttonStylesOne } onClick={() => attendFn(true)}>Going</button>
+                        <button style={ buttonStylesTwo } onClick={() => attendFn(false)}>Not going</button>
                     </div>
                     <div className="attend_three">
                         <button>Share</button>
-                        <img src={facebook}></img>
-                        <img src={instagram}></img>
-                        <img src={twitter}></img>
-                        <img src={share}></img>
+                        <img src={facebook} alt='facebook'></img>
+                        <img src={instagram} alt='instagram'></img>
+                        <img src={twitter} alt='twiiter'></img>
+                        <img src={share} alt='share'></img>
                     </div>
                 </div>
             </div>

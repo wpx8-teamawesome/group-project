@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    user: null, 
+    user: {}, 
 }
 
 const LOGIN_USER = "LOGIN_USER"; 
@@ -11,7 +11,7 @@ export default function reducer(state = INITIAL_STATE, action) {
         // console.log('reducer', action.payload)
             return Object.assign({}, state, {user: action.payload}); 
         case LOGOUT_USER: 
-            return Object.assign({}, state, {user: null}); 
+            return Object.assign({}, state, {user: {}}); 
         default: 
             return state; 
     }

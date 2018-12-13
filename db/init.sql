@@ -4,6 +4,7 @@ drop table if exists direct_message_chats cascade;
 drop table if exists event_message_history;
 drop table if exists dm_message_history;
 drop table if exists message_history;
+drop table if exists event_attendence cascade; 
 
 create table if not exists users (
     id serial primary key,
@@ -55,6 +56,12 @@ create table if not exists received_messages (
     socket_room text,
     is_read bool
 );
+
+create table if not exists event_attendance (
+    id serial primary key, 
+    event_id int references events (id) on delete cascade, 
+    attendee_id int references users (id) on delete cascade
+); 
 
 
 

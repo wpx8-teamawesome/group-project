@@ -31,7 +31,7 @@ module.exports = {
     },
 
     getEvent: (req, res) => {
-        console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
+        // console.log(`---eventController.getEvent connection with params.id: ${req.params.id}`)
         req.app.get('db').get_event({id: parseInt(req.params.id)}).then(response => {
             res.status(200).json(response)
         }).catch(error => {
@@ -70,6 +70,17 @@ module.exports = {
             res.status(200).json(events)
         }).catch(error => {
             console.log("Error in getLocalEvents", error)
+        })
+    }, 
+    getUpcomingEvents: (req, res) => {
+        const db = req.app.get('db')
+        const { startTime } = req.body
+        console.log('start date to fetch events backend', startTime, req.body)
+        db.get_upcoming_events([startTime]).then(response => {
+            console.log('events from backend', response)
+            res.status(200).send(response)
+        }).catch(error => {
+            console.log('error in backend upcoming events fetch', error)
         })
     }
 }

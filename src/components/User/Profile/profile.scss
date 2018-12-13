@@ -1,3 +1,5 @@
+@import '../../../scss/_variables';
+
 .profile-container {
     margin: 10px auto;
     width: 90%;
@@ -24,9 +26,44 @@
 .profile-container header img {
     height: 150px;
     width: 150px;
-    max-width: 50%;
+    // max-width: 50%;
     border-radius: 50%;
     border: 1px solid black;
+}
+.profile-img-box {
+    width: 150px;
+    height: 150px;
+    position: relative;
+    border-radius: 50%;
+}
+
+#profile-img {
+    width: 150px;
+    height: 150px;
+}
+.profile-img-box h3 {
+    font-size: 18px;
+    font-family: $mono;
+    letter-spacing: 1.5px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    margin: 0 auto;
+    top: 86px;
+    display: none;
+}
+
+.profile-img-box:hover {
+    z-index: 10;
+    cursor: pointer;
+    background: #000;
+}
+.profile-img-box:hover h3 {
+     display: block;
+}
+.profile-img-box:hover img {
+    opacity: 0.4
 }
 
 .profile-container header > * + * {

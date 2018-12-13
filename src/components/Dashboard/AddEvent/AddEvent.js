@@ -17,6 +17,7 @@ class AddEvent extends Component {
             startTime: null,
             endTime: null,
             description: '',
+            eventImageURL: ''
         }
     }
 
@@ -82,8 +83,6 @@ class AddEvent extends Component {
                 console.error(error);
               }
         )
-        
-        
     }
 
     getGeoLocation = (address) => {
@@ -91,8 +90,30 @@ class AddEvent extends Component {
             
     }
 
+    addEventImage = () => {
+
+        window.cloudinary.openUploadWidget(
+            { cloud_name: 'dzyljunq0',
+            upload_preset: 'pzerapqx',
+            multiple: 'false',
+            autoMinimize: true,
+            showCompletedButton: true,
+            
+        },
+        (error, result) => {
+            if (result.info.secure_url) {
+                console.log(result.info.secure_url)
+                this.setState({
+                    eventImageURL: result.info.secure_url
+                })
+            }
+            
+        })
+    }
+
     render() {
-        const { title, address, startTime, endTime, description } = this.state;
+        const { title, address, startTime, endTime, description, eventImageURL } = this.state;
+        console.log(eventImageURL)
         console.log('TIME', startTime);
         return (
             <div className='add-event-container'>
@@ -113,8 +134,10 @@ class AddEvent extends Component {
                     onChange={e => this.updateChanges(e, 'description')} 
                     placeholder='Description'
                 />
+                <button onClick={this.addEventImage}>Add Event Image</button>
                 <Link to='/dashboard'><button onClick={this.clearState}>Cancel</button></Link>
                 <button onClick={this.addEvent}>Add Event</button>
+                <img src={eventImageURL} alt=""/>
             </div>
         );
     }
