@@ -39,11 +39,17 @@ export default class MyProfile extends Component {
         }
 
         const updatedProfileObj = this.handleProfileUpdate(profile, builderObj)
-        
+        console.log("12312312", updatedProfileObj)
         axios.put(`/api/people/${this.props.profile.id}`, {user: updatedProfileObj}).then(res => {
-            const id = this.props.profile.id.toString()
-            this.props.fetchProfileData(id)
+            const userObj = res.data
+            this.props.updateUser(userObj)
+            this.setState({
+                editClicked: !this.state.editClicked
+            })
+        }).catch(err => {
+            console.log("AAAAAAAaa", err)
         })
+    
     }
 
     handleEditToggle = () => {
@@ -154,7 +160,7 @@ export default class MyProfile extends Component {
                 </div>
             </div>
 
-            <button onClick={this.saveChanges}>Save Changes</button>
+            <button onClick={e => { e.preventDefault(); this.saveChanges()}}>Save Changes</button>
         
         </form>
     </div>

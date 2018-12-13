@@ -44,7 +44,6 @@ class Banner extends Component {
     render() {
         const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
         const { user } = this.props; 
-        console.log(user)
         const { toggled, toggleImage } = this.state; 
         return (
             <div>
@@ -71,7 +70,7 @@ class Banner extends Component {
             { toggled === true ? <div className="toggle_container">
                 <ul>
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
-                    <li><Link to="dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
+                    <li><Link to="/dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
                     <li><Link to={`/user/${user.id}`}><button onClick={this.toggleNav}>Profile</button></Link></li>
                     <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>

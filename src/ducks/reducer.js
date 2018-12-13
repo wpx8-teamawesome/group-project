@@ -8,7 +8,7 @@ const LOGOUT_USER = "LOGOUT_USER";
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case LOGIN_USER: 
-        // console.log('reducer', action.payload)
+        console.log('reducer', action.payload)
             return Object.assign({}, state, {user: action.payload}); 
         case LOGOUT_USER: 
             return Object.assign({}, state, {user: {}}); 
@@ -26,7 +26,7 @@ export function loginUser(user) {
 }
 
 export function logoutUser() {
-    console.log('logout user called from reducer')
+    // console.log('logout user called from reducer')
     return {
         type: LOGOUT_USER, 
     }
