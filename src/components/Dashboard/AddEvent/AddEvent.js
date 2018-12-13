@@ -54,7 +54,7 @@ class AddEvent extends Component {
     }
 
     addEvent = async () => {
-        const { title, address, startTime, endTime, description } = this.state;
+        const { title, address, startTime, endTime, description, eventImageURL } = this.state;
         const location = this.getGeoLocation(address);
         location.then( response => {
                 const { lat, lng } = response.results[0].geometry.location;
@@ -71,6 +71,7 @@ class AddEvent extends Component {
                     location,
                     startTime: moment(startTime).utc(),
                     endTime: moment(endTime).utc(),
+                    imageUrl: eventImageURL
                 }
 
                 axios.post('/api/events', payload)

@@ -392,7 +392,7 @@ class LandingParent extends Component {
                             <p>{item.start_time}</p>
                         <img className="main_image" 
                         onClick={() => this.handleEventOnClick(item.id)} 
-                        src={item.eventMainImageURL}
+                        src={item.image_url}
                         alt='event-card'/>
                     </div>
                     <div className="bottom_scroll_container">
