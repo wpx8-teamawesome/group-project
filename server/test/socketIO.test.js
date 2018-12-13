@@ -89,18 +89,51 @@ describe('Socket IO Tests', () => {
 	})
 
 	describe('fetches chat history', () => {
-		it('gets chat history on joining room', done => {
+		it('gets empty chat history on joining room', done => {
 			socket.on('chat-history', array => {
-				expect(array.length).toBe(1)
+				expect(array.length).toBe(0)
 				done()
 			})
 
 			const custom_socket = {
 				join: lobby => expect(lobby).toBe('test_room')
 			}
-			//console.log('socket', socket);
-			console.log('rooms?', io_server);
+
 			socketController.joinRoom(custom_socket, io_server, { socket_room:'test_room' }, {get: ()=> db})
+		})
+
+		it('gets full chat history on joining room', done => {
+			const username = 'test-user19';
+			const testRoom = 'test_room'
+			socket.on('chat-history', array => {
+				expect(array.length).toBe(1)
+				let history = array[0];
+				expect(history.message).toBe('Hello world');
+				expect(history.authorId).toBe(1);
+				expect(history.name).toBe(username)
+				done()
+			})
+
+			let message = {
+				userId: 1,
+				name: username,
+				room: testRoom,
+				message: "Hello world",
+				img: ''
+			};
+			const custom_socket = {
+				join: lobby => expect(lobby).toBe(testRoom)
+			}
+			//console.log('socket', socket);
+			socketController.addMessage(io_server, message, {
+				get: () => db
+			});
+
+			socket.on('message', message => {
+				// Message is in chat-history.. now check
+				socketController.joinRoom(custom_socket, io_server, { socket_room:testRoom }, {get: ()=> db})
+			})
+			
 		})
 	})
 

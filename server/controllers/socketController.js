@@ -53,6 +53,7 @@ module.exports = {
                 return (
                 {
                     id: m.id,
+                    authorId: m.author_id,
                     room: m.socket_room,
                     name: m.name,
                     img: m.img,
@@ -61,7 +62,6 @@ module.exports = {
                 }
                 )
             })
-            console.log('room', lobby.socket_room);
             io.in(lobby.socket_room).emit('chat-history', messageList);
         }).catch( err => console.log('Error in socket controller Join room',err));
     }
