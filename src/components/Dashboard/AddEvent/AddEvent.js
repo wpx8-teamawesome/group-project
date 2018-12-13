@@ -6,6 +6,7 @@ import axios from 'axios';
 import Geocode from "react-geocode";
 import moment from 'moment';
 import './datetime.css';
+import './addevent.scss'
 
 class AddEvent extends Component {
     constructor(params){
@@ -113,10 +114,9 @@ class AddEvent extends Component {
 
     render() {
         const { title, address, startTime, endTime, description, eventImageURL } = this.state;
-        console.log(eventImageURL)
-        console.log('TIME', startTime);
         return (
             <div className='add-event-container'>
+                <h1 className="add-event-title">Add An Event</h1>
                 <input 
                     value={title}
                     placeholder='Event Title'
