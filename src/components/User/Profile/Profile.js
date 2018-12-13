@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import EventPreview from './EventPreview/EventPreview';
-import './profile.css';
+import './profile.scss';
+import MyProfile from './ProfileToggle/MyProfile/MyProfile'
+import OtherUserProfile from './ProfileToggle/OtherUserProfile/OtherUserProfile'
 import moment from 'moment';
 
 class Profile extends Component {
@@ -22,6 +24,13 @@ class Profile extends Component {
         }
     }
 
+    forceRender = () => {
+        this.setState({ 
+            profile: this.state.profile,
+            events: this.state.events
+        })
+    }
+
     fetchProfileData = async (id) => {
         const user = await axios.get(`/api/people/${id}`).then(user => user.data);
         const events = await axios.get(`/api/events/user/${id}`).then(events => events.data);
@@ -29,7 +38,7 @@ class Profile extends Component {
             event.start_time = moment(event.start_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
             event.end_time = moment(event.end_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
         }
-
+        
         this.setState({
             profile: user,
             events
@@ -54,9 +63,9 @@ class Profile extends Component {
         return true
     }
     render() {
-        console.clear()
-        console.log(this.props.match.params)
-        console.log(this.props)
+        // console.clear()
+        const paramsId = this.props.match.params.id;
+        const userId = this.props.user.id
         
         const { profile, events } = this.state; // 
         if (!profile) {
@@ -64,39 +73,29 @@ class Profile extends Component {
         }
 
         const myEvents = events.map(event => <EventPreview key={event.id} event={event} />); // map over events
-        console.log(profile);
         const following = profile.socialList.following.map(user => <div>{user}</div>);
         const isFollowing = this.checkFollow();
-        return (
-            <div className='profile-container'>
-                <header>
-                        
-                        <img className='profile-img' src={profile.img} alt='Current user' />
-                        <div className='profile-header-info'>
-                            <h2>{profile.name}</h2>
-                            <hr/>
-                            {/* More info here? */}
-                            <button className='following' onClick={this.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button>
-                        </div>
-                </header>
 
-                <div>
-                    <button className='profile-control active' onClick={e => this.switchTabs(e, 'bio')}>Bio</button>
-                    <button className='profile-control' onClick={e => this.switchTabs(e, 'events')}>My Events</button>
-                    <button className='profile-control' onClick={e => this.switchTabs(e, 'followers')}>Following</button>
-                </div>
-               
-                <div id='bio' className='profile-content'>
-                    <p>{ profile.bio || "This nerd is a little shy..." }</p>
-                </div>
-                <div id='events' className='profile-content'>
-                    { myEvents || <p>This nerd likes to run solo</p> }
-                </div>
-                <div id='followers' className='profile-content'>
-                    { following }
-                </div>
-            </div>
-        );
+        if (paramsId == userId) {
+            return (
+                <MyProfile myEvents={myEvents} 
+                           isFollowing={isFollowing} 
+                           following={following}
+                           profile={profile}
+                           switchTabs={this.switchTabs}
+                           fetchProfileData={this.fetchProfileData} 
+                           forceRender={this.forceRender}/>
+            );
+        }else {
+            return (
+               <OtherUserProfile myEvents={myEvents} 
+                                 isFollowing={isFollowing} 
+                                 following={following}
+                                 profile={profile}
+                                 switchTabs={this.switchTabs} />
+            )
+        }
+        
     }
 }
 

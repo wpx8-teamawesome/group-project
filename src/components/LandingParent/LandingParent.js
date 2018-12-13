@@ -320,7 +320,7 @@ class LandingParent extends Component {
     }
 
     handleScroll = () => {
-        console.log('window y', window.scrollY, window.innerHeight)
+        // console.log('window y', window.scrollY, window.innerHeight)
     }
 
     //End lifecycle

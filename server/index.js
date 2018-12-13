@@ -66,6 +66,7 @@ app.get('/api/auth/session', authController.getSession)
 // User profile endpoint
 app.get('/api/people/:id', peopleController.getUserProfile);
 app.put('/api/people/:id', peopleController.updateUser);
+// app.patch('/api/people/:id', peopleController.updateUser)
 
 // Events Endpoints
 app.post('/api/events', eventsController.createEvent);

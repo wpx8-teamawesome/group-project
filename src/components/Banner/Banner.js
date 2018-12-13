@@ -11,7 +11,8 @@ import globe from '..//..//images/globe.png';
 import downArrow from '..//..//images/downArrow.png'; 
 import downArrowTwo from '..//..//images/downArrowTwo.png'; 
 
-import testProfileImage from '..//LandingParent/TestImages/profile_pic.jpg'; 
+
+// import testProfileImage from '..//LandingParent/TestImages/profile_pic.jpg'; 
 
 import { withRouter } from 'react-router-dom';
 
@@ -30,8 +31,8 @@ class Banner extends Component {
         })
     }
 
-    loginSignupHander = () => {
-    }
+    // loginSignupHander = () => {
+    // }
 
     signOutHandler = () => {
         this.setState({ user: null, toggled: false  })
@@ -60,7 +61,9 @@ class Banner extends Component {
     render() {
         // console.log(this.props)
         //const { user } = this.props; //get image accordingly
+        const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
         const { user } = this.props; 
+        console.log(user)
         const { toggled, toggleImage } = this.state; 
         return (
             <div>
@@ -72,7 +75,7 @@ class Banner extends Component {
                 <div className="right_nav">
                     { user.id ?
                     <ul className="nav_items">
-                        <img src={ testProfileImage }/>
+                        <img src={!user.img? defaultImg : user.img}/>
                         <img className="toggle_image"
                         onClick={this.toggleNav} 
                         src={toggleImage} 
@@ -88,8 +91,8 @@ class Banner extends Component {
                 <ul>
                     {/* <h1>{user.username}</h1> */}
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
-                    <li><button>Dashboard</button></li>
-                    <li><button>Profile</button></li>
+                    <li><Link to="dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
+                    <li><Link to={`/user/${user.id}`}><button onClick={this.toggleNav}>Profile</button></Link></li>
                     <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>
             </div> : <div></div> }
@@ -105,3 +108,6 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { loginUser, logoutUser })(withRouter(Banner)); 
+
+
+
