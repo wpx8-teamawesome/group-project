@@ -38,13 +38,15 @@ class Banner extends Component {
         axios.get('/api/auth/session').then(res => {
               console.log(res.data)
               this.props.loginUser(res.data)
-            })
+        })
     }
 
     render() {
+        
         const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
         const { user } = this.props; 
         const { toggled, toggleImage } = this.state; 
+
         return (
             <div>
             <header className="App-header">
