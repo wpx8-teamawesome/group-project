@@ -2,6 +2,18 @@ const bcrypt = require('bcrypt');
 // const session = require('express-session')
 const saltRounds = 12;
 
+function userObjCamelCase(user) {
+    return {
+        id: user.id,
+        username: user.username,
+        bio: user.bio,
+        email: user.email,
+        img: user.img,
+        name: user.name || user.username, // in case they did not set a name
+        socialList: user.social_list,
+    }
+}
+
 module.exports = {
     loginUser: (req, res) => {
         const db = req.app.get('db');
@@ -10,8 +22,9 @@ module.exports = {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                     if (passwordsMatch) {
-                        req.session.user = user[0]
-                        res.json(user[0])
+                        const rtn = userObjCamelCase(user[0])
+                        req.session.user = rtn
+                        res.json(rtn)
                     }else {
                         res.json({ message: 'Username and Password do not match' })
                     }
@@ -39,8 +52,9 @@ module.exports = {
                         email: email,
                         latLng: latLng
                     }).then(user => {
-                        req.session.user = user[0]
-                        res.status(200).json(user[0])
+                        const rtn = userObjCamelCase(user[0])
+                        req.session.user = rtn
+                        res.status(200).json(rtn)
                     })
                 })
             }

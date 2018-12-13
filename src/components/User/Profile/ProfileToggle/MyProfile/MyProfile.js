@@ -39,7 +39,7 @@ export default class MyProfile extends Component {
         }
 
         const updatedProfileObj = this.handleProfileUpdate(profile, builderObj)
-        axios.put(`/api/people/${this.props.profile.id}`, {user: updatedProfileObj}).then(res => {
+        axios.put(`/api/people/${this.props.profile.id}`, updatedProfileObj).then(res => {
             const userObj = res.data
             this.props.updateUser(userObj)
             this.setState({
@@ -100,7 +100,6 @@ export default class MyProfile extends Component {
         <header>
                 <div onClick={this.editProfileImage} className="profile-img-box">
                     <img id="profile-img" className='profile-img' src={!img? defaultImg : img} alt='Current user' />
-                    {/* <img id="profile-img" className='profile-img' src={img} alt='Current user' /> */}
                     <h3>Edit Image</h3>
                 </div>
                 <div className='profile-header-info'>
@@ -109,9 +108,7 @@ export default class MyProfile extends Component {
                         <i onClick={this.handleEditToggle} className="far fa-edit"></i>
                     </div>
                     <hr/>
-                    {/* More info here? */}
                     <h3>{email}</h3>
-                    {/* <button className='following' onClick={this.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button> */}
                 </div>
         </header>
 
