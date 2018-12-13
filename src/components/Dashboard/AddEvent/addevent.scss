@@ -1,0 +1,11 @@
+@import '../../../scss/variables';
+
+.add-event-container {
+    width: 90%;
+    margin: 0 auto;
+
+    h1.add-event-title {
+        text-align: center;
+        color: yellow;
+    }
+}

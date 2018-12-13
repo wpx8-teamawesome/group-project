@@ -6,4 +6,5 @@ bio = ${bio},
 img = ${img},
 social_list = ${social_list}
 where id = ${id}
+returning *;
 

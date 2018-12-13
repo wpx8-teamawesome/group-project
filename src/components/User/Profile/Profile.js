@@ -7,6 +7,8 @@ import MyProfile from './ProfileToggle/MyProfile/MyProfile'
 import OtherUserProfile from './ProfileToggle/OtherUserProfile/OtherUserProfile'
 import moment from 'moment';
 
+import { loginUser } from '../../../ducks/reducer';
+
 class Profile extends Component {
     constructor(params) {
         super(params)
@@ -29,6 +31,14 @@ class Profile extends Component {
             profile: this.state.profile,
             events: this.state.events
         })
+    }
+    updateUser = (userObj) => {
+        console.log("This got hit")
+        this.setState({
+            profile: userObj
+        })
+
+        this.props.loginUser(userObj)
     }
 
     fetchProfileData = async (id) => {
@@ -63,6 +73,8 @@ class Profile extends Component {
         return true
     }
     render() {
+
+        console.log("profile props", this.props)
         const paramsId = this.props.match.params.id;
         const userId = this.props.user.id
         
@@ -83,7 +95,9 @@ class Profile extends Component {
                            profile={profile}
                            switchTabs={this.switchTabs}
                            fetchProfileData={this.fetchProfileData} 
-                           forceRender={this.forceRender}/>
+                           forceRender={this.forceRender}
+                           updateUser={this.updateUser}
+                           />
             );
         }else {
             return (
@@ -104,4 +118,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, { loginUser })(Profile)

@@ -28,7 +28,7 @@ module.exports = {
     },
     updateUser: (req, res) => {
         const { id } = req.params;
-        const { user } = req.body
+        let { user } = req.body
         req.app.get('db').update_user({
             id: id,
             username: user.username,
@@ -37,8 +37,19 @@ module.exports = {
             email: user.email,
             bio: user.bio,
             social_list: user.socialList
-        }).then(response => {
-            res.status(200).send({message: "Successfull Update"})
+        }).then(users => {
+            user = users[0]
+            console.log("Response from updateUser", user)
+            const payload ={
+                id: id,
+                username: user.username,
+                name: user.name,
+                img: user.img,
+                email: user.email,
+                bio: user.bio,
+                socialList: user.social_list
+            }
+            res.status(200).json(payload)
         }).catch(err => {
             console.log("Error in peopleController.updateUser", err)
         })

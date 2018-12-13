@@ -72,7 +72,7 @@ class Banner extends Component {
             { toggled === true ? <div className="toggle_container">
                 <ul>
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
-                    <li><Link to="dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
+                    <li><Link to="/dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
                     <li><Link to={`/user/${user.id}`}><button onClick={this.toggleNav}>Profile</button></Link></li>
                     <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>
