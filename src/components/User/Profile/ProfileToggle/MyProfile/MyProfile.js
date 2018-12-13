@@ -39,7 +39,6 @@ export default class MyProfile extends Component {
         }
 
         const updatedProfileObj = this.handleProfileUpdate(profile, builderObj)
-        console.log("12312312", updatedProfileObj)
         axios.put(`/api/people/${this.props.profile.id}`, {user: updatedProfileObj}).then(res => {
             const userObj = res.data
             this.props.updateUser(userObj)
@@ -47,7 +46,7 @@ export default class MyProfile extends Component {
                 editClicked: !this.state.editClicked
             })
         }).catch(err => {
-            console.log("AAAAAAAaa", err)
+            console.log("Error in saveChanges", err)
         })
     
     }
