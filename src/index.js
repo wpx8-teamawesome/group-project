@@ -12,10 +12,11 @@ import store from './ducks/store';
 import { BrowserRouter as Router } from 'react-router-dom'; 
 
 ReactDOM.render(
-    <Provider store={store}>
         <Router>
+    <Provider store={store}>
             <App />
-        </Router>
-    </Provider>, document.getElementById('root'));
+    </Provider>
+    </Router>, document.getElementById('root'));
+        
 
 serviceWorker.unregister();

@@ -4,17 +4,18 @@ import { connect } from 'react-redux';
 import { loginUser } from '..//../ducks/reducer'; 
 import { logoutUser } from '..//../ducks/reducer'; 
 import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+
+import axios from 'axios'
 import globe from '..//..//images/globe.png'; 
 import downArrow from '..//..//images/downArrow.png'; 
 import downArrowTwo from '..//..//images/downArrowTwo.png'; 
 
-import testProfileImage from '..//LandingParent/TestImages/profile_pic.jpg'; 
 
 class Banner extends Component {
     constructor(props) {
         super(props) 
-        this.state = {
-            user: null, 
+        this.state = { 
             toggled: false, 
             toggleImage: downArrow
         }
@@ -26,32 +27,24 @@ class Banner extends Component {
         })
     }
 
-    loginSignupHander = () => {
-        // this.props.history.push('/login')
-    }
-
     signOutHandler = () => {
         this.setState({ user: null, toggled: false  })
+        axios.post('/api/auth/logout').then(() => {
+        })
         this.props.logoutUser()
     }
 
     componentDidMount() {
-        // setInterval(this.assignUserForTestAfterThreeSeconds(), 3000)
+        axios.get('/api/auth/session').then(res => {
+              console.log(res.data)
+              this.props.loginUser(res.data)
+            })
     }
 
-    //TEST
-    // assignUserForTestAfterThreeSeconds = () => {
-    //     const newUser = {
-    //         username: "Ethan", 
-    //         profileURL: testProfileImage
-    //     }
-    //     this.setState({ user: newUser })
-    // }
-
     render() {
-        // console.log(this.props)
-        //const { user } = this.props; //get image accordingly
+        const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
         const { user } = this.props; 
+        console.log(user)
         const { toggled, toggleImage } = this.state; 
         return (
             <div>
@@ -61,9 +54,9 @@ class Banner extends Component {
                     <img src={globe} alt='code planet'/>
                 </div>
                 <div className="right_nav">
-                    { user != null ?
+                    { user.id ?
                     <ul className="nav_items">
-                        <img src={ testProfileImage } alt='user'/>
+                        <img src={!user.img? defaultImg : user.img} alt='user'/>
                         <img className="toggle_image"
                         onClick={this.toggleNav} 
                         src={toggleImage} 
@@ -75,13 +68,11 @@ class Banner extends Component {
                     : <Link to="/login"><button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button></Link> } 
                 </div>
             </header> 
-            {/* --- Can be own component --- */}
             { toggled === true ? <div className="toggle_container">
                 <ul>
-                    {/* <h1>{user.username}</h1> */}
                     <li><button>{ user != null ? user.username : "Sign In"}</button></li>
-                    <li><button>Dashboard</button></li>
-                    <li><button>Profile</button></li>
+                    <li><Link to="dashboard"><button onClick={this.toggleNav}>Dashboard</button></Link></li>
+                    <li><Link to={`/user/${user.id}`}><button onClick={this.toggleNav}>Profile</button></Link></li>
                     <li><Link to="/"><button onClick={this.signOutHandler}>Sign Out</button></Link></li> 
                 </ul>
             </div> : <div></div> }
@@ -96,4 +87,7 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { loginUser, logoutUser })(Banner); 
+export default connect(mapStateToProps, { loginUser, logoutUser })(withRouter(Banner)); 
+
+
+

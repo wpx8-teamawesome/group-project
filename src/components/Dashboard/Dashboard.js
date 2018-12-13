@@ -22,8 +22,17 @@ class Dashboard extends Component {
       })
     })
   }
+  componentDidMount() {
+    // axios.get('/api/auth/session').then(res => {
+    //   console.log(res.data)
+    //   // this.props.loginUser(res.data)
+    // })
+  }
 
   render() {
+    if (!this.props.user.id) {
+      return <div>LOADING</div>
+    }
     const eventCard = this.state.eventsArray.map((event,i) => {
         return <EventCard events={event} />
     })

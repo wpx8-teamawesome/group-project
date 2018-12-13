@@ -1,0 +1,88 @@
+@import '../../../../../scss/variables';
+
+
+.hide-me {
+    display: none;
+}
+
+.edit-form {
+    margin-top: 20px;
+    border: 2px solid $dark;
+    padding: 16px;
+    max-width: 50%;
+}
+
+.name-edit-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name-edit-box:hover i {
+    cursor: pointer;
+}
+.cancel-box {
+    width: 100%;
+    margin-left: auto;
+    display: flex;
+    i {
+        margin-left: auto;
+    }
+    i:hover {
+        cursor: pointer;
+    }
+}
+.input-box {
+    display: flex;
+    // align-items: center;
+    background: $dark;
+    font-family: $mono;
+    color: $terminalGreen;
+    p {
+        margin-top: 8px;
+    }
+}
+
+.input-group {
+    margin-bottom: 12px;
+}
+.input-group h4 {
+    margin-bottom: 4px;
+    font-family: $mono;
+}
+.input-group input:focus, textarea:focus {
+     outline: none;
+     
+}
+.input-group input, .input-group textarea {
+    font-size: 18px;
+    width: 100%;
+    background: $dark;
+    font-family: $mono;
+    color: $terminalGreen;
+    height: 30px;
+    border: none;
+    padding-left: 12px;
+}
+.input-group textarea {
+     padding-top: 6px;
+     min-height: 60px;
+     overflow-y: auto;
+}
+
+.edit-form button {
+    background: $dark;
+    border: 2px solid $dark;
+    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 2px;
+    color: #fff;
+    font-family: $mono;
+    padding: 8px;
+    transition: .2s
+}
+
+.edit-form button:hover {
+    color: #fff;
+    border: 2px solid #fff;
+}

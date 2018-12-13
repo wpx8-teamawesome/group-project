@@ -4,6 +4,8 @@ import Geocode from "react-geocode"
 import './map.scss'
 import { connect} from 'react-redux'
 
+
+
 class MapContainer extends Component {
     constructor(props) {
         super(props)
@@ -21,6 +23,7 @@ class MapContainer extends Component {
             // ],
             markerEventTitle: '',
             markerEventAddress: '',
+            markerEventId: '',
             showInfoWindow: false,
             activeMarker: {}
         }
@@ -64,17 +67,20 @@ class MapContainer extends Component {
             showInfoWindow: !this.state.showInfoWindow,
             markerClicked: !this.state.markerClicked,
             markerEventTitle: marker.title,
-            markerEventAddress: marker.address
+            markerEventAddress: marker.address,
+            markerEventId: marker.id
         })
     } 
     
   render() {
 
-      const {loadLat, loadLng, markerEventTitle, markerEventAddress} = this.state
+      const {loadLat, loadLng, markerEventTitle, markerEventAddress, markerEventId} = this.state
       const { events } = this.props
 
       const markerList = events.map(marker => {
-          return <Marker key={marker.id}
+          return <Marker
+            id={marker.id}
+            key={marker.id}
             address={marker.address}
             title={marker.title}
             position ={{
@@ -106,9 +112,10 @@ class MapContainer extends Component {
                     <>
                         <h1>{markerEventTitle}</h1>
                         <p>{markerEventAddress}</p>
-                        <a href="x">This is a link</a>
+                        <a href={`/event/${markerEventId}`}>See Event Page</a>
                     </>
                 </InfoWindow>
+
                 </Map>
                 
             </div>
@@ -127,5 +134,4 @@ const mapStateToProps = (state) => {
 
 const childHOC = GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
 export default connect(mapStateToProps)(childHOC)
-// export default GoogleApiWrapper({apiKey: (process.env.REACT_APP_MAPS_API_KEY)})(MapContainer)
 
