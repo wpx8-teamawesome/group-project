@@ -49,7 +49,6 @@ module.exports = {
                 bio: user.bio,
                 socialList: user.social_list
             }
-
             req.session.user = payload;
             res.status(200).json(payload)
         }).catch(err => {

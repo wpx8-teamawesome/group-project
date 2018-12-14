@@ -22,7 +22,6 @@ module.exports = {
 
     getAllEvents: (req, res) => {
         req.app.get('db').get_all_events().then(events => {
-            console.log(events)
             res.status(200).json(events)
         }).catch( err => {
             console.log('Error in getAllEvents, ', err)
