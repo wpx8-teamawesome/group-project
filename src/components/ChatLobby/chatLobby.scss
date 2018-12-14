@@ -38,9 +38,31 @@
 .chat-box .input-box button {
     height: 100%;
     width: 10%;
+    background: black; 
+    color: rgb(24, 212, 49); 
+    box-shadow: 2px 2px 2px 2px rgb(24, 212, 49); 
+    border-radius: 5px; 
+    font-family: 'Courier New', Courier, monospace; 
+    font-weight: bold; 
 }
 
 .chat-box .input-box input {
     width: 100%;
     height: 100%;
+}
+
+.input-box > input {
+    background: black; 
+    box-shadow: 2px 2px 2px 2px rgb(193, 190, 228);
+    border-radius: 5px; 
+    border-color: rgb(84, 124, 235); 
+    margin-right: 15px; 
+    color: greenyellow; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+.input-box > p {
+    color: rgb(24, 212, 49); 
+    margin-right: 15px; 
+    font-weight: bold; 
 }
