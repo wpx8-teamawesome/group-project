@@ -4,6 +4,7 @@ drop table if exists direct_message_chats cascade;
 drop table if exists event_message_history;
 drop table if exists dm_message_history;
 drop table if exists message_history;
+drop table if exists event_attendence cascade; 
 
 create table if not exists users (
     id serial primary key,
@@ -56,6 +57,12 @@ create table if not exists received_messages (
     socket_room text,
     is_read bool
 );
+
+create table if not exists event_attendance (
+    id serial primary key, 
+    event_id int references events (id) on delete cascade, 
+    attendee_id int references users (id) on delete cascade
+); 
 
 insert into users ( username, password, email, name, bio, location, img)
 values ('TStrat', '1234', 'T@Strat.com', 'Travis', 'I am the very best', '{"lat": 33.438649, "lng": -112.088319}', 'https://www.ssbwiki.com/images/thumb/a/a0/FRLGMaleTrainer.png/200px-FRLGMaleTrainer.png'),
