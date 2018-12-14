@@ -163,3 +163,13 @@
       margin-left: 25%; 
     }
   }
+
+  @media screen and (max-width: 375px) {
+    .left_nav img{
+      width : 140%;
+      margin-left:  0;
+    }
+    .left_nav a {
+      padding-left: 16px;
+    }
+  }
