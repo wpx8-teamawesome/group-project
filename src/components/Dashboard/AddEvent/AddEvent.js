@@ -6,6 +6,7 @@ import axios from 'axios';
 import Geocode from "react-geocode";
 import moment from 'moment';
 import './datetime.css';
+import './addevent.scss'
 import software01 from '..//..//..//images/software01.jpg'; 
 
 class AddEvent extends Component {
@@ -24,10 +25,10 @@ class AddEvent extends Component {
 
     componentDidMount() {
         Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
+        let thing = this.refs.start
     }
     
     updateChanges = (e, state)  => {
-        console.log(state, e.target.value)
         this.setState({
             [state]: e.target.value
         })
@@ -51,6 +52,7 @@ class AddEvent extends Component {
             startTime: null,
             endTime: null,
             description: '',
+            eventImageURL: ''
         })
     }
 
@@ -114,32 +116,44 @@ class AddEvent extends Component {
     }
 
     render() {
+       
         const { title, address, startTime, endTime, description, eventImageURL } = this.state;
-        console.log(eventImageURL)
-        console.log('TIME', startTime);
+
+
         return (
             <div className='add-event-container'>
-                <input 
-                    value={title}
-                    placeholder='Event Title'
-                    onChange={e => this.updateChanges(e, 'title')}
-                />
-                <input 
-                    placeholder='Address'
-                    value={address}
-                    onChange={e => this.updateChanges(e, 'address')}
-                />
-                <DateTime value={startTime} onChange={this.updateStartTime} />
-                <DateTime value={endTime} onChange={this.updateEndTime} />
-                <textarea 
-                    value={description} 
-                    onChange={e => this.updateChanges(e, 'description')} 
-                    placeholder='Description'
-                />
-                <button onClick={this.addEventImage}>Add Event Image</button>
-                <Link to='/dashboard'><button onClick={this.clearState}>Cancel</button></Link>
-                <button onClick={this.addEvent}>Add Event</button>
-                <img src={eventImageURL} alt=""/>
+                <h1 className="add-event-title">Add New Event</h1>
+                <div className="add-form-box">
+
+                        <input 
+                            value={title}
+                            placeholder='Event Title'
+                            onChange={e => this.updateChanges(e, 'title')}
+                        />
+
+                        <input 
+                            placeholder='Address'
+                            value={address}
+                            onChange={e => this.updateChanges(e, 'address')}
+                        />
+
+                    <DateTime inputProps={{ placeholder: 'Start Date/Time'}} ref={this.start} value={startTime} onChange={this.updateStartTime} />
+                    <DateTime inputProps={{ placeholder: 'End Date/Time'}} value={endTime} onChange={this.updateEndTime} />
+                    <textarea 
+                        value={description} 
+                        onChange={e => this.updateChanges(e, 'description')} 
+                        placeholder='Description'
+                    />
+                    <div className="img-container">
+                        {eventImageURL? <img src={eventImageURL} alt=""/> : <div className="img-default">Add Image</div> }
+                    </div>
+                    <button className="add-image-btn" onClick={this.addEventImage}>Add Event Image</button>
+                    <div className="add-cancel-box">
+                        <button id="add-event" className="add-event-btn"  onClick={this.addEvent}>Add Event</button>
+                        <Link id="cancel-btn" to='/dashboard'><button className="cancel-event-btn" onClick={this.clearState}>Cancel</button></Link>
+                    </div>
+                    
+                </div>
             </div>
         );
     }
