@@ -27,14 +27,8 @@
     margin-left: 50%; 
   }
 
-  .left_nav > img, .right_nav > .nav_items > img {
-    max-width: 50px;
-    max-height: 50px; 
-    border-radius: 25px; 
-  }
-
-  .left_nav > img {
-    margin-top: 10px; 
+  .left_nav > a {
+    padding-left: 25px; 
   }
 
   .right_nav > nav_items > img {
@@ -106,16 +100,6 @@
   .toggle_image:hover {
     cursor: pointer;
   }
-
-  /* .nav_items > li > button {
-    background:  #1A202B; 
-    border-color: #1896DA; 
-    color: #1896DA; 
-    font-size: 24px; 
-    font-family: 'Courier New', Courier, monospace; 
-    border-radius: 5px; 
-    margin-left: 5px; 
-  } */
 
 .toggle_container > ul > li > a {
     width: 80%; 

@@ -15,10 +15,19 @@ class EventHeader extends Component {
     }
 
     render() {
-        const { event, attendFn, going, attendeeCount } = this.props; 
-        console.log('going prop', going)
+        const { event, attendFn, going, attendeeCount, monthAndDay, fullTimeString } = this.props; 
+        console.log('going prop + event', going, event)
         const buttonStylesOne = going === "true" ? { background: 'rgb(197, 247, 247)', color: 'black' } : { background: 'black', color: 'white' }
         const buttonStylesTwo = going === "true" ? { background: 'black', color: 'white' } : { background: 'rgb(197, 247, 247)', color: 'black' }
+
+        const time = event ? `${fullTimeString}` : ""
+        const publicOrPrivate = event ? `${event.private}` : ""
+        const hostName = event ? event.name : ""
+
+        let attendCountString = `${attendeeCount} are attending`
+        if (attendeeCount === 1) {
+            attendCountString = `${attendeeCount} is attending`
+        }
 
         return (
             <div className="main_header_container">
@@ -26,19 +35,19 @@ class EventHeader extends Component {
                     <div className="title_left">
                         <img src={calendar} alt='calendar'></img>
                         {/* TODO get from start time / end time? */}
-                        <p>Dec 10</p> 
+                        <p>{ monthAndDay }</p> 
                     </div> 
                     <div className="title_right">
                         <div className="title_top">
-                            <p>Monday, December 10, 2018</p>
-                            <p>{event != null ? event.title : "Event Title"}</p>
+                            <p>{ time }</p>
+                            <p>{ event ? event.title : "" }</p>
                         </div>
                         <div className="title_bottom">
                             <img src={userImg} alt='user'></img>
                             <div>
-                                <p>Hosted by Ethan Hess</p>
+                                <p>{`Hosted by ${hostName}`}</p>
                                 <p>From Nerds United</p>
-                                <p>Public group</p>
+                                <p>{`Public: ${publicOrPrivate}`}</p>
                             </div>
                         </div>
                     </div>
@@ -46,7 +55,7 @@ class EventHeader extends Component {
                 <div className="attend_container">
                     <div className="attend_one">
                         {/* Get count from attendee table */}
-                        <p> Are you going? {attendeeCount} are attending </p> 
+                        <p> Are you going? {attendCountString} </p> 
                     </div>
                     <div className="attend_two">
                         <button style={ buttonStylesOne } onClick={() => attendFn(true)}>Going</button>
