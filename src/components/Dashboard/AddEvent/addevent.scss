@@ -83,10 +83,8 @@
     }
     
     .cancel-event-btn, .add-event-btn, .add-image-btn {
-        height: 30px;
-        color: $neonBlue;
-        border: 2px solid $neonBlue;
-        border-radius: 2px;
+        height: 40px;
+        border-radius: 5px;
         font-family: $sans;
         font-weight: bold;
         font-size: 16px;
@@ -95,15 +93,32 @@
         background: $dark;
         transition: 0.2s;
     }
+
+    .cancel-event-btn, .add-event-btn {
+        color: $neonBlue;
+        border-color: $neonBlue;
+    }
+    .add-image-btn {
+        background: $neonBlue;
+        color: $dark;
+        border-color: $dark;
+    }
+
     .add-image-btn {
         display: block;
         margin: 12px auto 0 auto;
         
     }
-    .cancel-event-btn:hover, .add-event-btn:hover, .add-image-btn:hover {
+    .cancel-event-btn:hover, .add-event-btn:hover{
         color: $dark;
         background: $neonBlue;
+        
     }
+     .add-image-btn:hover  {
+         background: $neonBlue;
+         color: $dark;
+         border-color: $neonBlue;
+     }
 
     @media screen and (min-width: 320px) {
         .img-container {

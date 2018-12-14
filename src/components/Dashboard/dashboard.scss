@@ -21,13 +21,24 @@ body {
             display: inline-block;
         }
         button {
-            width: 100%;
-            border: none;
-            height: 30px;
-            border-radius: 2px;
-            font-family: $sans;
-            font-weight: bold;
-            font-size: 16px;
+            height: 40px;
+        color: $neonBlue;
+        // border: 2px solid $neonBlue;
+        border-color: $neonBlue;
+        border-radius: 5px;
+        font-family: $sans;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        background: $dark;
+        transition: 0.2s;
+        width: 138px;
+        max-width: 138px;
+        }
+        button:hover {
+            color: $dark;
+            background: $neonBlue;
         }
         
         h1 {
