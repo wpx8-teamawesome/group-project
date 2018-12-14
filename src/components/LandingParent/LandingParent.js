@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom'
 import './LandingParent.scss'; 
 import axios from 'axios'; 
-import moment from 'moment';
 
 import { TweenLite } from "gsap/all";
 import Typing from 'react-typing-animation';
@@ -351,14 +350,7 @@ class LandingParent extends Component {
 
     //For now we'll just fetch upcoming events, but eventually will filter by location
     fetchClosestEvents = () => {
-        const now = new Date()
-        const filterDate = moment(now).utc().format()
-        console.log('now', filterDate)
-        const body = {
-            startTime: filterDate
-        }
-        console.log('body to pass', body)
-        axios.post('api/events/upcoming', body).then(response => {
+        axios.post('api/events/upcoming').then(response => {
             console.log('response data', response.data)
             this.setState({ upcomingEvents: response.data })
         }).catch(error => {
@@ -404,7 +396,7 @@ class LandingParent extends Component {
                     </div>
                     </div>
                     <div className="back">
-                        <p> {`Atendees ${item.attendeeCount}`} </p>
+                        <p> {`Atendees ${item.attendance_count}`} </p>
                         <p> {item.description} </p>
                         <button onClick={() => this.checkOutEvent(item.id)}> Go To Page </button>
                     </div>

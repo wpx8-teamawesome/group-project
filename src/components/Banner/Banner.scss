@@ -27,15 +27,19 @@
     margin-left: 50%; 
   }
 
-  .left_nav > img, .right_nav > .nav_items > img {
-    max-width: 50px;
-    max-height: 50px; 
-    border-radius: 25px; 
+  .left_nav > a {
+    padding-left: 25px; 
   }
 
-  .left_nav > img {
-    margin-top: 10px; 
-  }
+  // .left_nav > img, .right_nav > .nav_items > img {
+  //   max-width: 50px;
+  //   max-height: 50px; 
+  //   border-radius: 25px; 
+  // }
+
+  // .left_nav > img {
+  //   margin-top: 10px; 
+  // }
 
   .right_nav > nav_items > img {
     margin-left: 5%;

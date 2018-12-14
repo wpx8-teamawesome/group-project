@@ -6,6 +6,7 @@ import axios from 'axios';
 import Geocode from "react-geocode";
 import moment from 'moment';
 import './datetime.css';
+import software01 from '..//..//..//images/software01.jpg'; 
 
 class AddEvent extends Component {
     constructor(params){
@@ -17,7 +18,7 @@ class AddEvent extends Component {
             startTime: null,
             endTime: null,
             description: '',
-            eventImageURL: ''
+            eventImageURL: software01
         }
     }
 
