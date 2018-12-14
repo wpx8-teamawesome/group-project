@@ -94,8 +94,8 @@ class EventDisplay extends Component {
             activeMarker: marker,
             showInfoWindow: !this.state.showInfoWindow,
             markerClicked: !this.state.markerClicked,
-            markerEventTitle: marker.title,
-            markerEventAddress: marker.address,
+            markerEventTitle: this.state.markerEventTitle,
+            markerEventAddress: this.state.markerEventAddress,
             markerEventId: marker.id
         })
     } 
@@ -103,7 +103,7 @@ class EventDisplay extends Component {
     render() {
         const { user } = this.props; 
         const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state;
-
+        console.log("WTF????", markerEventTitle, markerEventAddress)
         const settings = {
             dots: true,
             infinite: true,
