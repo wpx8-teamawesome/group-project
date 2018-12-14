@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import EventPreview from './EventPreview/EventPreview';
 import './profile.scss';
@@ -15,8 +16,18 @@ class Profile extends Component {
 
         this.state = { 
             profile: null,
-            events: []
+            events: [],
+            loaded: false,
         }
+    }
+
+    componentWillMount() {
+        axios.get('/api/auth/session').then(res => {
+            this.props.loginUser(res.data)
+            this.setState({
+                loaded: true
+            })
+      })
     }
 
     componentDidMount() {
@@ -33,7 +44,6 @@ class Profile extends Component {
         })
     }
     updateUser = (userObj) => {
-        console.log("This got hit")
         this.setState({
             profile: userObj
         })
@@ -70,24 +80,75 @@ class Profile extends Component {
     }
 
     checkFollow = () => {
-        return true
-    }
-    render() {
+        const { user } = this.props;
+        const { profile } = this.state;
+        if (!profile.id || !user.id) {
+            return false;  // no profile loaded, or no user in redux
+        }
+        const { socialList } = user;
+        if (!socialList || !socialList.following) {
+            return false;
+        }
 
-        console.log("profile props", this.props)
+        if (socialList.following.find(el => el.id === profile.id) ) {
+            return true;
+        }
+        return false;
+    }
+
+    toggleFollow = () => {
+        const { profile } = this.state;
+        const { user } = this.props;
+        if (! user.id ) {
+            return;  // user not logged in. no following
+        }
+        const { socialList } = user;
+        let following;
+        if (this.checkFollow()) {
+            const copy = socialList.following;
+            copy.splice(copy.indexOf(e => e.id === profile.id), 1);
+            following = copy;
+        }
+        else {
+            following = [...socialList.following, {
+                id: profile.id,
+                username: profile.username,
+                name: profile.name,
+                img: profile.img
+            }] 
+        }
+        const payload = {
+            ...user, 
+            socialList: { 
+                ...socialList,
+                following
+            }
+        }
+
+        axios.put(`/api/people/${user.id}`, {user:  payload })
+        .then( res => {
+            this.props.loginUser(res.data);
+        })
+    }
+
+    render() {
         const paramsId = this.props.match.params.id;
-        const userId = this.props.user.id
-        
-        const { profile, events } = this.state; // 
+        const {id} = this.props.user;
+        const { profile, events, loaded } = this.state; // 
+        if (! loaded) {
+            return <></>;
+        }
         if (!profile) {
             return <div>No user :(</div>
         }
 
         const myEvents = events.map(event => <EventPreview key={event.id} event={event} />); // map over events
-        const following = profile.socialList.following.map(user => <div>{user}</div>);
+        const following = profile.socialList.following.map(user => <div>{user.name}</div>);
         const isFollowing = this.checkFollow();
-
-        if (paramsId == userId) {
+        if (!id) {
+            return <Redirect to='/login'/>;
+        }
+        if (paramsId === id) {
             return (
                 <MyProfile myEvents={myEvents} 
                            isFollowing={isFollowing} 
@@ -102,7 +163,8 @@ class Profile extends Component {
         }else {
             return (
                <OtherUserProfile myEvents={myEvents} 
-                                 isFollowing={isFollowing} 
+                                 isFollowing={isFollowing}
+                                 toggleFollow={this.toggleFollow} 
                                  following={following}
                                  profile={profile}
                                  switchTabs={this.switchTabs} />
@@ -119,3 +181,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { loginUser })(Profile)
+
+export const StubProfile = Profile;

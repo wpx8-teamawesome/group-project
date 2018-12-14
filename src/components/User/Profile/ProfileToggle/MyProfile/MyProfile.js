@@ -30,7 +30,6 @@ export default class MyProfile extends Component {
     }
     
     saveChanges = () => {
-        const { id } = this.state.profile
         const { editName, editEmail, editBio, profile } = this.state
         const builderObj = {
             name: editName,
@@ -91,8 +90,8 @@ export default class MyProfile extends Component {
 
   render() {
     const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
-    const { myEvents, isFollowing, following, profile, switchTabs } = this.props
-    const { img, name, email, bio, id, username } = this.state.profile
+    const { myEvents, following, switchTabs } = this.props
+    const { img, name, email, bio } = this.state.profile
     const { editClicked, editName, editEmail, editBio } = this.state
 
     return (
@@ -100,7 +99,6 @@ export default class MyProfile extends Component {
         <header>
                 <div onClick={this.editProfileImage} className="profile-img-box">
                     <img id="profile-img" className='profile-img' src={!img? defaultImg : img} alt='Current user' />
-                    {/* <img id="profile-img" className='profile-img' src={img} alt='Current user' /> */}
                     <h3>Edit Image</h3>
                 </div>
                 <div className='profile-header-info'>
@@ -109,9 +107,7 @@ export default class MyProfile extends Component {
                         <i onClick={this.handleEditToggle} className="far fa-edit"></i>
                     </div>
                     <hr/>
-                    {/* More info here? */}
                     <h3>{email}</h3>
-                    {/* <button className='following' onClick={this.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button> */}
                 </div>
         </header>
 
