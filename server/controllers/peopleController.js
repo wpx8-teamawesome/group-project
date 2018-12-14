@@ -49,7 +49,7 @@ module.exports = {
                 bio: user.bio,
                 socialList: user.social_list
             }
-            req.session.user = user[0]
+            req.session.user = payload;
             res.status(200).json(payload)
         }).catch(err => {
             console.log("Error in peopleController.updateUser", err)

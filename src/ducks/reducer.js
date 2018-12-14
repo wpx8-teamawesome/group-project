@@ -8,7 +8,6 @@ const LOGOUT_USER = "LOGOUT_USER";
 export default function reducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case LOGIN_USER: 
-        console.log('reducer', action.payload)
             return Object.assign({}, state, {user: action.payload}); 
         case LOGOUT_USER: 
             return Object.assign({}, state, {user: {}}); 
@@ -18,7 +17,6 @@ export default function reducer(state = INITIAL_STATE, action) {
 }
 
 export function loginUser(user) {
-    // console.log('login user called from reducer', user)
     return {
         type: LOGIN_USER, 
         payload: user //This will be user object or username + photo URL
@@ -26,7 +24,6 @@ export function loginUser(user) {
 }
 
 export function logoutUser() {
-    // console.log('logout user called from reducer')
     return {
         type: LOGOUT_USER, 
     }

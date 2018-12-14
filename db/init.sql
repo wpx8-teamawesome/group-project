@@ -29,7 +29,8 @@ create table if not exists events (
     start_time timestamp, 
     end_time timestamp,
     private bool default false,
-    socket_room text
+    socket_room text, 
+    image_url text
 );
 
 create table if not exists direct_message_lobby (

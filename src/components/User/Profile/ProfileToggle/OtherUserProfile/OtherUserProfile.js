@@ -13,8 +13,8 @@ export default class OtherUserProfile extends Component {
                 <div className='profile-header-info'>
                     <h2>{profile.name}</h2>
                     <hr/>
-                    {/* More info here? */}
-                    <button className='following' onClick={this.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button>
+                    <h3>{profile.email}</h3>
+                    <button className='following' onClick={this.props.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button>
                 </div>
         </header>
 

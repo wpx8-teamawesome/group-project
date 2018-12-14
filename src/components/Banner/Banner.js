@@ -7,9 +7,10 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 import axios from 'axios'
-import globe from '..//..//images/globe.png'; 
 import downArrow from '..//..//images/downArrow.png'; 
 import downArrowTwo from '..//..//images/downArrowTwo.png'; 
+
+import cplogo from '..//..//images/cplogo.png'; 
 
 
 class Banner extends Component {
@@ -51,8 +52,7 @@ class Banner extends Component {
             <div>
             <header className="App-header">
                 <div className="left_nav">
-                    <Link to='/'><p>Code Planet</p></Link>
-                    <img src={globe} alt='code planet'/>
+                    <Link to='/'><img src={cplogo} alt="code planet"></img></Link>
                 </div>
                 <div className="right_nav">
                     { user.id ?

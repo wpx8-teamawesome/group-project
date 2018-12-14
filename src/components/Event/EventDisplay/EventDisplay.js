@@ -9,13 +9,15 @@ import Slider from 'react-slick';
 //images
 import axios from 'axios'; 
 import matrix from '..//..//..//images/matrix.jpg'; 
-import userImage from '..//..//..//images/user.png'; 
+import userImgDefault from '..//..//..//images/user.png'; 
 import clock from '..//..//..//images/clock.png';
 import marker from '..//..//..//images/marker.png'; 
 
 //Map
 import { Map, InfoWindow, Marker, GoogleApiWrapper } from 'google-maps-react';
 import Geocode from "react-geocode"
+
+import moment from 'moment'; 
 
 
 class EventDisplay extends Component {
@@ -118,7 +120,7 @@ class EventDisplay extends Component {
         const attendeesMapped = attendees.map((item, index) => {
             return <div key={item} className="attendee_card_container">
                 <div className="attendee_card">
-                    <img src={ userImage }></img>
+                    <img src={ item.img ? item.img : userImgDefault }></img>
                     <p>{ item.email }</p>
                 </div>
             </div>
@@ -127,18 +129,51 @@ class EventDisplay extends Component {
         //Does .some() work on all browsers? 
         const userId = user ? user.id : "" 
         const isGoing = attendees.some(function(o) { return o["id"] === userId })
-    
+        //Moment date auxiliary 
+        var checkDate = moment(event ? event.start_time : "", 'YYYY/MM/DD')
+
+        var month = checkDate.format('M');
+        var day   = checkDate.format('D');
+        var year  = checkDate.format('YYYY');
+
+        var checkHourStart = moment(event ? event.start_time : "", 'hh:mm')
+        var checkHourEnd = moment(event ? event.end_time : "", 'hh:mm')
+
+        var readableTimeString = `${checkHourStart} - ${checkHourEnd}`
+
+        const monthForNumber = { 
+            1: "Jan",
+            2: "Feb",
+            3: "March",
+            4: "April",
+            5: "May",
+            6: "Jun",
+            7: "Jul",
+            8: "Aug", 
+            9: "Sep", 
+            10: "Oct", 
+            11: "Nov", 
+            12: "Dec"
+        }
+
+        console.log('event date readable', monthForNumber[month], day, year)
+        console.log('event time readable', readableTimeString)
+        const monthAndDay = event ? `${monthForNumber[month]} ${day}` : ""
+        const fullDateReadable = event ? `${monthAndDay} ${year}` : ""
+        const fullTime = event ? readableTimeString : ""
+        let eventImageUrl = matrix
+        if (event) {
+            eventImageUrl = event.image_url ? event.image_url : matrix
+        }
+
         //Pass bool prop as string
         return (
             <div className="main_container">
-                <EventHeader attendeeCount={this.state.attendees.length} going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
+                <EventHeader fullTimeString={fullTime} monthAndDay={monthAndDay} attendeeCount={this.state.attendees.length} going={isGoing ? "true" : "false"} event={this.state.event} attendFn={this.attendHandler}></EventHeader>
                 <div className="event_body_parent">
                     <div className="left_container">
-                        <img src={matrix} alt='event'></img>
-                        <p>Description: 
-                            Here is a description about the event
-                            This event will be just awesome! :)
-                        </p>
+                        <img src={ eventImageUrl } alt='event'></img>
+                        <p>{event ? event.description : ""}</p>
                         <div className="attendee_container">
                             <p>Attending</p>
                             <Slider className="slick_slider" {...settings}>
@@ -147,7 +182,7 @@ class EventDisplay extends Component {
                         </div>
                         <div className="button_options_container">
                             <button>Photos</button>
-                            <Link to={urlToGoTo}><button>Chat</button></Link>
+                            {isGoing ? <Link to={urlToGoTo}><button>Chat</button></Link>: <div></div>}
                         </div>
                     </div>
                     <div className="right_container">
@@ -155,8 +190,8 @@ class EventDisplay extends Component {
                             <div className="top_image_and_text">
                                 <img src={clock}></img>
                                 <div>
-                                    <p>Monday, December 10, 2018</p>
-                                    <p>6:00 PM to 9:00 PM</p>
+                                    <p>{ fullDateReadable }</p>
+                                    <p>{fullTime}</p>
                                     <button>Add to calendar</button>
                                 </div>
                             </div>
