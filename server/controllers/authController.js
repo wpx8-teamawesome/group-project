@@ -37,7 +37,6 @@ module.exports = {
 
     registerUser: (req, res) => {
         const db = req.app.get('db');
-        console.log(req.body)
         const {username, password, email, latLng} =  req.body
         db.check_existing_username({
             username: username
