@@ -44,6 +44,12 @@
     margin-left: 40%;  
   }
 
+  .nav_items > img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 25px;
+  }
+
   .toggle_container {
     width: 20%; 
     margin-left: 80%; 
@@ -52,16 +58,6 @@
     position: absolute;
     z-index: 2; 
   }
-
-  // .toggle_container > ul {
-  //   display: flex; 
-  //   list-style-type: none; 
-  //   flex-direction: column; 
-  //   justify-content: space-evenly; 
-  //   align-items: center; 
-  //   justify-content: space-evenly; 
-  //   width: 100%;
-  // }
 
   .toggle_container > ul > li > button {
     background:  #1A202B; 
