@@ -105,7 +105,6 @@ class EventDisplay extends Component {
     render() {
         const { user } = this.props; 
         const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state;
-        console.log("WTF????", markerEventTitle, markerEventAddress)
         const settings = {
             dots: true,
             infinite: true,
@@ -234,8 +233,6 @@ class EventDisplay extends Component {
                                         marker={this.state.activeMarker}
                                         visible={this.state.showInfoWindow}
                                         onClose={this.onInfoWindowClose}>
-                                        {/* <h1>FakeAddress</h1>
-                                        <p>{markerEventAddress}</p> */}
                                         <h1>{markerEventTitle}</h1>
                                         <p>{markerEventAddress}</p>
                                     </InfoWindow>

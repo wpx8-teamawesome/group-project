@@ -26,11 +26,9 @@ class AddEvent extends Component {
     componentDidMount() {
         Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
         let thing = this.refs.start
-        console.log(thing)
     }
     
     updateChanges = (e, state)  => {
-        console.log(state, e.target.value)
         this.setState({
             [state]: e.target.value
         })
@@ -141,8 +139,6 @@ class AddEvent extends Component {
 
                     <DateTime inputProps={{ placeholder: 'Start Date/Time'}} ref={this.start} value={startTime} onChange={this.updateStartTime} />
                     <DateTime inputProps={{ placeholder: 'End Date/Time'}} value={endTime} onChange={this.updateEndTime} />
-                    {/* <DateTime value={startTime} onChange={this.updateStartTime} />
-                    <DateTime value={endTime} onChange={this.updateEndTime} /> */}
                     <textarea 
                         value={description} 
                         onChange={e => this.updateChanges(e, 'description')} 

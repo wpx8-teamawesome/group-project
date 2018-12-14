@@ -1,7 +1,6 @@
 module.exports = {
     createEvent: (req, res) => {
         const db = req.app.get('db');
-        console.log(req.body)
         db.create_event({...req.body})
         .then(addedEvents => {
             let event = addedEvents[0];
@@ -23,7 +22,6 @@ module.exports = {
 
     getAllEvents: (req, res) => {
         req.app.get('db').get_all_events().then(events => {
-            console.log(events)
             res.status(200).json(events)
         }).catch( err => {
             console.log('Error in getAllEvents, ', err)
