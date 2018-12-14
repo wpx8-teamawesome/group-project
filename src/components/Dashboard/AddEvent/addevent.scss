@@ -84,19 +84,25 @@
     
     .cancel-event-btn, .add-event-btn, .add-image-btn {
         height: 30px;
-        border: none;
+        color: $neonBlue;
+        border: 2px solid $neonBlue;
         border-radius: 2px;
         font-family: $sans;
         font-weight: bold;
         font-size: 16px;
         margin-top: 12px;
         margin-bottom: 12px;
-        background: #DDDDDD;
+        background: $dark;
+        transition: 0.2s;
     }
     .add-image-btn {
         display: block;
         margin: 12px auto 0 auto;
         
+    }
+    .cancel-event-btn:hover, .add-event-btn:hover, .add-image-btn:hover {
+        color: $dark;
+        background: $neonBlue;
     }
 
     @media screen and (min-width: 320px) {
