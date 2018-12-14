@@ -6,6 +6,93 @@
 
     h1.add-event-title {
         text-align: center;
-        color: yellow;
+        width: 80%;
+        margin: 16px auto 0 auto;
+        font-family: $mono;
+        font-weight: bold;
+        font-size: 30px;
+        color: #fff;
     }
+    
+    .add-form-box {
+        border: 2px solid $teal;
+        border-radius: 2px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+    .add-form-box input, .add-form-box textarea,  .img-container {
+        font-family: $mono;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 16px auto 0 auto;
+        background: $dark;
+        border: 1px solid #fff;;
+    }
+    .add-form-box input, .add-form-box textarea {
+        margin-left: 5%;
+        width: 90%;
+        height: 40px;
+        padding-left: 10px;
+        color: $teal;
+    }
+    .add-form-box textarea {
+        padding-top: 6px;
+         min-height: 100px;
+         border: 1px solid #fff;
+    }
+    .add-form-box input:focus, .add-form-box textarea:focus {
+        outline:none;
+        border: 1px solid $teal;
+        font-weight: bold;
+        border-radius: 2px;
+    }
+    .add-form-box input:focus::placeholder, .add-form-box textarea:focus::placeholder {
+        color: $teal;
+    }
+
+    .img-container {
+        display: flex;
+        color: #757575;
+        justify-content: center;
+        align-items: center;
+        width: 60%;
+        height: 100px;
+
+        img {
+            width: 100%;
+            max-height: 100%;
+        }
+
+    }
+    .add-cancel-box {
+        display: flex;
+        justify-content: space-between;
+        width:90%;
+        margin: 0 auto;
+
+        #add-event, #cancel-btn {
+            width : 40%;
+        }
+        .cancel-event-btn {
+            width: 100%;
+        }
+    }
+    
+    .cancel-event-btn, .add-event-btn, .add-image-btn {
+        height: 30px;
+        border: none;
+        border-radius: 2px;
+        font-family: $sans;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        background: #DDDDDD;
+    }
+    .add-image-btn {
+        display: block;
+        margin: 12px auto 0 auto;
+        
+    }
+    
 }

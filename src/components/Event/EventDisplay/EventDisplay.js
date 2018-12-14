@@ -27,8 +27,8 @@ class EventDisplay extends Component {
             attendees: [],
 
             //Map stuff
-            loadLat: 33.4483771,
-            loadLng: -112.0740373,
+            loadLat: '',
+            loadLng: '',
             markerClicked: false,
             markerEventTitle: '',
             markerEventAddress: '',
@@ -50,8 +50,13 @@ class EventDisplay extends Component {
 
     fetchEvent = () => {
         axios.get(`/api/event/${this.props.match.params.id}`).then(response => {
-            console.log('response data ---event---', response.data)
-            this.setState({ event: response.data[0] }, () => {
+            this.setState({ 
+                event: response.data[0],
+                loadLat: response.data[0].location.lat,
+                loadLng: response.data[0].location.lng,
+                markerEventTitle: response.data[0].title,
+                markerEventAddress: response.data[0].address
+            }, () => {
                 this.fetchAttendees()
             })
         }).catch(error => {
@@ -84,11 +89,21 @@ class EventDisplay extends Component {
             })
         }
     }
+    onMarkerClick = (props, marker, e) => {
+        this.setState({
+            activeMarker: marker,
+            showInfoWindow: !this.state.showInfoWindow,
+            markerClicked: !this.state.markerClicked,
+            markerEventTitle: marker.title,
+            markerEventAddress: marker.address,
+            markerEventId: marker.id
+        })
+    } 
 
     render() {
-
         const { user } = this.props; 
-        const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state; 
+        const { event, attendees, loadLat, loadLng, markerArray, markerEventTitle, markerEventAddress } = this.state;
+
         const settings = {
             dots: true,
             infinite: true,
@@ -112,7 +127,7 @@ class EventDisplay extends Component {
         //Does .some() work on all browsers? 
         const userId = user ? user.id : "" 
         const isGoing = attendees.some(function(o) { return o["id"] === userId })
-
+    
         //Pass bool prop as string
         return (
             <div className="main_container">
@@ -168,13 +183,26 @@ class EventDisplay extends Component {
                                         lat: loadLat,
                                         lng: loadLng
                                     }}>
+
+                                    <Marker
+                                        id={marker.id}
+                                        key={marker.id}
+                                        address={marker.address}
+                                        title={marker.title}
+                                        position ={{
+                                            lat: loadLat,
+                                            lng: loadLng
+                                        }}  
+                                        onClick={this.onMarkerClick} 
+                                        />
                                     <InfoWindow 
                                         marker={this.state.activeMarker}
                                         visible={this.state.showInfoWindow}
                                         onClose={this.onInfoWindowClose}>
+                                        {/* <h1>FakeAddress</h1>
+                                        <p>{markerEventAddress}</p> */}
                                         <h1>{markerEventTitle}</h1>
                                         <p>{markerEventAddress}</p>
-                                        <a href="x">This is a link</a>
                                     </InfoWindow>
                                 </Map>
                             </div>

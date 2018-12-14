@@ -1,6 +1,7 @@
 module.exports = {
     createEvent: (req, res) => {
         const db = req.app.get('db');
+        console.log(req.body)
         db.create_event({...req.body})
         .then(addedEvents => {
             let event = addedEvents[0];
