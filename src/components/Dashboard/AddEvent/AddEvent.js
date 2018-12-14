@@ -19,13 +19,12 @@ class AddEvent extends Component {
             startTime: null,
             endTime: null,
             description: '',
-            eventImageURL: software01
+            eventImageURL: ''
         }
     }
 
     componentDidMount() {
         Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
-        let thing = this.refs.start
     }
     
     updateChanges = (e, state)  => {

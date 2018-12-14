@@ -19,6 +19,7 @@
         border-radius: 2px;
         margin-top: 16px;
         margin-bottom: 20px;
+        
     }
     .add-form-box input, .add-form-box textarea,  .img-container {
         font-family: $mono;
@@ -68,13 +69,16 @@
         display: flex;
         justify-content: space-between;
         width:90%;
+        max-width: 510px;
         margin: 0 auto;
 
         #add-event, #cancel-btn {
             width : 40%;
+            max-width: 138px;
         }
         .cancel-event-btn {
             width: 100%;
+            
         }
     }
     
@@ -93,5 +97,36 @@
         display: block;
         margin: 12px auto 0 auto;
         
+    }
+
+    @media screen and (min-width: 320px) {
+        .img-container {
+            width: 175px; 
+            height: 110px;
+        }
+    }
+
+    @media screen and  (min-width: 376px) {
+        .img-container {
+            width: 200px;
+            height: 125px;
+        }
+    }
+    @media screen and  (min-width: 575px) {
+        .img-container {
+            width: 300px;
+            height: 188px;
+        }
+    }
+    @media screen and  (min-width: 667px) {
+        .add-form-box {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        h1.add-event-title {
+            font-size: 40px;
+            margin-bottom: 14px;
+        }
     }
 }   
