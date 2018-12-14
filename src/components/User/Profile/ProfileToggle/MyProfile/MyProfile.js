@@ -30,7 +30,6 @@ export default class MyProfile extends Component {
     }
     
     saveChanges = () => {
-        const { id } = this.state.profile
         const { editName, editEmail, editBio, profile } = this.state
         const builderObj = {
             name: editName,
@@ -39,7 +38,7 @@ export default class MyProfile extends Component {
         }
 
         const updatedProfileObj = this.handleProfileUpdate(profile, builderObj)
-        axios.put(`/api/people/${this.props.profile.id}`, updatedProfileObj).then(res => {
+        axios.put(`/api/people/${this.props.profile.id}`, {user: updatedProfileObj}).then(res => {
             const userObj = res.data
             this.props.updateUser(userObj)
             this.setState({
@@ -91,8 +90,8 @@ export default class MyProfile extends Component {
 
   render() {
     const defaultImg = "https://cdn5.vectorstock.com/i/thumb-large/54/94/geek-man-cartoon-vector-19475494.jpg"
-    const { myEvents, isFollowing, following, profile, switchTabs } = this.props
-    const { img, name, email, bio, id, username } = this.state.profile
+    const { myEvents, following, switchTabs } = this.props
+    const { img, name, email, bio } = this.state.profile
     const { editClicked, editName, editEmail, editBio } = this.state
 
     return (
