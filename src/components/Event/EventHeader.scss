@@ -24,6 +24,12 @@
     flex-direction: column; 
 }
 
+.title_left > p {
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 20px; 
+}
+
 .title_right {
     display: flex; 
     flex-direction: column; 

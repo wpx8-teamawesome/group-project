@@ -122,8 +122,8 @@ class EventDisplay extends Component {
         var day   = checkDate.format('D');
         var year  = checkDate.format('YYYY');
 
-        var checkHourStart = moment(event ? event.start_time : "", 'hh:mm')
-        var checkHourEnd = moment(event ? event.end_time : "", 'hh:mm')
+        var checkHourStart = moment(event ? event.start_time : "").format('hh:mm a')
+        var checkHourEnd = moment(event ? event.end_time : "").format('hh:mm a')
 
         var readableTimeString = `${checkHourStart} - ${checkHourEnd}`
 
@@ -142,8 +142,6 @@ class EventDisplay extends Component {
             12: "Dec"
         }
 
-        console.log('event date readable', monthForNumber[month], day, year)
-        console.log('event time readable', readableTimeString)
         const monthAndDay = event ? `${monthForNumber[month]} ${day}` : ""
         const fullDateReadable = event ? `${monthAndDay} ${year}` : ""
         const fullTime = event ? readableTimeString : ""
