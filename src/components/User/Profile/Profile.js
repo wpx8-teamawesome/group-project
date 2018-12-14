@@ -29,6 +29,7 @@ class Profile extends Component {
             })
       })
     }
+
     componentDidMount() {
         const { id } = this.props.match.params;
         if (id) {
@@ -82,9 +83,13 @@ class Profile extends Component {
         const { user } = this.props;
         const { profile } = this.state;
         if (!profile.id || !user.id) {
-            return true;  // no profile loaded, or no user in redux
+            return false;  // no profile loaded, or no user in redux
         }
         const { socialList } = user;
+        if (!socialList || !socialList.following) {
+            return false;
+        }
+
         if (socialList.following.find(el => el.id === profile.id) ) {
             return true;
         }
@@ -128,7 +133,7 @@ class Profile extends Component {
 
     render() {
         const paramsId = this.props.match.params.id;
-        const userId = this.props.user.id
+        const {id} = this.props.user;
         const { profile, events, loaded } = this.state; // 
         if (! loaded) {
             return <></>;
@@ -140,10 +145,10 @@ class Profile extends Component {
         const myEvents = events.map(event => <EventPreview key={event.id} event={event} />); // map over events
         const following = profile.socialList.following.map(user => <div>{user.name}</div>);
         const isFollowing = this.checkFollow();
-        if (!userId) {
+        if (!id) {
             return <Redirect to='/login'/>;
         }
-        if (paramsId === userId) {
+        if (paramsId === id) {
             return (
                 <MyProfile myEvents={myEvents} 
                            isFollowing={isFollowing} 
@@ -176,3 +181,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { loginUser })(Profile)
+
+export const StubProfile = Profile;
