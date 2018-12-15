@@ -1,6 +1,5 @@
 @import '../../scss/_variables';
 
-
 body {
     background: $dark;
 }
@@ -12,9 +11,6 @@ body {
 
     .dashboard-top-box {
         width: 100%;
-        // display: flex;
-        // justify-content: space-between;
-        // align-items: center;
 
         a {
             width: 25%;
@@ -23,7 +19,6 @@ body {
         button {
             height: 40px;
         color: $neonBlue;
-        // border: 2px solid $neonBlue;
         border-color: $neonBlue;
         border-radius: 5px;
         font-family: $sans;
@@ -47,20 +42,15 @@ body {
             text-align: center;
             font-weight: bold;
             color: #fff;
-            // border-bottom: 3px solid #27E5E9;
             margin-bottom: 16px;
             margin-top: 12px;
         }
         .dashboard-top-box-filler {
             width: 20%;
             height: 40px;
-            // background: hotpink; 
         }
     }
 
-    // .events h1.white-text{
-    //     color: #fff;
-    // }
         
     
 }
