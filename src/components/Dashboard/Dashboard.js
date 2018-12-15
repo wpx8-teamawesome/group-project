@@ -39,10 +39,11 @@ class Dashboard extends Component {
     return (
       <div className="dashboard-container">
         <div className="dashboard-top-box">
-            <Link to='/dashboard/add-event'><button>Add/Edit <br/> Event</button></Link>
-            <h1>Hey {this.props.user.username}</h1>
+            <Link className="add-edit-link" to='/dashboard/add-event'><button>Add Event</button></Link>
+            {/* <br/> */}
+            <h1>Upcoming Events</h1>
             
-            <div className="dashboard-top-box-filler"></div>
+            {/* <div className="dashboard-top-box-filler"></div> */}
         
         </div>
 

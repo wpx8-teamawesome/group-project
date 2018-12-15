@@ -74,7 +74,7 @@ module.exports = {
     getUpcomingEvents: (req, res) => {
         const db = req.app.get('db')
         db.get_upcoming_events().then(response => {
-            console.log('events from backend', response)
+            // console.log('events from backend', response)
             res.status(200).send(response)
         }).catch(error => {
             console.log('error in backend upcoming events fetch', error)

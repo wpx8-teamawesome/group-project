@@ -19,13 +19,12 @@ class AddEvent extends Component {
             startTime: null,
             endTime: null,
             description: '',
-            eventImageURL: software01
+            eventImageURL: ''
         }
     }
 
     componentDidMount() {
         Geocode.setApiKey(process.env.REACT_APP_MAPS_API_KEY);
-        let thing = this.refs.start
     }
     
     updateChanges = (e, state)  => {
@@ -60,38 +59,37 @@ class AddEvent extends Component {
         const { title, address, startTime, endTime, description, eventImageURL } = this.state;
         const location = this.getGeoLocation(address);
         location.then( response => {
-                const { lat, lng } = response.results[0].geometry.location;
-                const location = {
-                  lat,
-                  lng
-                }
+            const { lat, lng } = response.results[0].geometry.location;
+            const location = {
+                lat,
+                lng
+            }
 
-                const payload = {
-                    ownerId : this.props.user.id, // props.id from redux
-                    title, 
-                    description,
-                    address,
-                    location,
-                    startTime: moment(startTime).utc(),
-                    endTime: moment(endTime).utc(),
-                    imageUrl: eventImageURL
-                }
+            const payload = {
+                ownerId : this.props.user.id, // props.id from redux
+                title, 
+                description,
+                address,
+                location,
+                startTime: moment(startTime).utc(),
+                endTime: moment(endTime).utc(),
+                imageUrl: eventImageURL
+            }
 
-                axios.post('/api/events', payload)
-                .then(res => {
-                    console.log('Success', res)
-                    this.props.history.push(`/event/${res.data.id}`);
-                });
-              },
-              error => {
-                console.error(error);
-              }
+            axios.post('/api/events', payload)
+            .then(res => {
+                console.log('Success', res)
+                this.props.history.push(`/event/${res.data.id}`);
+            });
+            },
+            error => {
+            console.error(error);
+            }
         )
     }
 
     getGeoLocation = (address) => {
         return Geocode.fromAddress(address);
-            
     }
 
     addEventImage = () => {
@@ -106,53 +104,51 @@ class AddEvent extends Component {
         },
         (error, result) => {
             if (result.info.secure_url) {
-                console.log(result.info.secure_url)
                 this.setState({
                     eventImageURL: result.info.secure_url
                 })
             }
-            
         })
     }
 
     render() {
-       
         const { title, address, startTime, endTime, description, eventImageURL } = this.state;
-
-
+        
         return (
             <div className='add-event-container'>
                 <h1 className="add-event-title">Add New Event</h1>
                 <div className="add-form-box">
+                    <input 
+                        value={title}
+                        placeholder='Event Title'
+                        onChange={e => this.updateChanges(e, 'title')}
+                    />
 
-                        <input 
-                            value={title}
-                            placeholder='Event Title'
-                            onChange={e => this.updateChanges(e, 'title')}
-                        />
-
-                        <input 
-                            placeholder='Address'
-                            value={address}
-                            onChange={e => this.updateChanges(e, 'address')}
-                        />
+                    <input 
+                        placeholder='Address'
+                        value={address}
+                        onChange={e => this.updateChanges(e, 'address')}
+                    />
 
                     <DateTime inputProps={{ placeholder: 'Start Date/Time'}} ref={this.start} value={startTime} onChange={this.updateStartTime} />
                     <DateTime inputProps={{ placeholder: 'End Date/Time'}} value={endTime} onChange={this.updateEndTime} />
+
                     <textarea 
                         value={description} 
                         onChange={e => this.updateChanges(e, 'description')} 
                         placeholder='Description'
                     />
+
                     <div className="img-container">
                         {eventImageURL? <img src={eventImageURL} alt=""/> : <div className="img-default">Add Image</div> }
                     </div>
+
                     <button className="add-image-btn" onClick={this.addEventImage}>Add Event Image</button>
+
                     <div className="add-cancel-box">
                         <button id="add-event" className="add-event-btn"  onClick={this.addEvent}>Add Event</button>
                         <Link id="cancel-btn" to='/dashboard'><button className="cancel-event-btn" onClick={this.clearState}>Cancel</button></Link>
                     </div>
-                    
                 </div>
             </div>
         );

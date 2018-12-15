@@ -148,7 +148,7 @@ class Profile extends Component {
         if (!id) {
             return <Redirect to='/login'/>;
         }
-        if (paramsId === id) {
+        if (+paramsId === +id) {
             return (
                 <MyProfile myEvents={myEvents} 
                            isFollowing={isFollowing} 

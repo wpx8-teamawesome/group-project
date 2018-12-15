@@ -1,19 +1,84 @@
-.event-card-container {
-    background: hotpink;
-    margin-bottom: 10px;
-    h1{
-        margin: 0 30px 10px 16px;
-        // margin-right: 30px;
-        // margin-left: 16px;
-        padding: 6px 16px 4px 16px;
-        border-bottom: 2px solid black;
-        display: inline-block;
-    }
+@import '../../scss/variables';
 
+.event-card-container {
+    background: #fff;
+    margin-bottom: 16px;
+    border: 2px solid #fff;
+    border-radius: 2px;
+
+    .main-box {
+        width: 100%;
+        margin: 0 auto;
+        background: #000;
+        position: relative;
+         img {
+             width: 100%;
+             z-index: 1;
+         }
+         .overlay {
+             height: 100%;
+             width: 100%;
+             position: absolute;
+             top: 0;
+             left: 0;
+             background: rgba(0, 0, 0, 0.384);
+                z-index: 2
+         }
+         .title-text {
+             width: 100%;
+             height: 100%;
+             position: absolute;
+             top: 0;
+             left: 0;
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             z-index: 4;
+             padding: 20px;
+             
+             a {
+                 text-decoration: none;
+             }
+
+             a h1 {
+                 color: #fff;
+                 text-align: center;
+                 text-decoration: none;
+                 font-family: $sans;
+                 font-size: 30px;
+                 font-weight:bold;
+                 line-height: 36px;
+             }
+         }
+    }
+  
     .lower-box {
-        // display: flex;
-        margin-left: 26px;
-        
+        margin-top: 6px;
+        width: 100%;
+        padding: 16px;
+        // margin-left: 26px;
+        .describer {
+            font-size: 140%;
+        }
+        h2 {
+            font-family: $sans;
+            font-weight: bold;
+        }
+        .marg-bot {
+            margin-bottom: 12px;
+        }
+        .lower-box-right {
+
+            .organizer-box {
+                width: 100%;
+                margin-left: 25%;
+                img {
+                    margin: 12px auto 0 auto;
+                    width: 50%;
+                    border-radius: 50%;
+                }
+            }
+        }
     }
 }
 

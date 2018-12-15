@@ -119,6 +119,7 @@
 .toggle_container > ul > li > a > button:hover {
   background: #1896DA; 
   color: white; 
+
 }
 
 
@@ -148,10 +149,12 @@
       background: rgb(11, 40, 94); 
       position: absolute;
       z-index: 2; 
+
     }
     .toggle_container > ul > li > button, .toggle_container > ul > li > a > button {
       font-size: 14px;  
       margin-top: 15px; 
+
     }
     .left_nav {
       width: 50%; 
@@ -162,4 +165,19 @@
     .right_nav {
       margin-left: 25%; 
     }
+  }
+
+  @media screen and (max-width: 375px) {
+    .left_nav img{
+      width : 140%;
+      margin-left:  0;
+    }
+    .left_nav a {
+      padding-left: 16px;
+    }
+  }
+
+  // Leave This In. When I added dashboard styles it messed up previous styles.
+  .toggle_container {
+    z-index: 5;
   }

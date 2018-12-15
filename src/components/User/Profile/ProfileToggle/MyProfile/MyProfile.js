@@ -134,7 +134,7 @@ export default class MyProfile extends Component {
             <div className="input-group">
                 <h4>Name:</h4>
                 <div className="input-box">
-                    <p className="terminal-symbols">$~</p>
+                    <p className="terminal-symbols">~$</p>
                     <input onChange={(e) => this.handleInputChange("editName", e.target.value)} type="text" value={editName}/>
                 </div>
             </div>
@@ -142,7 +142,7 @@ export default class MyProfile extends Component {
             <div className="input-group">
                 <h4>Email:</h4>
                 <div className="input-box">
-                    <p className="terminal-symbols">$~</p>
+                    <p className="terminal-symbols">~$</p>
                     <input onChange={(e) => this.handleInputChange("editEmail", e.target.value)} type="text" value={editEmail}/>
                 </div>
             </div>
@@ -150,7 +150,7 @@ export default class MyProfile extends Component {
             <div className="input-group">
                 <h4>Bio:</h4>
                 <div className="input-box">
-                    <p className="terminal-symbols">$~</p>
+                    <p className="terminal-symbols">~$</p>
                     <textarea onChange={(e) => this.handleInputChange("editBio", e.target.value)} name="" id="" cols="30" rows="10" value={editBio}></textarea>
                 </div>
             </div>
