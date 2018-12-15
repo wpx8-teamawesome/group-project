@@ -8,6 +8,7 @@ import Typing from 'react-typing-animation';
 import plainSearch from '..//..//images/plainSearch.png'; 
 
 import Slider from 'react-slick'; 
+import moment from 'moment'; 
 
 class LandingParent extends Component {
     constructor() {
@@ -364,6 +365,36 @@ class LandingParent extends Component {
         return keywords;
     }
 
+    eventDateToString = (event) => {
+
+        //2019-01-07T10:30:30.000Z 1 7
+        //--- TODO Also using in Event Display so eventually create HOC because DRY ---
+        var checkDate = moment(event.start_time, 'YYYY/MM/DD')
+        var month = checkDate.format('M');
+        var day = checkDate.format('D');
+        var checkHourStart = moment(event.start_time).format('hh:mm a')
+        var checkHourEnd = moment(event.end_time).format('hh:mm a')
+        var readableTimeString = `${checkHourStart} - ${checkHourEnd}`
+
+        const monthForNumber = { 
+            1: "Jan",
+            2: "Feb",
+            3: "March",
+            4: "April",
+            5: "May",
+            6: "Jun",
+            7: "Jul",
+            8: "Aug", 
+            9: "Sep", 
+            10: "Oct", 
+            11: "Nov", 
+            12: "Dec"
+        }
+
+        const monthAndDay = `${monthForNumber[month]} ${day}`
+        return `${monthAndDay} ${readableTimeString}`
+    }
+
     render() {
 
         const settings = {
@@ -380,8 +411,8 @@ class LandingParent extends Component {
             return <div className="scroll_child" key={index} onTouchStart="this.classList.toggle('hover');">
                 <div className="flip_container">
                     <div className="front">
-                        <div className="top_scroll_container">
-                            <p>{item.start_time}</p>
+                    <div className="top_scroll_container">
+                            <p>{this.eventDateToString(item)}</p>
                         <img className="main_image" 
                         onClick={() => this.handleEventOnClick(item.id)} 
                         src={item.image_url}
@@ -403,6 +434,7 @@ class LandingParent extends Component {
                 </div>
             </div>
         })
+        
         return (
             <main className="Main_container">
                 <div className="Main_one">

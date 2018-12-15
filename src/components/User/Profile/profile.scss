@@ -87,15 +87,18 @@
     box-shadow: 3px 3px 5px #0E131B;
 }
 
-.profile-container .profile-header-info .following {
+.profile-header-info {
+    font-family: 'Courier New', Courier, monospace; 
 }
+
 .profile-container .profile-control {
     color: rgb(155, 155, 155);
     height: 30px;
     width: 100px;
     background-color: #27303F;
     border:1px solid rgb(25, 30, 39);
-    font-size: 18px;
+    font-size: 14px;
+    font-family: 'Courier New', Courier, monospace; 
 }
 
 .profile-container .active {
@@ -114,7 +117,11 @@
     display: none;
 }
 
-#bio {display:block;}
+#bio {
+    display:block;
+    margin-top: 10px; 
+    font-family: 'Courier New', Courier, monospace; 
+}
 
 .profile-container #events {
     padding: 15px;
@@ -124,3 +131,10 @@
 .profile-container #events > * + * {
     margin-top: 10px;
 }
+
+@media screen and (max-width: 700px) {
+    .profile-header-info {
+        font-size: 12px; 
+    }
+}
+

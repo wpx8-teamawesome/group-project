@@ -63,7 +63,7 @@ class ChatLobby extends Component {
             userId: user.id,
             name: user.username,
             message,
-            img: ''
+            img: user.img
         });
 
         // Clear input
@@ -92,7 +92,7 @@ class ChatLobby extends Component {
                 name={m.name} 
                 time={m.time}
                 message={m.message} 
-                img={m.image}
+                img={m.img}
             />
         );
         return (
@@ -108,7 +108,7 @@ class ChatLobby extends Component {
                             { messageDisplay }
                         </div>
                         <div className="input-box">
-                            <p style={{'color':'white'}}>~$</p>
+                            <p>~$</p>
                             <input 
                                 value={message} 
                                 onChange={e => this.setState({ message: e.target.value })}

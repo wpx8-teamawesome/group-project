@@ -16,10 +16,8 @@ class EventHeader extends Component {
 
     render() {
         const { event, attendFn, going, attendeeCount, monthAndDay, fullTimeString } = this.props; 
-        console.log('going prop + event', going, event)
         const buttonStylesOne = going === "true" ? { background: 'rgb(197, 247, 247)', color: 'black' } : { background: 'black', color: 'white' }
         const buttonStylesTwo = going === "true" ? { background: 'black', color: 'white' } : { background: 'rgb(197, 247, 247)', color: 'black' }
-
         const time = event ? `${fullTimeString}` : ""
         const publicOrPrivate = event ? `${event.private}` : ""
         const hostName = event ? event.name : ""
@@ -43,7 +41,7 @@ class EventHeader extends Component {
                             <p>{ event ? event.title : "" }</p>
                         </div>
                         <div className="title_bottom">
-                            <img src={userImg} alt='user'></img>
+                            <img src={ event ? event.img : userImg} alt='user'></img>
                             <div>
                                 <p>{`Hosted by ${hostName}`}</p>
                                 <p>From Nerds United</p>

@@ -1,15 +1,22 @@
 .message {
-    background-color: white;
+    background-color: rgb(29, 28, 28); 
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     min-height: 50px; /* Set with sass and match to max icon size */
     padding: 1%;
+    margin-bottom: 10px; 
+    width: 95%; 
+    margin-left: 2.5%; 
+    box-shadow: 2px 2px 2px 2px rgb(46, 158, 223); 
+    color: rgb(163, 243, 126); 
+    border-radius: 3px; 
 }
 
 
 .message img {
-    height: 50px;
+    max-height: 50px;
+    max-width: 50px; 
 }
 
 .message .message-body {
@@ -35,4 +42,10 @@
     font-family: monospace;
     line-height: 16px;
     font-size: 16px;
+}
+
+@media screen and (max-width: 700px) {
+    .message-info h2, .message-info h3, .message-body p {
+        font-size: 12px; 
+    }
 }
