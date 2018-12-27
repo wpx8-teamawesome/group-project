@@ -86,7 +86,7 @@ app.post('/api/events/attending/:eventid/:uid', attendanceController.attendEvent
 app.delete('/api/events/attending/:eventid/:uid', attendanceController.removeAttendance); 
 
 // --------------------  Server Connection  --------------------
-app.use( express.static( `${__dirname}/../build` ) )s
+app.use( express.static( `${__dirname}/../build` ) )
 app.get('*', (req, res)=>{
     res.sendFile(path.join(__dirname, '../build/index.html'));
   })
