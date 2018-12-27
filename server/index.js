@@ -85,6 +85,11 @@ app.post('/api/events/attending/:eventid/:uid', attendanceController.attendEvent
 app.delete('/api/events/attending/:eventid/:uid', attendanceController.removeAttendance); 
 
 // --------------------  Server Connection  --------------------
+
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  })
+  
 const PORT = 4005
 
 /* Use this for socketIO when we are ready to deploy */
