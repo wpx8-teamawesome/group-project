@@ -7,6 +7,7 @@ const eventsController = require('./controllers/eventController');
 const peopleController = require('./controllers/peopleController');
 const socketController = require('./controllers/socketController');
 const attendanceController = require('./controllers/attendanceController'); 
+const path = require('path')
 // const session = require('express-session');
 require('dotenv').config();
 // require('dotenv').config();
