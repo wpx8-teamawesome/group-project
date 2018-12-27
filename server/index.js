@@ -85,7 +85,7 @@ app.post('/api/events/attending/:eventid/:uid', attendanceController.attendEvent
 app.delete('/api/events/attending/:eventid/:uid', attendanceController.removeAttendance); 
 
 // --------------------  Server Connection  --------------------
-const PORT = 4000
+const PORT = 4005
 
 /* Use this for socketIO when we are ready to deploy */
 // const path = require('path')
