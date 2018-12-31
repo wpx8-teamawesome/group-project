@@ -79,14 +79,14 @@ class LoginRegister extends Component {
             return (
                 <div className="login-container">
                     <h1>Login</h1>
-                    
-                    <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} value={usernameInput} type="text" placeholder="Username"/>
-                    <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} value={passwordInput} type="password" placeholder="Password"/>
-                    
-                    <div className="login-btns-box">
-                    <button onClick={this.handleLoginClick} className="login-">Login</button>
-                    <p>|</p>
-                    <button onClick={this.toggleDisplayClick} className="login-">New Account</button>
+                    <div className="login-form-box">
+                        <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} value={usernameInput} type="text" placeholder="Username"/>
+                        <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} value={passwordInput} type="password" placeholder="Password"/>
+                        
+                        <div className="login-btns-box">
+                        <button onClick={this.handleLoginClick} className="login-">Login</button>
+                        <button onClick={this.toggleDisplayClick} className="login-">New Account</button>
+                        </div>
                     </div>
                 </div>
             )
@@ -94,18 +94,18 @@ class LoginRegister extends Component {
             return (
                 <div className="login-container register-container">
                     <h1>Register</h1>
-
-                    <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} value={usernameInput} type="text" placeholder="Enter username"/>
-                    <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} value={passwordInput} type="password" placeholder="Enter password"/>
-                    <input onChange={(e) => this.handleInputChange('emailInput', e.target.value)} value={emailInput} type="text" placeholder="Enter email"/>
-                    <input onChange={(e) => this.handleInputChange('cityInput', e.target.value)} value={cityInput} type="text" placeholder="Enter city"/>
-                    
-                    <div className="register-btns-box">
-                        <button onClick={this.handleRegisterClick} className="register-btn">Submit</button>
-                        {/* <Link to="/"><button onClick={this.handleRegisterClick} className="register-btn">Submit</button></Link> */}
-                        <button className="back-to-login" onClick={this.toggleDisplayClick}>Back To Login</button>
+                    <div className="login-form-box">
+                        <input onChange={(e) => this.handleInputChange('usernameInput', e.target.value)} value={usernameInput} type="text" placeholder="Enter username"/>
+                        <input onChange={(e) => this.handleInputChange('passwordInput', e.target.value)} value={passwordInput} type="password" placeholder="Enter password"/>
+                        <input onChange={(e) => this.handleInputChange('emailInput', e.target.value)} value={emailInput} type="text" placeholder="Enter email"/>
+                        <input onChange={(e) => this.handleInputChange('cityInput', e.target.value)} value={cityInput} type="text" placeholder="Enter city"/>
+                        
+                        <div className="register-btns-box">
+                            <button onClick={this.handleRegisterClick} className="register-btn">Submit</button>
+                            {/* <Link to="/"><button onClick={this.handleRegisterClick} className="register-btn">Submit</button></Link> */}
+                            <button className="back-to-login" onClick={this.toggleDisplayClick}>Back To Login</button>
+                        </div>
                     </div>
-
                 </div>
             )
         }

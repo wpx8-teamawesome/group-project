@@ -1,5 +1,6 @@
 .App-header {
     background-color: #1A202B; 
+    width: 100%;
     height: 100px; 
     display: flex;
     flex-direction: row;
@@ -9,7 +10,13 @@
     color: white;
     position: relative;
   }
-
+.header-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
   .left_nav {
     display: flex;
     flex-direction: row;
@@ -17,18 +24,18 @@
     font-weight: bold; 
     justify-content: space-evenly; 
     /* margin-left: 10px;  */
-    width: 25%; 
+    // width: 25%; 
   }
 
-  .right_nav {
-    display: flex;
-    flex-direction: row;
-    width: 50%; 
-    margin-left: 50%; 
-  }
+  // .right_nav {
+  //   display: flex;
+  //   flex-direction: row;
+  //   width: 50%; 
+  //   margin-left: 50%; 
+  // }
 
   .left_nav > a {
-    padding-left: 25px; 
+    // padding-left: 25px; 
   }
 
   .right_nav > nav_items > img {
@@ -86,7 +93,7 @@
     font-size: 16px; 
     font-family: 'Courier New', Courier, monospace; 
     font-weight: bold; 
-    margin-left: 40%; 
+    // margin-left: 40%; 
   }
 
   .lisu_button:hover {
@@ -156,9 +163,9 @@
       margin-top: 15px; 
 
     }
-    .left_nav {
-      width: 50%; 
-    }
+    // .left_nav {
+    //   width: 50%; 
+    // }
     .left_nav > p {
       font-size: 16px; 
     }
@@ -166,14 +173,30 @@
       margin-left: 25%; 
     }
   }
+  @media screen and (min-width: 320px) {
+    .header-container {
+      height: 100%;
+      align-items: center;
+    }
+
+  }
 
   @media screen and (max-width: 375px) {
     .left_nav img{
-      width : 140%;
+      width : 110%;
       margin-left:  0;
     }
-    .left_nav a {
-      padding-left: 16px;
+    
+  }
+  @media screen and (min-width: 376px) {
+    .left_nav img {
+      width: 200px;
+    }
+
+  }
+  @media screen and (min-width: 700px) {
+    .left_nav img {
+      width: 100%;
     }
   }
 

@@ -13,7 +13,7 @@ export default function EventCard(props) {
                 <div className="main-box">
                     <img src={image_url} alt="Img"/>
                     <div className="overlay"></div>
-                    <div className="title-text"><Link to={`/event/${id}`}><h1>{title}</h1></Link></div>
+                    <div className="title-text"><Link to={`/event/${id}`}><h1 id="title-main">{title}</h1></Link></div>
                 </div>
 
                  <div className="lower-box">

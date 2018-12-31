@@ -82,6 +82,15 @@
     }
 }
 
-// .white-text {
-//     color: #fff;
-// }
+@media screen and  (min-width: 667px) {
+    .event-card-container {
+        max-width: 600px;
+        margin: 20px auto;
+
+        #title-main {
+            font-size: 50px;
+            line-height: 80px;
+            text-shadow: 2px 2px 4px #000;
+        }
+    }
+}

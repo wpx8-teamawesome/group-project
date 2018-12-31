@@ -7,6 +7,7 @@ const eventsController = require('./controllers/eventController');
 const peopleController = require('./controllers/peopleController');
 const socketController = require('./controllers/socketController');
 const attendanceController = require('./controllers/attendanceController'); 
+const path = require('path')
 // const session = require('express-session');
 require('dotenv').config();
 // require('dotenv').config();
@@ -85,7 +86,12 @@ app.post('/api/events/attending/:eventid/:uid', attendanceController.attendEvent
 app.delete('/api/events/attending/:eventid/:uid', attendanceController.removeAttendance); 
 
 // --------------------  Server Connection  --------------------
-const PORT = 4000
+app.use( express.static( `${__dirname}/../build` ) )
+app.get('*', (req, res)=>{
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  })
+
+const PORT = 4005
 
 /* Use this for socketIO when we are ready to deploy */
 // const path = require('path')

@@ -470,10 +470,11 @@ class LandingParent extends Component {
                         <div ref={div => this.animationBoxThirty = div} />
                     <div className="animation_container">
                         <Typing className="type_header_top"> Find Fellow Nerds! </Typing>
-                        <div>
+                        <div id="landing-parent-input-box">
                             <input value={searchText} onChange={(e) => this.setState({ searchText: e.target.value})} placeholder="Search Events" />
-                            <input value={cityText} onChange={e => this.setState({ cityText: e.target.value })} placeholder="City" />
-                            <Link to={`/event-search?key=${this.getKeywords()}&city=${cityText}`}><img src={plainSearch} alt='eye glass' /></Link>
+                            <input id="city-input" value={cityText} onChange={e => this.setState({ cityText: e.target.value })} placeholder="City" />
+                            <Link to={`/event-search?key=${this.getKeywords()}&city=${cityText}`}><i className="fas fa-search"></i></Link>
+                            {/* <Link to={`/event-search?key=${this.getKeywords()}&city=${cityText}`}><img src={plainSearch} alt='eye glass' /></Link> */}
                         </div>
                     </div>
                 </div>
