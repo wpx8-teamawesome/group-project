@@ -1,5 +1,6 @@
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";
+@import '../../scss/variables';
 
 .Main_container {
     padding-top: 0px; 
@@ -28,7 +29,8 @@
     border-radius: 10px; 
     z-index: 10px;
     position: absolute; 
-    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    // box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    box-shadow: 0 0 5px rgb(127, 189, 214);
     display: flex; 
     flex-direction: column; 
     /* border-color: rgb(28, 224, 55);  */
@@ -103,7 +105,8 @@
     border-radius: 10px; 
     z-index: 10px;
     /* border-color: rgb(28, 224, 55);  */
-    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    box-shadow: 0 0 5px rgb(127, 189, 214);
+    // box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
 }
 
 // TODO Can clean up since we've removed some things! 
@@ -117,7 +120,8 @@
     border-radius: 10px; 
     z-index: 10px;
     /* border-color: rgb(28, 224, 55);  */
-    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    box-shadow: 0 0 5px rgb(127, 189, 214);
+    // box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
 }
 
 .slick_slider {
@@ -183,7 +187,8 @@
     transform-style: preserve-3d;
     position: relative;
     perspective: 1000px; 
-    box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
+    box-shadow: 0 0 5px rgb(127, 189, 214);
+    // box-shadow: 5px 5px 5px 5px rgb(127, 189, 214);
 }
 
 .top_scroll_container {
@@ -299,6 +304,55 @@
     color: white; 
 } 
 
+#landing-parent-input-box {
+    display: flex;
+    align-items: center;
+
+    i {
+        font-size: 60px;
+        color: $neonBlue;
+    }
+}
+@media screen and (min-width: 320px) {
+    .Main_one {
+        min-height: 568px;
+    }
+    .animation_container {
+        height: 400px;
+
+        .type_header_top {
+            font-size: 30px;
+        }
+    }
+
+    #landing-parent-input-box {
+        flex-direction: column;
+        margin-top: 40px;
+
+        input {
+            width: 90%;
+            max-width: 475px;
+            margin: 0 auto 20px auto;
+            font-size: 24px;
+            
+        }
+        #city-input {
+            margin-bottom: 30px;
+        }
+    }
+}
+
+@media screen and (min-width: 375px) {
+    .Main_one {
+        min-height: 667px;
+    }
+
+    .animation_container  
+        .type_header_top {
+        font-size: 40px;
+    }
+}
+
 @media screen and (max-width: 700px) {
     .animation_container > div > img {
         max-width: 40px; 
@@ -313,5 +367,40 @@
     }
     .front, .back, .back > button {
         font-size: 10px; 
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    #landing-parent-input-box input {
+        font-size: 20px;
+        padding: 20px
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .animation_container {
+        .type_header_top {
+            font-size: 60px;
+        }
+    }
+
+    #landing-parent-input-box {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;;
+        align-items: center;
+        margin-top: 0;
+
+        input {
+            width: 40%;
+            margin: 0;
+        }
+
+        #city-input {
+            margin: 0;
+        }
+
+
+        
     }
 }

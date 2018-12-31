@@ -1,35 +1,48 @@
 @import '../../scss/_variables';
 
 .login-container {
-    width: 94%;
+    width: 90%;
     margin: 16px auto 0px auto;
 
     h1 {
         margin: 0 auto;
         text-align: center;
         color: white;
-        font-size: 40px;
+        // font-size: 40px;
         font-family: $mono;
+        font-weight: bold;
+        font-size: 30px;
+    }
+    .login-form-box {
+        border: 2px solid $teal;
+        border-radius: 2px;
+        margin-top: 16px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
     }
     input {
-        width: 70%;
-        margin: 20px 15% 0 15%;
-        height: 36px;
-        font-size: 22px;
-        padding-left: 8px;
-        border: 2px solid #000;
-        background: #000;
         font-family: $mono;
+        font-weight: bold;
+        font-size: 20px;
+        margin: 16px auto 0 auto;
+        background: $dark;
+        border: 1px solid #fff;
         border-radius: 2px;
-        color:  rgb(42, 177, 1);
+        margin-left: 5%;
+        width: 90%;
+        height: 40px;
+        padding-left: 10px;
+        color: $teal;
     } 
     input:focus {
-        border: 2px solid rgb(42, 177, 1);
-        color:  rgb(42, 177, 1)
+        border: 1px solid $teal;
+        color:  $teal;
+        outline: none;
     }    
         
     .login-btns-box {
-        width: 80%;
+        width: 90%;
         margin: 24px auto 0 auto;
         display: flex;
         justify-content: space-between;
@@ -43,7 +56,23 @@
         }
         button {
             height: 40px;
-            width: 40%;
+            border-radius: 5px;
+            border-color: $neonBlue;
+            font-family: $sans;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            background: $dark;
+            transition: 0.2s;
+            color: $neonBlue;
+            width : 50%;
+            max-width: 138px;
+        }
+
+        button:hover {
+            background: $neonBlue;
+            color: $dark;
         }
     }
     h2 {
@@ -57,12 +86,49 @@
         justify-content: space-between;
         margin-top: 16px;
 
-        a, .back-to-login {
-            width: 40%;
+        a, .back-to-login, .register-btn {
+            height: 40px;
+            border-radius: 5px;
+            border-color: $neonBlue;
+            font-family: $sans;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            background: $dark;
+            transition: 0.2s;
+            color: $neonBlue;
+            width : 40%;
+            max-width: 138px;
         }
 
-        .register-btn {
-            width: 100%;
+        .back-to-login:hover, .register-btn:hover {
+            background: $neonBlue;
+            color: $dark;
         }
+    }
+}
+
+
+@media screen and  (min-width: 667px) {
+    .login-form-box {
+        max-width: 600px;
+        margin: 0 auto 40px auto;
+    }
+
+    .login-container h1 {
+        font-size: 40px;
+        margin-bottom: 14px;
+    }
+}
+
+@media screen and (min-width: 455px) {
+    .login-container {
+        .login-btns-box button, {
+            font-size: 16px!important;
+        }
+    }
+    .register-btns-box .back-to-login, .register-btns-box .register-btn {
+        font-size: 16px!important;
     }
 }

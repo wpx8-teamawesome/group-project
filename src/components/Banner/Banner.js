@@ -51,23 +51,25 @@ class Banner extends Component {
         return (
             <div>
             <header className="App-header">
-                <div className="left_nav">
-                    <Link to='/'><img src={cplogo} alt="code planet"></img></Link>
-                </div>
-                <div className="right_nav">
-                    { user.id ?
-                    <ul className="nav_items">
-                        <img src={!user.img? defaultImg : user.img} alt='user'/>
-                        <img className="toggle_image"
-                        onClick={this.toggleNav} 
-                        src={toggleImage} 
-                        onMouseEnter={() => { this.setState({ toggleImage: downArrowTwo }) }}
-                        onMouseOut={() => { this.setState({ toggleImage: downArrow }) }}
-                        alt='arrow'
-                        /> 
-                    </ul>
-                    : <Link to="/login"><button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button></Link> } 
-                </div>
+                <div className="header-container">
+                    <div className="left_nav">
+                        <Link to='/'><img src={cplogo} alt="code planet"></img></Link>
+                    </div>
+                    <div className="right_nav">
+                        { user.id ?
+                        <ul className="nav_items">
+                            <img src={!user.img? defaultImg : user.img} alt='user'/>
+                            <img className="toggle_image"
+                            onClick={this.toggleNav} 
+                            src={toggleImage} 
+                            onMouseEnter={() => { this.setState({ toggleImage: downArrowTwo }) }}
+                            onMouseOut={() => { this.setState({ toggleImage: downArrow }) }}
+                            alt='arrow'
+                            /> 
+                        </ul>
+                        : <Link to="/login"><button className="lisu_button" onClick={ this.loginSignupHander } >Login / Sign Up</button></Link> } 
+                    </div>
+                </div>    
             </header> 
             { toggled === true ? <div className="toggle_container">
                 <ul>
