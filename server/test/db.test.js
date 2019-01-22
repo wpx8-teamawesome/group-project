@@ -4,14 +4,14 @@ const bcrypt = require('bcrypt');
 
 describe("integration tests", () => {
     let db;
-     
+    const hashedPassword = '$2b$12$t5PtHHis7Wph4LzwxgiMvOCbBbD4I6TSjOB/ubA6NyH/kBBWLkFIS'
+
     function clearDatabase() {
         return db.query('DELETE from users')
     };
 
     function addTestUser() {
-        const hashedPassword = '$2b$12$t5PtHHis7Wph4LzwxgiMvOCbBbD4I6TSjOB/ubA6NyH/kBBWLkFIS'
-        return db.query(`Insert into users(username, password) values('testuser', '${hashedPassword}');`)
+        return db.query(`Insert into users(username, password) values('testuser', '${hashedPassword}') returning *;`)
     }
 
     beforeAll(() => {
@@ -31,11 +31,20 @@ describe("integration tests", () => {
             const username = "testUser";
             const password = "testpassword"
             const email = "test@email.com"
+            const latLng= { lat: 1, lng: 2}
             const req = {
                 app: {
                     get: () => db
                 },
-                body: {username, password, email}
+                body: {
+                    username,
+                    password,
+                    email,
+                    latLng
+                },
+                session: { user : {
+                    // dummy
+                }}
             };
 
             const res = {
@@ -43,7 +52,6 @@ describe("integration tests", () => {
                     expect(user).toMatchObject({
                         username,
                         email,
-                        password: bcrypt.hash(password, 12)
                     });
                     done();
                 },
@@ -64,7 +72,10 @@ describe("integration tests", () => {
                     },
                     body: {
                         username
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
                 const res = {
                     json: function(msg) {
@@ -84,7 +95,10 @@ describe("integration tests", () => {
                 },
                 body: {
                     username
-                }
+                },
+                session: { user : {
+                    // dummy
+                }}
             };
 
             const res = {
@@ -107,19 +121,23 @@ describe("integration tests", () => {
                     body: {
                         username,
                         password
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
 
                 const res = {
                     json: function(userObject) {
-                        const password = '$2b$12$t5PtHHis7Wph4LzwxgiMvOCbBbD4I6TSjOB/ubA6NyH/kBBWLkFIS'
-                        const newObj = {
-                            username: userObject.username,
-                            password: userObject.password
-                        }
-                        expect(newObj).toMatchObject({
-                            username: username, 
-                            password: password
+                        console.log(userObject);
+                        expect(userObject).toMatchObject({
+                            username,
+                            name: username,
+                            id: expect.any(Number),
+                            socialList: {
+                                blocked: expect.anything(),
+                                following: expect.any(Array)
+                            }
                         })
                         done();
                     }
@@ -139,7 +157,10 @@ describe("integration tests", () => {
                     body: {
                         username,
                         password
-                    }
+                    },
+                    session: { user : {
+                        // dummy
+                    }}
                 };
 
                 const res = {
@@ -151,7 +172,7 @@ describe("integration tests", () => {
                         }
                         expect(newObj).not.toMatchObject({
                             username: username, 
-                            password: password
+                            socialList: expect.objectContaining('following')
                         })
                         done();
                     }

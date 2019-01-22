@@ -1,0 +1,136 @@
+.main_header_container {
+    width: 100%; 
+    height: 250px; 
+    background: rgb(5, 1, 36); 
+    color: rgb(197, 247, 247); 
+    text-align: center; 
+    display: flex; 
+    flex-direction: row; 
+    font-family: 'Courier New', Courier, monospace; 
+}
+
+//Left side (title)
+
+.title_container {
+    display: flex; 
+    flex-direction: row; 
+    width: 60%; 
+    height: 100%;
+    justify-content: space-evenly; 
+}
+
+.title_left {
+    display: flex; 
+    flex-direction: column; 
+}
+
+.title_left > p {
+    text-align: center; 
+    font-weight: bold; 
+    font-size: 20px; 
+}
+
+.title_right {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+}
+
+.title_top {
+    display: flex; 
+    flex-direction: column; 
+    font-size: 24px; 
+}
+
+.title_top > p:nth-child(2) {
+    margin-top: 20px; 
+    font-size: 36px; 
+}
+
+.title_top > p:nth-child(1) {
+    font-size: 24px; 
+}
+
+.title_bottom {
+    display: flex; 
+    flex-direction: row; 
+}
+
+.title_bottom > div {
+    display: flex; 
+    flex-direction: column; 
+    justify-content: space-evenly; 
+}
+
+.title_bottom > img {
+    max-width: 60px; 
+    max-height: 60px; 
+    margin-right: 10px; 
+}
+
+//Attendance
+
+.attend_container {
+    display: flex; 
+    flex-direction: column; 
+    width: 40%; 
+    height: 100%;
+    justify-content: space-evenly; 
+}
+
+.attend_one {
+    font-size: 20px; 
+    font-weight: bold; 
+}
+
+.attend_two {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+}
+
+.attend_two > button, .attend_three > button {
+    width: 100px;
+    height: 40px;
+    background: rgb(73, 73, 206); 
+    border-radius: 5px; 
+    color: white; 
+}
+
+.attend_two > button:hover, .attend_three > button:hover {
+    background: rgb(1, 1, 54); 
+    color: white; 
+}
+
+.attend_three {
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-evenly; 
+}
+
+.attend_three > img {
+    max-width: 40px; 
+    max-height: 40px; 
+}
+
+// Media Queries
+@media screen and (max-width: 700px) {
+    .main_header_container, .title_container, .title_left, .title_right, .title_top, .attend_one {
+        font-size: 14px; 
+    }
+    .attend_two > button, .attend_three > button {
+        width: 50px; 
+    }
+    .attend_three > img {
+        margin-top: 20px; 
+        margin-right: 20px; 
+        max-width: 30px;
+        max-height: 30px; 
+    }
+    .title_left > img, .title_bottom > img {
+        margin-top: 20px; 
+        margin-right: 20px; 
+        max-width: 30px;
+        max-height: 30px; 
+    }
+}

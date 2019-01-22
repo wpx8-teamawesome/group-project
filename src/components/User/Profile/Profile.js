@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import EventPreview from './EventPreview/EventPreview';
-import './profile.css';
+import './profile.scss';
+import MyProfile from './ProfileToggle/MyProfile/MyProfile'
+import OtherUserProfile from './ProfileToggle/OtherUserProfile/OtherUserProfile'
 import moment from 'moment';
+
+import { loginUser } from '../../../ducks/reducer';
 
 class Profile extends Component {
     constructor(params) {
@@ -11,8 +16,18 @@ class Profile extends Component {
 
         this.state = { 
             profile: null,
-            events: []
+            events: [],
+            loaded: false,
         }
+    }
+
+    componentWillMount() {
+        axios.get('/api/auth/session').then(res => {
+            this.props.loginUser(res.data)
+            this.setState({
+                loaded: true
+            })
+      })
     }
 
     componentDidMount() {
@@ -22,14 +37,28 @@ class Profile extends Component {
         }
     }
 
+    forceRender = () => {
+        this.setState({ 
+            profile: this.state.profile,
+            events: this.state.events
+        })
+    }
+    updateUser = (userObj) => {
+        this.setState({
+            profile: userObj
+        })
+
+        this.props.loginUser(userObj)
+    }
+
     fetchProfileData = async (id) => {
         const user = await axios.get(`/api/people/${id}`).then(user => user.data);
         const events = await axios.get(`/api/events/user/${id}`).then(events => events.data);
         for (let event of events) {
-            event.start_time = moment(event.start_time).zone(new Date().getTimezoneOffset()).format('lll');
-            event.end_time = moment(event.end_time).zone(new Date().getTimezoneOffset()).format('lll');
+            event.start_time = moment(event.start_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
+            event.end_time = moment(event.end_time).utcOffset( - new Date().getTimezoneOffset()).format('lll');
         }
-
+        
         this.setState({
             profile: user,
             events
@@ -51,47 +80,97 @@ class Profile extends Component {
     }
 
     checkFollow = () => {
-        return true
+        const { user } = this.props;
+        const { profile } = this.state;
+        if (!profile.id || !user.id) {
+            return false;  // no profile loaded, or no user in redux
+        }
+        const { socialList } = user;
+        if (!socialList || !socialList.following) {
+            return false;
+        }
+
+        if (socialList.following.find(el => el.id === profile.id) ) {
+            return true;
+        }
+        return false;
     }
+
+    toggleFollow = () => {
+        const { profile } = this.state;
+        const { user } = this.props;
+        if (! user.id ) {
+            return;  // user not logged in. no following
+        }
+        const { socialList } = user;
+        let following;
+        if (this.checkFollow()) {
+            const copy = socialList.following;
+            copy.splice(copy.indexOf(e => e.id === profile.id), 1);
+            following = copy;
+        }
+        else {
+            following = [...socialList.following, {
+                id: profile.id,
+                username: profile.username,
+                name: profile.name,
+                img: profile.img
+            }] 
+        }
+        const payload = {
+            ...user, 
+            socialList: { 
+                ...socialList,
+                following
+            }
+        }
+
+        axios.put(`/api/people/${user.id}`, {user:  payload })
+        .then( res => {
+            this.props.loginUser(res.data);
+        })
+    }
+
     render() {
-        const { profile, events } = this.state; // 
+        const paramsId = this.props.match.params.id;
+        const {id} = this.props.user;
+        const { profile, events, loaded } = this.state; // 
+        if (! loaded) {
+            return <></>;
+        }
         if (!profile) {
             return <div>No user :(</div>
         }
 
         const myEvents = events.map(event => <EventPreview key={event.id} event={event} />); // map over events
-        console.log(profile);
-        const following = profile.socialList.following.map(user => <div>{user}</div>);
+        const following = profile.socialList.following.map(user => <div>{user.name}</div>);
         const isFollowing = this.checkFollow();
-        return (
-            <div className='profile-container'>
-                <header>
-                        <img className='profile-img' src={profile.img} alt='Current user' />
-                        <div className='profile-header-info'>
-                            <h2>{profile.name}</h2>
-                            <hr/>
-                            {/* More info here? */}
-                            <button className='following' onClick={this.toggleFollow}>{isFollowing ? 'Following': 'Follow'}</button>
-                        </div>
-                </header>
-
-                <div>
-                    <button className='profile-control active' onClick={e => this.switchTabs(e, 'bio')}>Bio</button>
-                    <button className='profile-control' onClick={e => this.switchTabs(e, 'events')}>My Events</button>
-                    <button className='profile-control' onClick={e => this.switchTabs(e, 'followers')}>Following</button>
-                </div>
-               
-                <div id='bio' className='profile-content'>
-                    <p>{ profile.bio || "This nerd is a little shy..." }</p>
-                </div>
-                <div id='events' className='profile-content'>
-                    { myEvents || <p>This nerd likes to run solo</p> }
-                </div>
-                <div id='followers' className='profile-content'>
-                    { following }
-                </div>
-            </div>
-        );
+        if (!id) {
+            return <Redirect to='/login'/>;
+        }
+        if (+paramsId === +id) {
+            return (
+                <MyProfile myEvents={myEvents} 
+                           isFollowing={isFollowing} 
+                           following={following}
+                           profile={profile}
+                           switchTabs={this.switchTabs}
+                           fetchProfileData={this.fetchProfileData} 
+                           forceRender={this.forceRender}
+                           updateUser={this.updateUser}
+                           />
+            );
+        }else {
+            return (
+               <OtherUserProfile myEvents={myEvents} 
+                                 isFollowing={isFollowing}
+                                 toggleFollow={this.toggleFollow} 
+                                 following={following}
+                                 profile={profile}
+                                 switchTabs={this.switchTabs} />
+            )
+        }
+        
     }
 }
 
@@ -101,5 +180,6 @@ function mapStateToProps(state) {
     }
 }
 
-// export default connect(mapStateToProps)(Profile)
-export default Profile;
+export default connect(mapStateToProps, { loginUser })(Profile)
+
+export const StubProfile = Profile;

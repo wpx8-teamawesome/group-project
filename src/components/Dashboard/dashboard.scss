@@ -1,6 +1,5 @@
 @import '../../scss/_variables';
 
-
 body {
     background: $dark;
 }
@@ -8,37 +7,50 @@ body {
     font-family: $mono;
     width: 94%;
 
-    margin: 20px auto 0 auto;
+    margin: 12px auto 0 auto;
 
     .dashboard-top-box {
         width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
 
+        a {
+            width: 25%;
+            display: inline-block;
+        }
         button {
-            width: 20%;
-            background-color: lightblue;
+            height: 40px;
+        color: $neonBlue;
+        border-color: $neonBlue;
+        border-radius: 5px;
+        font-family: $sans;
+        font-weight: bold;
+        font-size: 16px;
+        margin-top: 12px;
+        margin-bottom: 12px;
+        background: $dark;
+        transition: 0.2s;
+        width: 138px;
+        max-width: 138px;
+        }
+        button:hover {
+            color: $dark;
+            background: $neonBlue;
         }
         
         h1 {
-            font-size: 24px;
-            width: 55%;
+            font-size: 30px;
+            width: 100%;
             text-align: center;
             font-weight: bold;
-            color: $teal;
-            border-bottom: 3px solid #27E5E9;
+            color: #fff;
+            margin-bottom: 16px;
+            margin-top: 12px;
         }
         .dashboard-top-box-filler {
             width: 20%;
             height: 40px;
-            // background: hotpink; 
         }
     }
 
-    // .events h1.white-text{
-    //     color: #fff;
-    // }
         
     
 }

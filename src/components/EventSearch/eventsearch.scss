@@ -1,0 +1,49 @@
+@import '../../scss/_variables.scss';
+
+.event-search-container {
+    .search-title {
+        margin: 16px auto 24px auto;
+        width: 50%;
+        border-bottom: 3px solid $teal;
+        color: $teal;
+        font-size: 50px;
+        font-family: $mono;
+        text-align: center;
+    }
+
+    .event-card-container {
+        width: 60%; 
+        margin: 16px auto 0 auto;
+        padding-bottom: 12px;
+    }
+}
+
+.no-search {
+    width: 80%;
+    margin: 120px auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    img {
+        height: 100%;
+        max-height: 200px;
+    }
+    h1 {
+    color: white;
+    font-size: 24px;
+    
+    }
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+        height: 40px;
+        line-height: 40px;
+        font-size: 24px;
+        width: 140px;
+        background-color: #cacaca;
+    }
+}

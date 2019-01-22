@@ -1,5 +1,6 @@
 .App-header {
     background-color: #1A202B; 
+    width: 100%;
     height: 100px; 
     display: flex;
     flex-direction: row;
@@ -9,7 +10,13 @@
     color: white;
     position: relative;
   }
-
+.header-container {
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
   .left_nav {
     display: flex;
     flex-direction: row;
@@ -17,24 +24,18 @@
     font-weight: bold; 
     justify-content: space-evenly; 
     /* margin-left: 10px;  */
-    width: 25%; 
+    // width: 25%; 
   }
 
-  .right_nav {
-    display: flex;
-    flex-direction: row;
-    width: 50%; 
-    margin-left: 50%; 
-  }
+  // .right_nav {
+  //   display: flex;
+  //   flex-direction: row;
+  //   width: 50%; 
+  //   margin-left: 50%; 
+  // }
 
-  .left_nav > img, .right_nav > .nav_items > img {
-    max-width: 50px;
-    max-height: 50px; 
-    border-radius: 25px; 
-  }
-
-  .left_nav > img {
-    margin-top: 10px; 
+  .left_nav > a {
+    // padding-left: 25px; 
   }
 
   .right_nav > nav_items > img {
@@ -50,6 +51,12 @@
     margin-left: 40%;  
   }
 
+  .nav_items > img {
+    max-width: 50px;
+    max-height: 50px;
+    border-radius: 25px;
+  }
+
   .toggle_container {
     width: 20%; 
     margin-left: 80%; 
@@ -57,13 +64,6 @@
     background: rgb(11, 40, 94); 
     position: absolute;
     z-index: 2; 
-  }
-
-  .toggle_container > ul {
-    display: flex; 
-    list-style-type: none; 
-    flex-direction: column; 
-    justify-content: space-evenly; 
   }
 
   .toggle_container > ul > li > button {
@@ -74,6 +74,7 @@
     font-family: 'Courier New', Courier, monospace; 
     border-radius: 5px; 
     width: 80%; 
+    margin-left: 10%; 
     margin-top: 15px; 
   }
 
@@ -92,23 +93,41 @@
     font-size: 16px; 
     font-family: 'Courier New', Courier, monospace; 
     font-weight: bold; 
-    margin-left: 40%; 
+    // margin-left: 40%; 
   }
 
   .lisu_button:hover {
     background: #1896DA; 
     color: white; 
   }
+  .toggle_image:hover {
+    cursor: pointer;
+  }
 
-  /* .nav_items > li > button {
+.toggle_container > ul > li > a {
+    width: 80%; 
+    height: 40px;
+    background: rgb(25, 18, 121); 
+    color: white;
+}
+
+.toggle_container > ul > li > a > button {
     background:  #1A202B; 
     border-color: #1896DA; 
     color: #1896DA; 
     font-size: 24px; 
     font-family: 'Courier New', Courier, monospace; 
     border-radius: 5px; 
-    margin-left: 5px; 
-  } */
+    width: 80%; 
+    margin-top: 15px; 
+    margin-left: 10%; 
+}
+
+.toggle_container > ul > li > a > button:hover {
+  background: #1896DA; 
+  color: white; 
+
+}
 
 
 
@@ -137,18 +156,51 @@
       background: rgb(11, 40, 94); 
       position: absolute;
       z-index: 2; 
+
     }
-    .toggle_container > ul > li > button {
+    .toggle_container > ul > li > button, .toggle_container > ul > li > a > button {
       font-size: 14px;  
       margin-top: 15px; 
+
     }
-    .left_nav {
-      width: 50%; 
-    }
+    // .left_nav {
+    //   width: 50%; 
+    // }
     .left_nav > p {
       font-size: 16px; 
     }
     .right_nav {
       margin-left: 25%; 
     }
+  }
+  @media screen and (min-width: 320px) {
+    .header-container {
+      height: 100%;
+      align-items: center;
+    }
+
+  }
+
+  @media screen and (max-width: 375px) {
+    .left_nav img{
+      width : 110%;
+      margin-left:  0;
+    }
+    
+  }
+  @media screen and (min-width: 376px) {
+    .left_nav img {
+      width: 200px;
+    }
+
+  }
+  @media screen and (min-width: 700px) {
+    .left_nav img {
+      width: 100%;
+    }
+  }
+
+  // Leave This In. When I added dashboard styles it messed up previous styles.
+  .toggle_container {
+    z-index: 5;
   }

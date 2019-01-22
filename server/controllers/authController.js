@@ -1,5 +1,18 @@
 const bcrypt = require('bcrypt');
+// const session = require('express-session')
 const saltRounds = 12;
+
+function userObjCamelCase(user) {
+    return {
+        id: user.id,
+        username: user.username,
+        bio: user.bio,
+        email: user.email,
+        img: user.img,
+        name: user.name || user.username, // in case they did not set a name
+        socialList: user.social_list,
+    }
+}
 
 module.exports = {
     loginUser: (req, res) => {
@@ -9,7 +22,9 @@ module.exports = {
             if (user.length) {
                 bcrypt.compare(password, user[0].password).then(passwordsMatch => {
                     if (passwordsMatch) {
-                        res.json(user[0])
+                        const rtn = userObjCamelCase(user[0])
+                        req.session.user = rtn
+                        res.json(rtn)
                     }else {
                         res.json({ message: 'Username and Password do not match' })
                     }
@@ -22,7 +37,7 @@ module.exports = {
 
     registerUser: (req, res) => {
         const db = req.app.get('db');
-        const {username, password, email} =  req.body
+        const {username, password, email, latLng} =  req.body
         db.check_existing_username({
             username: username
         }).then(users => {
@@ -33,17 +48,26 @@ module.exports = {
                     db.create_new_user({
                         username: username,
                         password: hash,
-                        email: email
+                        email: email,
+                        latLng: latLng
                     }).then(user => {
-                        res.status(200).json(user[0])
+                        const rtn = userObjCamelCase(user[0])
+                        req.session.user = rtn
+                        res.status(200).json(rtn)
                     })
                 })
             }
         })
     },
 
+    getSession: (req, res) => {
+        const { session } = req;
+        res.status(200).send( session.user || {} );
+    },
+
     logoutUser: (req, res) => {
-        console.log('---authController.logoutUser connection---')
+        req.session.destroy()
+        res.sendStatus(200)
     },
 }
 
